@@ -1,0 +1,13 @@
+{
+  "name": "kavya-profile-observatory",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:portrait": "node scripts/build-portrait-reveal.mjs",
+    "build:profile": "node scripts/generate-profile-assets.mjs",
+    "build": "npm run build:portrait && npm run build:profile"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
