@@ -2,6 +2,11 @@ name: Refresh profile signals
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/refresh-profile.yml"
   schedule:
     - cron: "17 3 * * *"
 
