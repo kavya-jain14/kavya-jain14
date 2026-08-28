@@ -52,5 +52,5 @@
   <text x="478" y="190" class="muted tiny">VERIFICATION</text>
   <text x="478" y="214" class="stage" fill="var(--success)">CHECKS PASSING</text>
   <text x="680" y="190" class="muted tiny">LATEST MERGED PR</text>
-  <text x="680" y="214" class="stage">PR #22 · TRISHUL · MERGED</text>
+  <text x="680" y="214" class="stage">PR #2 · kavya-jain14 · MERGED</text>
 </svg>
