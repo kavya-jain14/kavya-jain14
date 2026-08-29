@@ -37,7 +37,7 @@ jobs:
         with:
           github_user_name: kavya-jain14
           outputs: |
-            assets/generated/snake-light.svg?color_snake=#007e70&color_dots=#edf5f2,#c7e9e2,#89d8cc,#3dbbaa,#007e70
+            assets/generated/snake-light.svg?color_snake=#006f63&color_dots=#d8e7e3,#abd8cf,#70c8bb,#2fae9d,#006f63
             assets/generated/snake-dark.svg?color_snake=#55d8c7&color_dots=#121a1e,#1c3435,#285c58,#368c82,#55d8c7
 
       - name: Generate the 3D contribution calendar
