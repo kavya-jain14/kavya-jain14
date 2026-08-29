@@ -1,0 +1,20 @@
+import { mkdirSync, writeFileSync } from "node:fs";
+
+const token = process.env.GITHUB_TOKEN;
+const username = process.env.PROFILE_USERNAME || "kavya-jain14";
+if (!token) throw new Error("GITHUB_TOKEN is required to refresh contribution data.");
+const to = new Date();
+const from = new Date(to);
+from.setUTCDate(from.getUTCDate() - 370);
+const query = `query ContributionCalendar($login: String!, $from: DateTime!, $to: DateTime!) { user(login: $login) { contributionsCollection(from: $from, to: $to) { contributionCalendar { totalContributions weeks { firstDay contributionDays { date contributionCount } } } } } }`;
+const response = await fetch("https://api.github.com/graphql", { method: "POST", headers: { authorization: `Bearer ${token}`, "content-type": "application/json", "user-agent": "kavya-profile-build-pulse" }, body: JSON.stringify({ query, variables: { login: username, from: from.toISOString(), to: to.toISOString() } }) });
+if (!response.ok) throw new Error(`GitHub GraphQL returned ${response.status}: ${await response.text()}`);
+const payload = await response.json();
+if (payload.errors?.length) throw new Error(payload.errors.map((error) => error.message).join("; "));
+const calendar = payload.data?.user?.contributionsCollection?.contributionCalendar;
+if (!calendar) throw new Error(`No contribution calendar returned for ${username}.`);
+const weeks = calendar.weeks.map((week) => ({ start: week.firstDay, total: week.contributionDays.reduce((sum, day) => sum + day.contributionCount, 0) }));
+const days = calendar.weeks.reduce((sum, week) => sum + week.contributionDays.length, 0);
+mkdirSync("data", { recursive: true });
+writeFileSync("data/contributions.json", `${JSON.stringify({ generatedAt: to.toISOString(), total: calendar.totalContributions, days, weeks }, null, 2)}\n`);
+console.log(`Fetched ${calendar.totalContributions} contributions across ${weeks.length} weeks for ${username}.`);
