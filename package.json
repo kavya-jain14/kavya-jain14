@@ -3,9 +3,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build:portrait": "python3 scripts/build_portrait_dotmatrix.py",
+    "build:portrait": "python3 scripts/build-portrait-reveal.py",
     "build:projects": "node scripts/build-project-cards.mjs",
-    "build": "npm run build:portrait && npm run build:projects"
+    "build:activity": "node scripts/build-activity-pulse.mjs",
+    "build": "npm run build:portrait && npm run build:projects && npm run build:activity"
   },
   "engines": {
     "node": ">=20"
