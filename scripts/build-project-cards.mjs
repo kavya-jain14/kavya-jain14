@@ -8,8 +8,8 @@ const projects = [
 ];
 
 const themes = {
-  dark: { background: "#0b1014", border: "#26363a", ink: "#f2f7f5", muted: "#91a09f", accent: "#55d8c7", faint: "#142025" },
-  light: { background: "#fcfdfb", border: "#d4dfdc", ink: "#172220", muted: "#5f6f6b", accent: "#007e70", faint: "#edf5f2" },
+  dark: { background: "#0d1117", border: "#30363d", ink: "#f0f6fc", muted: "#8b949e", accent: "#39d353", faint: "#132217" },
+  light: { background: "#ffffff", border: "#d0d7de", ink: "#1f2328", muted: "#59636e", accent: "#1f883d", faint: "#dafbe1" },
 };
 
 const escapeXml = (value) => value.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&apos;");
