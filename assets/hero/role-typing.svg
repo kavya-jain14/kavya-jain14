@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 92" width="760" height="92" role="img" aria-labelledby="role-title">
+  <title id="role-title">Kavya Jain, Systems Engineering and Product</title>
+  <defs>
+    <clipPath id="name-type"><rect x="300" y="0" width="0" height="42"><animate attributeName="width" dur="8s" repeatCount="indefinite" values="0;0;160;160;0;0" keyTimes="0;0.04;0.23;0.965;0.966;1"/></rect></clipPath>
+    <clipPath id="role-type"><rect x="128" y="40" width="0" height="52"><animate attributeName="width" dur="8s" repeatCount="indefinite" values="0;0;0;504;504;0;0" keyTimes="0;0.04;0.24;0.54;0.965;0.966;1"/></rect></clipPath>
+  </defs>
+  <style>.name{font:800 25px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#39d353}.role{font:700 22px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#39d353}.caret{fill:#39d353;animation:blink .78s steps(1,end) infinite}@keyframes blink{50%{opacity:0}}</style>
+  <text x="380" y="30" text-anchor="middle" class="name" clip-path="url(#name-type)">Kavya Jain</text>
+  <text x="380" y="72" text-anchor="middle" class="role" clip-path="url(#role-type)">Systems Engineering &amp; Product</text>
+  <rect class="caret" x="300" y="7" width="3" height="27"><animate attributeName="x" dur="8s" repeatCount="indefinite" values="300;300;460;460;300;300" keyTimes="0;0.04;0.23;0.965;0.966;1"/><animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="1;1;1;0;0" keyTimes="0;0.04;0.23;0.24;1"/></rect>
+  <rect class="caret" x="128" y="49" width="3" height="27"><animate attributeName="x" dur="8s" repeatCount="indefinite" values="128;128;128;630;630;128;128" keyTimes="0;0.04;0.24;0.54;0.965;0.966;1"/><animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.23;0.24;0.965;0.966;1"/></rect>
+</svg>
