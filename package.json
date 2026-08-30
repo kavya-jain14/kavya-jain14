@@ -3,10 +3,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build:portrait": "python3 scripts/build-portrait-reveal.py",
+    "build:profile-style": "python3 scripts/build-gargi-profile.py",
     "build:projects": "node scripts/build-project-cards.mjs",
-    "build:activity": "node scripts/build-activity-pulse.mjs",
-    "build": "npm run build:portrait && npm run build:projects && npm run build:activity"
+    "build:numbers": "node scripts/build-profile-numbers.mjs",
+    "build": "npm run build:profile-style && npm run build:projects && npm run build:numbers"
   },
   "engines": {
     "node": ">=20"
