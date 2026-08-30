@@ -27,8 +27,10 @@ jobs:
           PROFILE_USERNAME: kavya-jain14
         run: node scripts/fetch-contributions.mjs
 
-      - name: Rebuild the signal
-        run: node scripts/build-activity-pulse.mjs
+      - name: Rebuild the public numbers
+        env:
+          PUBLIC_REPO_COUNT: 17
+        run: node scripts/build-profile-numbers.mjs
 
       - name: Generate the light and dark contribution snakes
         uses: Platane/snk/svg-only@v3
@@ -37,8 +39,8 @@ jobs:
         with:
           github_user_name: kavya-jain14
           outputs: |
-            assets/generated/snake-light.svg?color_snake=#006f63&color_dots=#d8e7e3,#abd8cf,#70c8bb,#2fae9d,#006f63
-            assets/generated/snake-dark.svg?color_snake=#55d8c7&color_dots=#121a1e,#1c3435,#285c58,#368c82,#55d8c7
+            assets/generated/snake-light.svg?color_snake=#1f883d&color_dots=#ebf5ee,#aceebb,#6bdc82,#39d353,#1f883d
+            assets/generated/snake-dark.svg?color_snake=#39d353&color_dots=#161b22,#173b20,#238636,#2ea043,#39d353
 
       - name: Generate the 3D contribution calendar
         uses: yoshi389111/github-profile-3d-contrib@latest
@@ -53,7 +55,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/contributions.json assets/activity-pulse-dark.svg assets/activity-pulse-light.svg assets/generated
+          git add data/contributions.json assets/numbers-dark.svg assets/numbers-light.svg assets/generated
           git diff --cached --quiet && exit 0
           git commit -m "chore(profile): refresh activity signals"
           git push
