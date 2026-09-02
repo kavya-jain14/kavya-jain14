@@ -2,12 +2,12 @@
   <title id="trishul-title">TRISHUL project card</title>
   <desc id="trishul-desc">Trace evidence without overstating certainty. Kavya's contribution: PRODUCT · DATA DESIGN · FRONTEND QA.</desc>
   <style>
-    text{font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;fill:#172220}
-    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}.index{font-size:9px;font-weight:700;letter-spacing:.14em;fill:#007e70}.type{font-size:9px;font-weight:700;letter-spacing:.11em;fill:#5f6f6b}.name{font-size:21px;font-weight:760;letter-spacing:-.025em}.summary{font-size:11.5px;fill:#5f6f6b}.label{font-size:8px;font-weight:700;letter-spacing:.12em;fill:#5f6f6b}.contribution{font-size:9px;font-weight:700;letter-spacing:.045em}.proof{font-size:8.5px;font-weight:700;letter-spacing:.08em;fill:#007e70}
+    text{font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;fill:#1f2328}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}.index{font-size:9px;font-weight:700;letter-spacing:.14em;fill:#1f883d}.type{font-size:9px;font-weight:700;letter-spacing:.11em;fill:#59636e}.name{font-size:21px;font-weight:760;letter-spacing:-.025em}.summary{font-size:11.5px;fill:#59636e}.label{font-size:8px;font-weight:700;letter-spacing:.12em;fill:#59636e}.contribution{font-size:9px;font-weight:700;letter-spacing:.045em}.proof{font-size:8.5px;font-weight:700;letter-spacing:.08em;fill:#1f883d}
   </style>
-  <rect x=".5" y=".5" width="419" height="157" rx="7" fill="#fcfdfb" stroke="#d4dfdc"/>
-  <path d="M16 17H72" stroke="#007e70" stroke-width="2"/><text x="16" y="33" class="index mono">02</text><text x="44" y="33" class="type mono">FRAUD INTELLIGENCE</text>
-  <text x="16" y="69" class="name">TRISHUL</text><text x="16" y="91" class="summary">Trace evidence without overstating certainty.</text><g fill="none" stroke="#007e70" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M326 63l18-24 20 17 24-19M344 39l20 17-8 20M364 56l24-19"/><circle cx="326" cy="63" r="4" fill="#007e70"/><circle cx="344" cy="39" r="4"/><circle cx="364" cy="56" r="4"/><circle cx="356" cy="76" r="4"/><circle cx="388" cy="37" r="4"/></g>
-  <path d="M16 108H404" stroke="#d4dfdc"/><text x="16" y="124" class="label mono">MY CONTRIBUTION</text><text x="16" y="143" class="contribution mono">PRODUCT · DATA DESIGN · FRONTEND QA</text>
-  <rect x="294" y="121" width="110" height="24" rx="12" fill="#edf5f2"/><text x="349" y="136" text-anchor="middle" class="proof mono">EVIDENCE GATES</text>
+  <rect x=".5" y=".5" width="419" height="157" rx="7" fill="#ffffff" stroke="#d0d7de"/>
+  <path d="M16 17H72" stroke="#1f883d" stroke-width="2"/><text x="16" y="33" class="index mono">02</text><text x="44" y="33" class="type mono">FRAUD INTELLIGENCE</text>
+  <text x="16" y="69" class="name">TRISHUL</text><text x="16" y="91" class="summary">Trace evidence without overstating certainty.</text><g fill="none" stroke="#1f883d" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M326 63l18-24 20 17 24-19M344 39l20 17-8 20M364 56l24-19"/><circle cx="326" cy="63" r="4" fill="#1f883d"/><circle cx="344" cy="39" r="4"/><circle cx="364" cy="56" r="4"/><circle cx="356" cy="76" r="4"/><circle cx="388" cy="37" r="4"/></g>
+  <path d="M16 108H404" stroke="#d0d7de"/><text x="16" y="124" class="label mono">MY CONTRIBUTION</text><text x="16" y="143" class="contribution mono">PRODUCT · DATA DESIGN · FRONTEND QA</text>
+  <rect x="294" y="121" width="110" height="24" rx="12" fill="#dafbe1"/><text x="349" y="136" text-anchor="middle" class="proof mono">EVIDENCE GATES</text>
 </svg>

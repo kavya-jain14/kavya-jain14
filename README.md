@@ -1,29 +1,89 @@
 <div align="center">
 
 <picture>
-  <source type="image/webp" srcset="./assets/portrait-reveal.webp">
-  <img src="./assets/portrait-v3.png" width="312" alt="Kavya Jain in a black suit, rendered in an amber halftone portrait">
+  <source type="image/svg+xml" srcset="./assets/hero/portrait-reveal.svg">
+  <img src="./assets/hero/portrait-pixel.png" width="360" alt="Kavya Jain in a transparent dot-pixel portrait">
 </picture>
 
-# Kavya Jain
+<br>
 
-### I build decision systems for the moments where software cannot afford to guess.
+<img src="./assets/hero/role-typing.svg" width="560" alt="Kavya Jain — Systems Engineering and Product">
 
-Full-stack engineering · explainable AI · reliable state · product systems
+<br>
 
-[Selected systems](#selected-systems) · [Activity](#activity-in-three-views) · [Working set](#working-set) · [LeetCode](https://leetcode.com/u/Kavya_Jain_14/) · [Codeforces](https://codeforces.com/profile/kavya_jain)
+<a href="https://github.com/kavya-jain14?tab=repositories"><img alt="Repositories" src="https://img.shields.io/badge/REPOSITORIES-181717?style=flat-square&logo=github&logoColor=white"></a>
+<a href="https://leetcode.com/u/Kavya_Jain_14/"><img alt="LeetCode" src="https://img.shields.io/badge/LEETCODE-FFA116?style=flat-square&logo=leetcode&logoColor=111111"></a>
+<a href="https://codeforces.com/profile/kavya_jain"><img alt="Codeforces" src="https://img.shields.io/badge/CODEFORCES-1F8ACB?style=flat-square&logo=codeforces&logoColor=white"></a>
+<a href="https://www.codechef.com/users/kavya_jain_14"><img alt="CodeChef" src="https://img.shields.io/badge/CODECHEF-5B4638?style=flat-square&logo=codechef&logoColor=white"></a>
 
 </div>
 
 ---
 
-I like software most when the answer is not obvious: a payment looks risky, a college preference conflicts with a real constraint, or an autonomous system has to decide whether it has enough evidence to act.
+## `~/` whoami
 
-That is the thread through my work—**turning uncertain decisions into explicit state, understandable reasoning and a recovery path.**
+```console
+$ cat about.txt
+```
 
-<a id="selected-systems"></a>
+Hi, I'm **Kavya Jain**. I build systems for decisions that become difficult when evidence is incomplete, providers fail, or the happy path stops being honest.
 
-## Four systems I can defend end-to-end
+- Currently building **TRISHUL**, a financial cyber-fraud intelligence system.
+- Strongest lane: product architecture, frontend QA, backend reliability and explainable state.
+- Learning track: DSA in C++ and production-grade full-stack systems.
+- I treat failure recovery as a product feature, not a cleanup task.
+
+---
+
+## `~/` toolbox
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/toolbox-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/toolbox-light.svg">
+  <img src="./assets/toolbox-light.svg" width="880" alt="Kavya Jain's languages, frameworks, systems, data and delivery toolbox">
+</picture>
+
+---
+
+## `~/` skill radar
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/skill-radar-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/skill-radar-light.svg">
+  <img src="./assets/skill-radar-light.svg" width="880" alt="Relative radar charts of Kavya Jain's engineering focus and working languages">
+</picture>
+
+<sub>Relative working range, not proficiency percentages.</sub>
+
+---
+
+## `~/` contribution calendar
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/generated/calendar-3d-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/generated/calendar-3d-light.svg">
+  <img src="./assets/generated/calendar-3d-light.svg" width="880" alt="Kavya Jain's animated GitHub contribution calendar rendered as a green 3D terrain">
+</picture>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/generated/snake-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/generated/snake-light.svg">
+  <img src="./assets/generated/snake-light.svg" width="880" alt="A green contribution snake moving through Kavya Jain's GitHub activity grid">
+</picture>
+
+---
+
+## `~/` the numbers
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/numbers-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/numbers-light.svg">
+  <img src="./assets/numbers-light.svg" width="880" alt="Kavya Jain's public repositories, contributions, active weeks and flagship systems">
+</picture>
+
+---
+
+## `~/` selected work
 
 <table>
 <tr>
@@ -52,7 +112,7 @@ That is the thread through my work—**turning uncertain decisions into explicit
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="./assets/projects/mira-dark.svg">
       <source media="(prefers-color-scheme: light)" srcset="./assets/projects/mira-light.svg">
-      <img src="./assets/projects/mira-light.svg" width="420" alt="MIRA, an autonomous and auditable AI editor">
+      <img src="./assets/projects/mira-light.svg" width="420" alt="MIRA, an autonomous and auditable AI creator">
     </picture>
   </a>
 </td>
@@ -68,69 +128,23 @@ That is the thread through my work—**turning uncertain decisions into explicit
 </tr>
 </table>
 
-**TRINETRA** keeps a payment decision explainable through provider failures, retries and recovery. I worked on the system architecture, backend contracts, durable payment state and QA.
-
-**TRISHUL** connects receiver verification, behavioural signals, complaints and transaction traces without pretending uncertain evidence is certainty. I lead the product architecture, data design and frontend QA.
-
-**MIRA** is an autonomous creator that discovers, decides, remembers and publishes with a visible decision trail. I built the full frontend, product flow and part of the backend integration.
-
-**Project Socrates** makes the learner teach a concept back, then checks the gaps behind a confident explanation. I worked on the learning UX, frontend and evaluation flow in collaboration with [Gargi Bhardwaj](https://github.com/gargibhardwaj24).
-
-<a id="activity-in-three-views"></a>
-
-## Activity in three views
-
-### 01 / Build pulse
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/activity-pulse-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/activity-pulse-light.svg">
-  <img src="./assets/activity-pulse-light.svg" width="880" alt="A 52-week signal line generated from Kavya Jain's public GitHub contribution history">
-</picture>
-
-<sub>A custom 52-week signal generated directly from my public GitHub contribution history and refreshed daily.</sub>
-
-### 02 / Contribution terrain
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/generated/calendar-3d-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/generated/calendar-3d-light.svg">
-  <img src="./assets/generated/calendar-3d-light.svg" width="880" alt="Kavya Jain's animated GitHub contribution calendar rendered as a solid-teal 3D terrain">
-</picture>
-
-<sub>The same activity rendered as an animated 3D calendar—solid colour, no rainbow chart or extra widget panel.</sub>
-
-### 03 / Contribution snake
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/generated/snake-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/generated/snake-light.svg">
-  <img src="./assets/generated/snake-light.svg" width="880" alt="A teal snake animation moving through Kavya Jain's GitHub contribution grid">
-</picture>
-
-<sub>Generated in matching teal variants for light and dark GitHub themes.</sub>
-
-<a id="working-set"></a>
-
-## Working set
-
-- **Systems:** Node.js, Fastify, Express, PostgreSQL, MongoDB, Redis, BullMQ
-- **Product:** React, Next.js, TypeScript, accessible interaction design
-- **Applied intelligence:** autonomous workflows, retrieval, deterministic scoring, evidence gates
-- **Reliability:** runtime contracts, idempotency, transactional outbox, immutable histories, integration tests
-
-## Also on the workbench
-
-- [CounselFlow](https://github.com/kavya-jain14/COUNSEL-FLOW) turns counselling constraints into an explainable preference order and surfaces conflicts before the user locks a decision.
-- [PaperTrade](https://github.com/kavya-jain14/PAPER_TRADE) is a server-authoritative market simulator for execution, portfolio state and deliberate practice without real capital.
-- Competitive programming on [LeetCode](https://leetcode.com/u/Kavya_Jain_14/), [Codeforces](https://codeforces.com/profile/kavya_jain) and [CodeChef](https://www.codechef.com/users/kavya_jain_14).
+| Project | Problem lane | Engineering proof | My contribution |
+| --- | --- | --- | --- |
+| [TRINETRA](https://github.com/kavya-jain14/TRINETRA) | UPI risk and recovery | Durable payment state and explainable recovery | Architecture, backend, QA |
+| [TRISHUL](https://github.com/kavya-jain14/TRISHUL) | Financial cyber-fraud intelligence | Evidence gates and traceable decisions | Product architecture, data design, frontend QA |
+| [MIRA](https://github.com/kavya-jain14/MIRA) | Autonomous publishing | Source gates and a visible decision ledger | Full frontend, product flow, backend integration |
+| [Socrates](https://github.com/gargibhardwaj24/Socrates) | Teach-back learning | Curated misconceptions and repeatable evaluation | Learning UX, frontend, evaluation flow |
+| [CounselFlow](https://github.com/kavya-jain14/COUNSEL-FLOW) | College preference decisions | Constraint conflicts before list lock | Product architecture and decision UX |
+| [PaperTrade](https://github.com/kavya-jain14/PAPER_TRADE) | Market simulation | Server-authoritative execution and portfolio state | Full-stack product engineering |
 
 ---
 
 <div align="center">
 
-**Open to software engineering internships and ambitious product collaborations.**
+### `~/` build something difficult
 
-[Explore the repositories](https://github.com/kavya-jain14?tab=repositories)
+Open to software engineering internships and ambitious product collaborations.
+
+[GitHub](https://github.com/kavya-jain14) · [Repositories](https://github.com/kavya-jain14?tab=repositories) · [LeetCode](https://leetcode.com/u/Kavya_Jain_14/) · [Codeforces](https://codeforces.com/profile/kavya_jain)
 
 </div>
