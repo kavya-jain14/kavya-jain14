@@ -1,0 +1,157 @@
+{
+  "username": "kavya-jain14",
+  "engineeringAxes": [
+    "PRODUCT",
+    "FRONTEND",
+    "BACKEND",
+    "DATA",
+    "RELIABILITY",
+    "AI FLOW"
+  ],
+  "projects": [
+    {
+      "id": "trinetra",
+      "index": "01",
+      "name": "TRINETRA",
+      "repo": "kavya-jain14/TRINETRA",
+      "type": "UPI RISK + RECOVERY",
+      "problem": "UPI risk and recovery",
+      "summary": "Explain the decision. Preserve the payment state.",
+      "constraint": "A payment must remain retry-safe while every risk decision stays explainable.",
+      "decision": "Model payment state as a durable ledger and make each risk verdict an auditable transition.",
+      "proof": "Durable payment state and explainable recovery",
+      "capability": "DURABLE RECOVERY",
+      "contribution": "ARCHITECTURE · BACKEND · QA",
+      "glyph": "route",
+      "flagship": true,
+      "axisWeights": {
+        "PRODUCT": 0.8,
+        "FRONTEND": 0.35,
+        "BACKEND": 0.95,
+        "DATA": 0.65,
+        "RELIABILITY": 1.0,
+        "AI FLOW": 0.4
+      }
+    },
+    {
+      "id": "trishul",
+      "index": "02",
+      "name": "TRISHUL",
+      "repo": "kavya-jain14/TRISHUL",
+      "type": "FRAUD INTELLIGENCE",
+      "problem": "Financial cyber-fraud intelligence",
+      "summary": "Trace evidence without overstating certainty.",
+      "constraint": "Fraud signals are incomplete, so suspicion cannot be presented as certainty.",
+      "decision": "Gate every claim through provenance, confidence and a traceable evidence chain.",
+      "proof": "Evidence gates and traceable decisions",
+      "capability": "EVIDENCE GATES",
+      "contribution": "PRODUCT · DATA DESIGN · FRONTEND QA",
+      "glyph": "graph",
+      "flagship": true,
+      "axisWeights": {
+        "PRODUCT": 1.0,
+        "FRONTEND": 0.7,
+        "BACKEND": 0.8,
+        "DATA": 1.0,
+        "RELIABILITY": 0.85,
+        "AI FLOW": 0.75
+      }
+    },
+    {
+      "id": "mira",
+      "index": "03",
+      "name": "MIRA",
+      "repo": "kavya-jain14/MIRA",
+      "type": "AUTONOMOUS CREATOR",
+      "problem": "Autonomous publishing",
+      "summary": "Discover, decide, remember, then publish.",
+      "constraint": "Autonomy without sources or memory becomes opaque and difficult to audit.",
+      "decision": "Separate discovery, decision, memory and publishing into a visible decision ledger.",
+      "proof": "Source gates and a visible decision ledger",
+      "capability": "DECISION LEDGER",
+      "contribution": "FULL FRONTEND · FLOW · INTEGRATION",
+      "glyph": "cycle",
+      "flagship": true,
+      "axisWeights": {
+        "PRODUCT": 0.9,
+        "FRONTEND": 1.0,
+        "BACKEND": 0.7,
+        "DATA": 0.7,
+        "RELIABILITY": 0.55,
+        "AI FLOW": 1.0
+      }
+    },
+    {
+      "id": "socrates",
+      "index": "04",
+      "name": "SOCRATES",
+      "repo": "gargibhardwaj24/Socrates",
+      "type": "TEACH-BACK LEARNING",
+      "problem": "Teach-back learning",
+      "summary": "Find the gap behind a confident explanation.",
+      "constraint": "A confident answer can still hide shallow understanding or a missed misconception.",
+      "decision": "Make the learner correct seeded misconceptions against a repeatable evaluation rubric.",
+      "proof": "Curated misconceptions and repeatable evaluation",
+      "capability": "REPEATABLE SCORE",
+      "contribution": "LEARNING UX · FRONTEND · EVALUATION",
+      "glyph": "teach",
+      "flagship": true,
+      "axisWeights": {
+        "PRODUCT": 0.85,
+        "FRONTEND": 0.9,
+        "BACKEND": 0.65,
+        "DATA": 0.4,
+        "RELIABILITY": 0.5,
+        "AI FLOW": 0.8
+      }
+    },
+    {
+      "id": "counselflow",
+      "index": "05",
+      "name": "COUNSELFLOW",
+      "repo": "kavya-jain14/COUNSEL-FLOW",
+      "type": "DECISION COUNSELLING",
+      "problem": "College preference decisions",
+      "summary": "Resolve the conflict before locking the list.",
+      "constraint": "Rank, branch priority, budget and distance can contradict one another before choice lock.",
+      "decision": "Surface constraint conflicts before producing a deterministic preference order.",
+      "proof": "Constraint conflicts before list lock",
+      "capability": "CONFLICT CHECKS",
+      "contribution": "PRODUCT ARCHITECTURE · DECISION UX",
+      "glyph": "conflict",
+      "flagship": false,
+      "axisWeights": {
+        "PRODUCT": 1.0,
+        "FRONTEND": 0.9,
+        "BACKEND": 0.55,
+        "DATA": 0.65,
+        "RELIABILITY": 0.55,
+        "AI FLOW": 0.45
+      }
+    },
+    {
+      "id": "papertrade",
+      "index": "06",
+      "name": "PAPERTRADE",
+      "repo": "kavya-jain14/PAPER_TRADE",
+      "type": "MARKET SIMULATION",
+      "problem": "Market simulation",
+      "summary": "Keep execution honest when the client drifts.",
+      "constraint": "Client prices can drift or be manipulated while portfolio state must remain authoritative.",
+      "decision": "Resolve execution prices on the server and preserve every transaction in the portfolio ledger.",
+      "proof": "Server-authoritative execution and portfolio state",
+      "capability": "TRUSTED EXECUTION",
+      "contribution": "FULL-STACK PRODUCT ENGINEERING",
+      "glyph": "market",
+      "flagship": false,
+      "axisWeights": {
+        "PRODUCT": 0.8,
+        "FRONTEND": 0.85,
+        "BACKEND": 0.95,
+        "DATA": 0.85,
+        "RELIABILITY": 0.9,
+        "AI FLOW": 0.5
+      }
+    }
+  ]
+}
