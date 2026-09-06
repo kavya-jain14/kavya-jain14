@@ -2,7 +2,7 @@
 
 <picture>
   <source type="image/svg+xml" srcset="./assets/hero/portrait-reveal.svg">
-  <img src="./assets/hero/portrait-pixel.png" width="360" alt="Kavya Jain in a transparent dot-pixel portrait">
+  <img src="./assets/hero/portrait-pixel.png" width="400" alt="Kavya Jain in a transparent dot-pixel portrait">
 </picture>
 
 <br>
