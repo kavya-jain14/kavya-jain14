@@ -32,7 +32,7 @@ jobs:
           PROFILE_USERNAME: kavya-jain14
         run: node scripts/fetch-contributions.mjs
 
-      - name: Read repository, language and decision signals
+      - name: Read repository and language signals
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PROFILE_USERNAME: kavya-jain14
@@ -41,9 +41,7 @@ jobs:
       - name: Rebuild repo-driven profile visuals
         run: |
           python scripts/build-gargi-profile.py --signals-only
-          node scripts/build-contribution-terrain.mjs
           node scripts/build-profile-numbers.mjs
-          node scripts/build-decision-log.mjs
           node scripts/build-project-cards.mjs
 
       - name: Validate generated profile
@@ -53,7 +51,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add README.md data/contributions.json data/profile-signals.json assets/toolbox-*.svg assets/skill-radar-*.svg assets/numbers-*.svg assets/decision-log-*.svg assets/projects assets/generated/calendar-3d-*.svg
+          git add README.md data/contributions.json data/profile-signals.json assets/toolbox-*.svg assets/skill-radar-*.svg assets/numbers-*.svg assets/projects
           git diff --cached --quiet && exit 0
           git commit -m "chore(profile): refresh activity signals"
           git push

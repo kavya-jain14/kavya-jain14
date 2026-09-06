@@ -86,29 +86,6 @@ async function repositorySignals(project) {
   };
 }
 
-async function recentDecisions(project) {
-  const [commits, pulls] = await Promise.all([
-    request(`/repos/${project.repo}/commits?author=${encodeURIComponent(username)}&per_page=5`, { allowEmptyRepository: true }),
-    request(`/repos/${project.repo}/pulls?state=closed&sort=updated&direction=desc&per_page=10`),
-  ]);
-  const commitEvents = commits.data.map((entry) => ({
-    at: entry.commit.author?.date || entry.commit.committer?.date,
-    repo: project.name,
-    kind: "COMMIT",
-    message: entry.commit.message.split("\n")[0],
-    url: entry.html_url,
-  }));
-  const pullEvents = pulls.data.filter((entry) => entry.merged_at).map((entry) => ({
-    at: entry.merged_at,
-    repo: project.name,
-    kind: "MERGED PR",
-    number: entry.number,
-    message: entry.title,
-    url: entry.html_url,
-  }));
-  return [...commitEvents, ...pullEvents];
-}
-
 const allOwnedRepositories = await listOwnedRepositories();
 const ownedRepositories = allOwnedRepositories.filter((repository) => !repository.fork);
 const ownedLanguages = await mapLimit(ownedRepositories, 5, async (repository) => ({
@@ -167,24 +144,6 @@ const workingLanguages = languages.slice(0, 6).map((language) => ({
   value: Math.min(0.98, 0.3 + 0.68 * Math.sqrt(language.bytes / languageMaximum)),
 }));
 
-const decisionGroups = await mapLimit(config.projects, 3, recentDecisions);
-const allDecisions = decisionGroups.flat();
-const mergedPulls = allDecisions.filter((event) => event.kind === "MERGED PR");
-const deduplicatedDecisions = allDecisions.filter((event) => {
-  if (event.kind !== "COMMIT") return true;
-  return !mergedPulls.some((pull) => pull.repo === event.repo && new RegExp(`#${pull.number}(\\D|$)`).test(event.message));
-}).sort((left, right) => new Date(right.at) - new Date(left.at));
-const decisionsPerRepo = new Map();
-const decisionLog = deduplicatedDecisions
-  .filter((event) => event.at)
-  .filter((event) => {
-    const count = decisionsPerRepo.get(event.repo) || 0;
-    if (count >= 1) return false;
-    decisionsPerRepo.set(event.repo, count + 1);
-    return true;
-  })
-  .slice(0, 5);
-
 const recentWeeks = contributions.weeks.slice(-52);
 const currentMetrics = {
   publicRepos: allOwnedRepositories.length,
@@ -209,10 +168,9 @@ const payload = {
   workingLanguages,
   engineeringRange,
   projectSignals,
-  decisionLog,
   metrics: { current: currentMetrics, previous: previousMetrics },
 };
 
 mkdirSync("data", { recursive: true });
 writeFileSync(outputPath, `${JSON.stringify(payload, null, 2)}\n`, "utf8");
-console.log(`Fetched ${ownedRepositories.length} repositories, ${languages.length} languages and ${decisionLog.length} recent decisions for ${username}.`);
+console.log(`Fetched ${ownedRepositories.length} repositories and ${languages.length} languages for ${username}.`);

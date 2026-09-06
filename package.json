@@ -7,9 +7,7 @@
     "build:profile-style": "python3 scripts/build-gargi-profile.py",
     "build:projects": "node scripts/build-project-cards.mjs",
     "build:numbers": "node scripts/build-profile-numbers.mjs",
-    "build:terrain": "node scripts/build-contribution-terrain.mjs",
-    "build:decision-log": "node scripts/build-decision-log.mjs",
-    "build": "npm run build:profile-style && npm run build:terrain && npm run build:projects && npm run build:numbers && npm run build:decision-log",
+    "build": "npm run build:profile-style && npm run build:projects && npm run build:numbers",
     "validate": "node scripts/validate-profile.mjs"
   },
   "engines": {
