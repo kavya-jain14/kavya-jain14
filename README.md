@@ -55,16 +55,6 @@ Hi, I'm **Kavya Jain**. I build systems for decisions that become difficult when
 
 ---
 
-## `~/` contribution calendar
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/generated/calendar-3d-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/generated/calendar-3d-light.svg">
-  <img src="./assets/generated/calendar-3d-light.svg" width="880" alt="Kavya Jain's GitHub contributions rendered as an anchored isometric terrain">
-</picture>
-
----
-
 ## `~/` the numbers
 
 <picture>
@@ -72,18 +62,6 @@ Hi, I'm **Kavya Jain**. I build systems for decisions that become difficult when
   <source media="(prefers-color-scheme: light)" srcset="./assets/numbers-light.svg">
   <img src="./assets/numbers-light.svg" width="880" alt="Kavya Jain's public repositories, contributions, active weeks and flagship systems">
 </picture>
-
----
-
-## `~/` decision log
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/decision-log-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/decision-log-light.svg">
-  <img src="./assets/decision-log-light.svg" width="880" alt="Five recent verified commits or merged pull requests across Kavya Jain's selected projects">
-</picture>
-
-<sub>Generated from public commit and merged-PR metadata across the six selected repositories.</sub>
 
 ---
 
