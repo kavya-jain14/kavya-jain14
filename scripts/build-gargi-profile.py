@@ -98,7 +98,7 @@ def portrait_reveal_svg(portrait: Image.Image) -> str:
   <defs>
     <clipPath id="reveal">
       <rect x="0" y="0" width="640" height="0">
-        <animate attributeName="height" dur="8s" repeatCount="indefinite" calcMode="spline" values="0;0;640;640;0;0" keyTimes="0;0.025;0.31;0.965;0.966;1" keySplines="0.16 1 0.3 1;0.16 1 0.3 1;0 0 1 1;0 0 1 1;0 0 1 1"/>
+        <animate attributeName="height" dur="9.6s" repeatCount="indefinite" calcMode="spline" values="0;0;640;640;0;0" keyTimes="0;0.02;0.365;0.965;0.966;1" keySplines="0.16 1 0.3 1;0.16 1 0.3 1;0 0 1 1;0 0 1 1;0 0 1 1"/>
       </rect>
     </clipPath>
   </defs>
