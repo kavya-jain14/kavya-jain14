@@ -1,0 +1,225 @@
+{
+  "generatedAt": "2026-09-06T15:31:59.198Z",
+  "username": "kavya-jain14",
+  "repositoryScope": "public, owned, non-fork repositories",
+  "languageRepositoryCount": 16,
+  "languages": [
+    {
+      "name": "TypeScript",
+      "bytes": 1725682,
+      "share": 0.6666177363037153
+    },
+    {
+      "name": "JavaScript",
+      "bytes": 468572,
+      "share": 0.18100577391159237
+    },
+    {
+      "name": "CSS",
+      "bytes": 290405,
+      "share": 0.11218122673312955
+    },
+    {
+      "name": "HTML",
+      "bytes": 45256,
+      "share": 0.017482046097809994
+    },
+    {
+      "name": "Python",
+      "bytes": 27645,
+      "share": 0.010679051714114311
+    },
+    {
+      "name": "PLpgSQL",
+      "bytes": 18402,
+      "share": 0.00710855162391505
+    },
+    {
+      "name": "Java",
+      "bytes": 11451,
+      "share": 0.004423433574907686
+    },
+    {
+      "name": "Dockerfile",
+      "bytes": 897,
+      "share": 0.0003465042281627975
+    },
+    {
+      "name": "C++",
+      "bytes": 403,
+      "share": 0.00015567581265285105
+    }
+  ],
+  "totalLanguageBytes": 2588713,
+  "workingLanguages": [
+    {
+      "label": "TypeScript",
+      "bytes": 1725682,
+      "share": 0.6666177363037153,
+      "value": 0.98
+    },
+    {
+      "label": "JavaScript",
+      "bytes": 468572,
+      "share": 0.18100577391159237,
+      "value": 0.654337155756274
+    },
+    {
+      "label": "CSS",
+      "bytes": 290405,
+      "share": 0.11218122673312955,
+      "value": 0.5789527022772354
+    },
+    {
+      "label": "HTML",
+      "bytes": 45256,
+      "share": 0.017482046097809994,
+      "value": 0.410120103522932
+    },
+    {
+      "label": "Python",
+      "bytes": 27645,
+      "share": 0.010679051714114311,
+      "value": 0.3860670317188686
+    },
+    {
+      "label": "PLpgSQL",
+      "bytes": 18402,
+      "share": 0.00710855162391505,
+      "value": 0.37022003495449557
+    }
+  ],
+  "engineeringRange": [
+    {
+      "label": "PRODUCT",
+      "value": 0.98
+    },
+    {
+      "label": "FRONTEND",
+      "value": 0.8407595290013377
+    },
+    {
+      "label": "BACKEND",
+      "value": 0.8276818468832576
+    },
+    {
+      "label": "DATA",
+      "value": 0.7721315783216047
+    },
+    {
+      "label": "RELIABILITY",
+      "value": 0.781496835142417
+    },
+    {
+      "label": "AI FLOW",
+      "value": 0.6841197605189862
+    }
+  ],
+  "projectSignals": [
+    {
+      "id": "trinetra",
+      "repo": "kavya-jain14/TRINETRA",
+      "pushedAt": "2026-08-16T20:08:22Z",
+      "commitCount": 10,
+      "languageBytes": 423866,
+      "ageDays": 21,
+      "signal": 0.8181293084197462
+    },
+    {
+      "id": "trishul",
+      "repo": "kavya-jain14/TRISHUL",
+      "pushedAt": "2026-08-28T07:59:56Z",
+      "commitCount": 29,
+      "languageBytes": 746267,
+      "ageDays": 9,
+      "signal": 0.9690697737824254
+    },
+    {
+      "id": "mira",
+      "repo": "kavya-jain14/MIRA",
+      "pushedAt": "2026-08-10T10:08:50Z",
+      "commitCount": 23,
+      "languageBytes": 231045,
+      "ageDays": 27,
+      "signal": 0.8983988684058941
+    },
+    {
+      "id": "socrates",
+      "repo": "gargibhardwaj24/Socrates",
+      "pushedAt": "2026-07-24T16:30:25Z",
+      "commitCount": 5,
+      "languageBytes": 249415,
+      "ageDays": 44,
+      "signal": 0.7063108796076527
+    },
+    {
+      "id": "counselflow",
+      "repo": "kavya-jain14/COUNSEL-FLOW",
+      "pushedAt": "2026-09-06T15:22:34Z",
+      "commitCount": 9,
+      "languageBytes": 588185,
+      "ageDays": 0,
+      "signal": 0.8370290248968691
+    },
+    {
+      "id": "papertrade",
+      "repo": "kavya-jain14/PAPER_TRADE",
+      "pushedAt": "2026-08-08T18:00:55Z",
+      "commitCount": 34,
+      "languageBytes": 474210,
+      "ageDays": 29,
+      "signal": 0.9575863688960307
+    }
+  ],
+  "decisionLog": [
+    {
+      "at": "2026-08-28T07:59:57Z",
+      "repo": "TRISHUL",
+      "kind": "MERGED PR",
+      "message": "feat(deploy): wire synthetic frontend demo runtime",
+      "url": "https://github.com/kavya-jain14/TRISHUL/pull/22"
+    },
+    {
+      "at": "2026-08-21T22:32:59Z",
+      "repo": "COUNSELFLOW",
+      "kind": "COMMIT",
+      "message": "feat: make counselling flow attention-first",
+      "url": "https://github.com/kavya-jain14/COUNSEL-FLOW/commit/d116e83f61be8f6e85bf1ef22b794ab830d9bd6b"
+    },
+    {
+      "at": "2026-08-16T20:08:21Z",
+      "repo": "TRINETRA",
+      "kind": "COMMIT",
+      "message": "feat(graph): add bounded mule-risk checkpoint (#13)",
+      "url": "https://github.com/kavya-jain14/TRINETRA/commit/d3f12d46fb1d971101c23a4977ec093f4693caa3"
+    },
+    {
+      "at": "2026-08-10T10:08:50Z",
+      "repo": "MIRA",
+      "kind": "COMMIT",
+      "message": "Prefer meaningful editorial reasons in the decision ledger (#18)",
+      "url": "https://github.com/kavya-jain14/MIRA/commit/8926a34b2677da0fd1e872800fc2985c3fb98699"
+    },
+    {
+      "at": "2026-08-08T18:00:55Z",
+      "repo": "PAPERTRADE",
+      "kind": "COMMIT",
+      "message": "Ship PaperTrade terminal redesign and auth experience (#1)",
+      "url": "https://github.com/kavya-jain14/PAPER_TRADE/commit/74c51023c86155ee62bbe8651e7f7599504e73ef"
+    }
+  ],
+  "metrics": {
+    "current": {
+      "publicRepos": 17,
+      "contributions": 299,
+      "activeWeeks": 25,
+      "flagshipSystems": 4
+    },
+    "previous": {
+      "publicRepos": 17,
+      "contributions": 299,
+      "activeWeeks": 25,
+      "flagshipSystems": 4
+    }
+  }
+}

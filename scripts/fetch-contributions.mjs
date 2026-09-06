@@ -13,7 +13,11 @@ const payload = await response.json();
 if (payload.errors?.length) throw new Error(payload.errors.map((error) => error.message).join("; "));
 const calendar = payload.data?.user?.contributionsCollection?.contributionCalendar;
 if (!calendar) throw new Error(`No contribution calendar returned for ${username}.`);
-const weeks = calendar.weeks.map((week) => ({ start: week.firstDay, total: week.contributionDays.reduce((sum, day) => sum + day.contributionCount, 0) }));
+const weeks = calendar.weeks.map((week) => ({
+  start: week.firstDay,
+  total: week.contributionDays.reduce((sum, day) => sum + day.contributionCount, 0),
+  days: week.contributionDays.map((day) => ({ date: day.date, count: day.contributionCount })),
+}));
 const days = calendar.weeks.reduce((sum, week) => sum + week.contributionDays.length, 0);
 mkdirSync("data", { recursive: true });
 writeFileSync("data/contributions.json", `${JSON.stringify({ generatedAt: to.toISOString(), total: calendar.totalContributions, days, weeks }, null, 2)}\n`);

@@ -1,15 +1,16 @@
-"""Build the benchmark-style hero and supporting profile visuals.
+"""Build the portrait and repo-driven profile visuals.
 
 The portrait pipeline is deterministic: it cleans the supplied transparent PNG,
 converts it to a dot-pixel rendering, and embeds that single intact image inside
-an animated SVG clip. The SVG moves only the mask, so pixels never disappear or
-arrive as partial delta frames while GitHub is loading the asset.
+an animated SVG clip. Toolbox and radar data come from profile-signals.json.
 """
 
 from __future__ import annotations
 
 import base64
+import json
 import math
+import sys
 from io import BytesIO
 from pathlib import Path
 
@@ -22,7 +23,7 @@ SOURCE = HERO_DIR / "portrait-source.png"
 CUTOUT = HERO_DIR / "portrait-cutout.png"
 PIXEL = HERO_DIR / "portrait-pixel.png"
 REVEAL = HERO_DIR / "portrait-reveal.svg"
-TYPING = HERO_DIR / "role-typing.svg"
+SIGNALS = ROOT / "data" / "profile-signals.json"
 
 
 def clean_cutout(source: Image.Image) -> Image.Image:
@@ -92,13 +93,13 @@ def portrait_reveal_svg(portrait: Image.Image) -> str:
     buffer = BytesIO()
     portrait.save(buffer, format="PNG", optimize=True)
     payload = base64.b64encode(buffer.getvalue()).decode("ascii")
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="640" height="640" role="img" aria-labelledby="portrait-title portrait-desc">
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 540" width="640" height="540" role="img" aria-labelledby="portrait-title portrait-desc">
   <title id="portrait-title">Kavya Jain pixel portrait</title>
-  <desc id="portrait-desc">A transparent dot-pixel portrait revealed smoothly from hair to shoulders.</desc>
+  <desc id="portrait-desc">A wide transparent dot-pixel portrait revealed smoothly from hair to shoulders.</desc>
   <defs>
     <clipPath id="reveal">
       <rect x="0" y="0" width="640" height="0">
-        <animate attributeName="height" dur="9.6s" repeatCount="indefinite" calcMode="spline" values="0;0;640;640;0;0" keyTimes="0;0.02;0.365;0.965;0.966;1" keySplines="0.16 1 0.3 1;0.16 1 0.3 1;0 0 1 1;0 0 1 1;0 0 1 1"/>
+        <animate attributeName="height" dur="9.6s" repeatCount="indefinite" calcMode="spline" values="0;0;540;540;0;0" keyTimes="0;0.02;0.365;0.965;0.966;1" keySplines="0.16 1 0.3 1;0.16 1 0.3 1;0 0 1 1;0 0 1 1;0 0 1 1"/>
       </rect>
     </clipPath>
   </defs>
@@ -106,44 +107,49 @@ def portrait_reveal_svg(portrait: Image.Image) -> str:
 </svg>'''
 
 
-def role_typing_svg() -> str:
-    return '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 92" width="760" height="92" role="img" aria-labelledby="role-title">
-  <title id="role-title">Kavya Jain, Systems Engineering and Product</title>
-  <defs>
-    <clipPath id="name-type"><rect x="300" y="0" width="0" height="42"><animate attributeName="width" dur="8s" repeatCount="indefinite" values="0;0;160;160;0;0" keyTimes="0;0.04;0.23;0.965;0.966;1"/></rect></clipPath>
-    <clipPath id="role-type"><rect x="128" y="40" width="0" height="52"><animate attributeName="width" dur="8s" repeatCount="indefinite" values="0;0;0;504;504;0;0" keyTimes="0;0.04;0.24;0.54;0.965;0.966;1"/></rect></clipPath>
-  </defs>
-  <style>.name{font:800 25px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#39d353}.role{font:700 22px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#39d353}.caret{fill:#39d353;animation:blink .78s steps(1,end) infinite}@keyframes blink{50%{opacity:0}}</style>
-  <text x="380" y="30" text-anchor="middle" class="name" clip-path="url(#name-type)">Kavya Jain</text>
-  <text x="380" y="72" text-anchor="middle" class="role" clip-path="url(#role-type)">Systems Engineering &amp; Product</text>
-  <rect class="caret" x="300" y="7" width="3" height="27"><animate attributeName="x" dur="8s" repeatCount="indefinite" values="300;300;460;460;300;300" keyTimes="0;0.04;0.23;0.965;0.966;1"/><animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="1;1;1;0;0" keyTimes="0;0.04;0.23;0.24;1"/></rect>
-  <rect class="caret" x="128" y="49" width="3" height="27"><animate attributeName="x" dur="8s" repeatCount="indefinite" values="128;128;128;630;630;128;128" keyTimes="0;0.04;0.24;0.54;0.965;0.966;1"/><animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.23;0.24;0.965;0.966;1"/></rect>
-</svg>'''
+def escape_xml(value: str) -> str:
+    return value.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
 
 
-TOOLS = [
-    ("C++", "#00599c"), ("JS", "#f7df1e"), ("TS", "#3178c6"), ("PY", "#3776ab"),
-    ("RE", "#61dafb"), ("NX", "#ffffff"), ("NO", "#5fa04e"), ("FA", "#00a98f"),
-    ("PG", "#4169e1"), ("RD", "#dc382d"), ("MG", "#47a248"), ("GT", "#f05032"),
-    ("DK", "#2496ed"), ("BQ", "#e53d2e"),
-]
+def display_label(value: str, limit: int = 17) -> str:
+    aliases = {"Jupyter Notebook": "Jupyter", "Objective-C++": "Obj-C++", "Visual Basic .NET": "VB.NET"}
+    label = aliases.get(value, value)
+    return label if len(label) <= limit else f"{label[: limit - 1]}…"
 
 
-def toolbox_svg(theme: str) -> str:
+def language_colour(name: str) -> str:
+    palette = ["#3178c6", "#3776ab", "#1f883d", "#7c3aed", "#b45309", "#0e7490", "#be123c", "#4f46e5"]
+    return palette[sum((index + 1) * ord(character) for index, character in enumerate(name)) % len(palette)]
+
+
+def toolbox_svg(theme: str, signals: dict) -> str:
     dark = theme == "dark"
     ink = "#f0f6fc" if dark else "#1f2328"
     muted = "#8b949e" if dark else "#59636e"
-    cells = []
-    for index, (label, colour) in enumerate(TOOLS):
-        row, column = divmod(index, 7)
-        x = 166 + column * 76
-        y = 16 + row * 66
-        text_colour = "#111820" if colour in {"#f7df1e", "#61dafb", "#ffffff"} else "#ffffff"
-        cells.append(f'<rect x="{x}" y="{y}" width="44" height="44" rx="10" fill="{colour}"/><text x="{x + 22}" y="{y + 28}" text-anchor="middle" class="icon" fill="{text_colour}">{label}</text>')
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 148" width="880" height="148" role="img" aria-labelledby="tools-title">
-  <title id="tools-title">Kavya Jain's engineering toolbox</title>
-  <style>.icon{{font:800 12px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}}.legend{{font:700 9px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:{muted};letter-spacing:.12em}}.line{{stroke:{ink};opacity:.12}}</style>
-  <path d="M24 74H132M748 74H856" class="line"/><text x="440" y="76" text-anchor="middle" class="legend">LANGUAGES · PRODUCT · SYSTEMS · DATA · DELIVERY</text>{''.join(cells)}
+    border = "#30363d" if dark else "#d0d7de"
+    soft = "#161b22" if dark else "#f6f8fa"
+    languages = signals["languages"]
+    columns = 4
+    rows = max(1, math.ceil(len(languages) / columns))
+    height = 62 + rows * 46
+    badges = []
+    for index, language in enumerate(languages):
+        row, column = divmod(index, columns)
+        x = 20 + column * 213
+        y = 45 + row * 46
+        colour = language_colour(language["name"])
+        share = "&lt;0.1%" if 0 < language["share"] < 0.0005 else f'{language["share"] * 100:.1f}%'
+        badges.append(
+            f'<g><rect x="{x}" y="{y}" width="196" height="34" rx="7" fill="{soft}" stroke="{border}"/>'
+            f'<circle cx="{x + 17}" cy="{y + 17}" r="5" fill="{colour}"/>'
+            f'<text x="{x + 30}" y="{y + 21}" class="language">{escape_xml(display_label(language["name"]))}</text>'
+            f'<text x="{x + 183}" y="{y + 21}" text-anchor="end" class="share">{share}</text></g>'
+        )
+    repo_count = signals["languageRepositoryCount"]
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 {height}" width="880" height="{height}" role="img" aria-labelledby="tools-title tools-desc">
+  <title id="tools-title">Kavya Jain's live language toolbox</title><desc id="tools-desc">Languages derived from GitHub language bytes across {repo_count} public owned non-fork repositories.</desc>
+  <style>.eyebrow{{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:9px;font-weight:700;letter-spacing:.14em;fill:{ink}}}.source{{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:8px;font-weight:650;letter-spacing:.08em;fill:{muted}}}.language{{font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:11px;font-weight:700;fill:{ink}}}.share{{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:8px;font-weight:700;fill:{muted}}}</style>
+  <text x="20" y="24" class="eyebrow">LANGUAGE FOOTPRINT</text><text x="860" y="24" text-anchor="end" class="source">GITHUB LINGUIST BYTES · {repo_count} REPOSITORIES</text>{''.join(badges)}
 </svg>'''
 
 
@@ -155,14 +161,15 @@ def radar_points(center_x: float, center_y: float, radius: float, values: list[f
     return " ".join(points)
 
 
-def radar_panel(x: int, labels: list[str], values: list[float], theme: str, title: str) -> str:
+def radar_panel(x: int, entries: list[dict], theme: str, title: str) -> str:
     dark = theme == "dark"
-    ink = "#f0f6fc" if dark else "#1f2328"
     muted = "#8b949e" if dark else "#59636e"
     border = "#30363d" if dark else "#d0d7de"
     background = "#0d1117" if dark else "#ffffff"
     accent = "#39d353" if dark else "#1f883d"
-    center_x, center_y, radius = x + 215, 145, 82
+    labels = [display_label(entry["label"].upper(), 13) for entry in entries]
+    values = [float(entry["value"]) for entry in entries]
+    center_x, center_y, radius = x + 215, 151, 82
     axes = []
     label_nodes = []
     for index, label in enumerate(labels):
@@ -173,38 +180,41 @@ def radar_panel(x: int, labels: list[str], values: list[float], theme: str, titl
         label_y = center_y + math.sin(angle) * (radius + 18) + 3
         anchor = "middle" if abs(math.cos(angle)) < 0.2 else ("start" if math.cos(angle) > 0 else "end")
         axes.append(f'<path d="M{center_x} {center_y}L{end_x:.1f} {end_y:.1f}" stroke="{border}"/>')
-        label_nodes.append(f'<text x="{label_x:.1f}" y="{label_y:.1f}" text-anchor="{anchor}" class="axis">{label}</text>')
-    rings = []
-    for scale in (0.25, 0.5, 0.75, 1):
-        rings.append(f'<polygon points="{radar_points(center_x, center_y, radius, [scale] * len(labels))}" fill="none" stroke="{border}"/>')
+        label_nodes.append(f'<text x="{label_x:.1f}" y="{label_y:.1f}" text-anchor="{anchor}" class="axis">{escape_xml(label)}</text>')
+    rings = [f'<polygon points="{radar_points(center_x, center_y, radius, [scale] * len(labels))}" fill="none" stroke="{border}"/>' for scale in (0.25, 0.5, 0.75, 1)]
     data_points = radar_points(center_x, center_y, radius, values)
-    return f'''<g><rect x="{x + .5}" y=".5" width="429" height="284" rx="6" fill="{background}" stroke="{border}"/><text x="{x + 18}" y="24" class="title">{title}</text>{''.join(rings)}{''.join(axes)}<polygon points="{data_points}" fill="{accent}" fill-opacity=".24" stroke="{accent}" stroke-width="2"/><g fill="{accent}">{''.join(f'<circle cx="{point.split(',')[0]}" cy="{point.split(',')[1]}" r="3"/>' for point in data_points.split())}</g>{''.join(label_nodes)}</g>'''
+    circles = "".join(f'<circle cx="{point.split(",")[0]}" cy="{point.split(",")[1]}" r="3"/>' for point in data_points.split())
+    return f'''<g><rect x="{x + .5}" y=".5" width="429" height="296" rx="6" fill="{background}" stroke="{border}"/><text x="{x + 18}" y="24" class="title">{title}</text>{''.join(rings)}{''.join(axes)}<polygon points="{data_points}" fill="{accent}" fill-opacity=".24" stroke="{accent}" stroke-width="2"/><g fill="{accent}">{circles}</g>{''.join(label_nodes)}<text x="{x + 18}" y="281" class="source" fill="{muted}">REPO-DRIVEN SIGNAL · NOT SELF-RATING</text></g>'''
 
 
-def radar_svg(theme: str) -> str:
+def radar_svg(theme: str, signals: dict) -> str:
     dark = theme == "dark"
     ink = "#f0f6fc" if dark else "#1f2328"
     muted = "#8b949e" if dark else "#59636e"
-    left = radar_panel(0, ["PRODUCT", "FRONTEND", "BACKEND", "DATA", "RELIABILITY", "AI FLOW"], [.92, .86, .81, .78, .77, .76], theme, "ENGINEERING RANGE")
-    right = radar_panel(450, ["TYPESCRIPT", "JAVASCRIPT", "C++", "SQL", "PYTHON", "REACT/NEXT"], [.88, .9, .74, .78, .68, .86], theme, "WORKING LANGUAGES")
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 285" width="880" height="285" role="img" aria-labelledby="radar-title radar-desc"><title id="radar-title">Kavya Jain engineering range</title><desc id="radar-desc">Two relative radar charts describing engineering focus and working languages. They are not proficiency percentages.</desc><style>.title{{font:700 10px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:{ink};letter-spacing:.1em}}.axis{{font:650 7.5px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:{muted};letter-spacing:.05em}}</style>{left}{right}</svg>'''
+    left = radar_panel(0, signals["engineeringRange"], theme, "ENGINEERING RANGE")
+    right = radar_panel(450, signals["workingLanguages"], theme, "WORKING LANGUAGES")
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 297" width="880" height="297" role="img" aria-labelledby="radar-title radar-desc"><title id="radar-title">Kavya Jain repo-driven engineering range</title><desc id="radar-desc">Engineering axes combine configured project relevance with authored commits, recency and language bytes. Language axes come directly from GitHub language bytes. They are not proficiency percentages.</desc><style>.title{{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:10px;font-weight:700;fill:{ink};letter-spacing:.1em}}.axis{{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:7.5px;font-weight:650;fill:{muted};letter-spacing:.05em}}.source{{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:7px;font-weight:650;letter-spacing:.07em}}</style>{left}{right}</svg>'''
 
 
 def main() -> None:
     HERO_DIR.mkdir(parents=True, exist_ok=True)
-    if not SOURCE.exists():
-        raise SystemExit(f"Missing portrait source: {SOURCE}")
-    source = clean_cutout(Image.open(SOURCE))
-    cutout = place_bust(source)
-    pixel = dot_pixel_portrait(cutout)
-    cutout.save(CUTOUT, optimize=True)
-    pixel.save(PIXEL, optimize=True)
-    REVEAL.write_text(portrait_reveal_svg(pixel), encoding="utf-8")
-    TYPING.write_text(role_typing_svg(), encoding="utf-8")
+    if not SIGNALS.exists():
+        raise SystemExit(f"Missing live signal snapshot: {SIGNALS}")
+    signals = json.loads(SIGNALS.read_text(encoding="utf-8"))
+    if "--signals-only" not in sys.argv:
+        if not SOURCE.exists():
+            raise SystemExit(f"Missing portrait source: {SOURCE}")
+        source = clean_cutout(Image.open(SOURCE))
+        cutout = place_bust(source)
+        pixel = dot_pixel_portrait(cutout)
+        cutout.save(CUTOUT, optimize=True)
+        pixel.save(PIXEL, optimize=True)
+        REVEAL.write_text(portrait_reveal_svg(pixel), encoding="utf-8")
     for theme in ("light", "dark"):
-        (ROOT / "assets" / f"toolbox-{theme}.svg").write_text(toolbox_svg(theme), encoding="utf-8")
-        (ROOT / "assets" / f"skill-radar-{theme}.svg").write_text(radar_svg(theme), encoding="utf-8")
-    print("Built benchmark-style hero, toolbox and skill radars.")
+        (ROOT / "assets" / f"toolbox-{theme}.svg").write_text(toolbox_svg(theme, signals), encoding="utf-8")
+        (ROOT / "assets" / f"skill-radar-{theme}.svg").write_text(radar_svg(theme, signals), encoding="utf-8")
+    mode = "signals only" if "--signals-only" in sys.argv else "portrait and signals"
+    print(f"Built live toolbox and repo-driven skill radars ({mode}).")
 
 
 if __name__ == "__main__":

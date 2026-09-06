@@ -2,14 +2,12 @@
 
 <picture>
   <source type="image/svg+xml" srcset="./assets/hero/portrait-reveal.svg">
-  <img src="./assets/hero/portrait-pixel.png" width="400" alt="Kavya Jain in a transparent dot-pixel portrait">
+  <img src="./assets/hero/portrait-pixel.png" width="520" alt="Kavya Jain in a transparent dot-pixel portrait">
 </picture>
 
-<br>
+<h1>Kavya Jain</h1>
 
-<img src="./assets/hero/role-typing.svg" width="560" alt="Kavya Jain — Systems Engineering and Product">
-
-<br>
+<p><code>systems engineering · product architecture · evidence-first software</code></p>
 
 <a href="https://github.com/kavya-jain14?tab=repositories"><img alt="Repositories" src="https://img.shields.io/badge/REPOSITORIES-181717?style=flat-square&logo=github&logoColor=white"></a>
 <a href="https://leetcode.com/u/Kavya_Jain_14/"><img alt="LeetCode" src="https://img.shields.io/badge/LEETCODE-FFA116?style=flat-square&logo=leetcode&logoColor=111111"></a>
@@ -40,7 +38,7 @@ Hi, I'm **Kavya Jain**. I build systems for decisions that become difficult when
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/toolbox-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="./assets/toolbox-light.svg">
-  <img src="./assets/toolbox-light.svg" width="880" alt="Kavya Jain's languages, frameworks, systems, data and delivery toolbox">
+  <img src="./assets/toolbox-light.svg" width="880" alt="Kavya Jain's live language footprint derived from public repositories">
 </picture>
 
 ---
@@ -53,7 +51,7 @@ Hi, I'm **Kavya Jain**. I build systems for decisions that become difficult when
   <img src="./assets/skill-radar-light.svg" width="880" alt="Relative radar charts of Kavya Jain's engineering focus and working languages">
 </picture>
 
-<sub>Relative working range, not proficiency percentages.</sub>
+<sub>Relative working range, not proficiency percentages. Engineering axes combine configured project relevance with authored commits, recency and GitHub language bytes.</sub>
 
 ---
 
@@ -62,13 +60,7 @@ Hi, I'm **Kavya Jain**. I build systems for decisions that become difficult when
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/generated/calendar-3d-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="./assets/generated/calendar-3d-light.svg">
-  <img src="./assets/generated/calendar-3d-light.svg" width="880" alt="Kavya Jain's animated GitHub contribution calendar rendered as a green 3D terrain">
-</picture>
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/generated/snake-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/generated/snake-light.svg">
-  <img src="./assets/generated/snake-light.svg" width="880" alt="A green contribution snake moving through Kavya Jain's GitHub activity grid">
+  <img src="./assets/generated/calendar-3d-light.svg" width="880" alt="Kavya Jain's GitHub contributions rendered as an anchored isometric terrain">
 </picture>
 
 ---
@@ -83,8 +75,21 @@ Hi, I'm **Kavya Jain**. I build systems for decisions that become difficult when
 
 ---
 
+## `~/` decision log
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/decision-log-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/decision-log-light.svg">
+  <img src="./assets/decision-log-light.svg" width="880" alt="Five recent verified commits or merged pull requests across Kavya Jain's selected projects">
+</picture>
+
+<sub>Generated from public commit and merged-PR metadata across the six selected repositories.</sub>
+
+---
+
 ## `~/` selected work
 
+<!-- GENERATED:PROJECTS:START -->
 <table>
 <tr>
 <td width="50%">
@@ -92,7 +97,7 @@ Hi, I'm **Kavya Jain**. I build systems for decisions that become difficult when
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="./assets/projects/trinetra-dark.svg">
       <source media="(prefers-color-scheme: light)" srcset="./assets/projects/trinetra-light.svg">
-      <img src="./assets/projects/trinetra-light.svg" width="420" alt="TRINETRA, an explainable UPI payment-risk and recovery system">
+      <img src="./assets/projects/trinetra-light.svg" width="420" alt="TRINETRA, Explain the decision. Preserve the payment state.">
     </picture>
   </a>
 </td>
@@ -101,7 +106,7 @@ Hi, I'm **Kavya Jain**. I build systems for decisions that become difficult when
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="./assets/projects/trishul-dark.svg">
       <source media="(prefers-color-scheme: light)" srcset="./assets/projects/trishul-light.svg">
-      <img src="./assets/projects/trishul-light.svg" width="420" alt="TRISHUL, a financial cyber-fraud intelligence system">
+      <img src="./assets/projects/trishul-light.svg" width="420" alt="TRISHUL, Trace evidence without overstating certainty.">
     </picture>
   </a>
 </td>
@@ -112,7 +117,7 @@ Hi, I'm **Kavya Jain**. I build systems for decisions that become difficult when
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="./assets/projects/mira-dark.svg">
       <source media="(prefers-color-scheme: light)" srcset="./assets/projects/mira-light.svg">
-      <img src="./assets/projects/mira-light.svg" width="420" alt="MIRA, an autonomous and auditable AI creator">
+      <img src="./assets/projects/mira-light.svg" width="420" alt="MIRA, Discover, decide, remember, then publish.">
     </picture>
   </a>
 </td>
@@ -121,30 +126,115 @@ Hi, I'm **Kavya Jain**. I build systems for decisions that become difficult when
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="./assets/projects/socrates-dark.svg">
       <source media="(prefers-color-scheme: light)" srcset="./assets/projects/socrates-light.svg">
-      <img src="./assets/projects/socrates-light.svg" width="420" alt="Project Socrates, a deterministic teach-back learning platform">
+      <img src="./assets/projects/socrates-light.svg" width="420" alt="SOCRATES, Find the gap behind a confident explanation.">
+    </picture>
+  </a>
+</td>
+</tr>
+<tr>
+<td width="50%">
+  <a href="https://github.com/kavya-jain14/COUNSEL-FLOW">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="./assets/projects/counselflow-dark.svg">
+      <source media="(prefers-color-scheme: light)" srcset="./assets/projects/counselflow-light.svg">
+      <img src="./assets/projects/counselflow-light.svg" width="420" alt="COUNSELFLOW, Resolve the conflict before locking the list.">
+    </picture>
+  </a>
+</td>
+<td width="50%">
+  <a href="https://github.com/kavya-jain14/PAPER_TRADE">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="./assets/projects/papertrade-dark.svg">
+      <source media="(prefers-color-scheme: light)" srcset="./assets/projects/papertrade-light.svg">
+      <img src="./assets/projects/papertrade-light.svg" width="420" alt="PAPERTRADE, Keep execution honest when the client drifts.">
     </picture>
   </a>
 </td>
 </tr>
 </table>
 
-| Project | Problem lane | Engineering proof | My contribution |
-| --- | --- | --- | --- |
-| [TRINETRA](https://github.com/kavya-jain14/TRINETRA) | UPI risk and recovery | Durable payment state and explainable recovery | Architecture, backend, QA |
-| [TRISHUL](https://github.com/kavya-jain14/TRISHUL) | Financial cyber-fraud intelligence | Evidence gates and traceable decisions | Product architecture, data design, frontend QA |
-| [MIRA](https://github.com/kavya-jain14/MIRA) | Autonomous publishing | Source gates and a visible decision ledger | Full frontend, product flow, backend integration |
-| [Socrates](https://github.com/gargibhardwaj24/Socrates) | Teach-back learning | Curated misconceptions and repeatable evaluation | Learning UX, frontend, evaluation flow |
-| [CounselFlow](https://github.com/kavya-jain14/COUNSEL-FLOW) | College preference decisions | Constraint conflicts before list lock | Product architecture and decision UX |
-| [PaperTrade](https://github.com/kavya-jain14/PAPER_TRADE) | Market simulation | Server-authoritative execution and portfolio state | Full-stack product engineering |
+### Evidence chains
+
+<details>
+<summary><strong>01 · TRINETRA</strong> · UPI RISK + RECOVERY</summary>
+<br>
+<strong>Problem</strong> · UPI risk and recovery<br>
+<strong>Constraint</strong> · A payment must remain retry-safe while every risk decision stays explainable.<br>
+<strong>Decision</strong> · Model payment state as a durable ledger and make each risk verdict an auditable transition.<br>
+<strong>Proof</strong> · Durable payment state and explainable recovery<br>
+<strong>My contribution</strong> · ARCHITECTURE · BACKEND · QA<br>
+<a href="https://github.com/kavya-jain14/TRINETRA">Inspect repository →</a>
+</details>
+
+<details>
+<summary><strong>02 · TRISHUL</strong> · FRAUD INTELLIGENCE</summary>
+<br>
+<strong>Problem</strong> · Financial cyber-fraud intelligence<br>
+<strong>Constraint</strong> · Fraud signals are incomplete, so suspicion cannot be presented as certainty.<br>
+<strong>Decision</strong> · Gate every claim through provenance, confidence and a traceable evidence chain.<br>
+<strong>Proof</strong> · Evidence gates and traceable decisions<br>
+<strong>My contribution</strong> · PRODUCT · DATA DESIGN · FRONTEND QA<br>
+<a href="https://github.com/kavya-jain14/TRISHUL">Inspect repository →</a>
+</details>
+
+<details>
+<summary><strong>03 · MIRA</strong> · AUTONOMOUS CREATOR</summary>
+<br>
+<strong>Problem</strong> · Autonomous publishing<br>
+<strong>Constraint</strong> · Autonomy without sources or memory becomes opaque and difficult to audit.<br>
+<strong>Decision</strong> · Separate discovery, decision, memory and publishing into a visible decision ledger.<br>
+<strong>Proof</strong> · Source gates and a visible decision ledger<br>
+<strong>My contribution</strong> · FULL FRONTEND · FLOW · INTEGRATION<br>
+<a href="https://github.com/kavya-jain14/MIRA">Inspect repository →</a>
+</details>
+
+<details>
+<summary><strong>04 · SOCRATES</strong> · TEACH-BACK LEARNING</summary>
+<br>
+<strong>Problem</strong> · Teach-back learning<br>
+<strong>Constraint</strong> · A confident answer can still hide shallow understanding or a missed misconception.<br>
+<strong>Decision</strong> · Make the learner correct seeded misconceptions against a repeatable evaluation rubric.<br>
+<strong>Proof</strong> · Curated misconceptions and repeatable evaluation<br>
+<strong>My contribution</strong> · LEARNING UX · FRONTEND · EVALUATION<br>
+<a href="https://github.com/gargibhardwaj24/Socrates">Inspect repository →</a>
+</details>
+
+<details>
+<summary><strong>05 · COUNSELFLOW</strong> · DECISION COUNSELLING</summary>
+<br>
+<strong>Problem</strong> · College preference decisions<br>
+<strong>Constraint</strong> · Rank, branch priority, budget and distance can contradict one another before choice lock.<br>
+<strong>Decision</strong> · Surface constraint conflicts before producing a deterministic preference order.<br>
+<strong>Proof</strong> · Constraint conflicts before list lock<br>
+<strong>My contribution</strong> · PRODUCT ARCHITECTURE · DECISION UX<br>
+<a href="https://github.com/kavya-jain14/COUNSEL-FLOW">Inspect repository →</a>
+</details>
+
+<details>
+<summary><strong>06 · PAPERTRADE</strong> · MARKET SIMULATION</summary>
+<br>
+<strong>Problem</strong> · Market simulation<br>
+<strong>Constraint</strong> · Client prices can drift or be manipulated while portfolio state must remain authoritative.<br>
+<strong>Decision</strong> · Resolve execution prices on the server and preserve every transaction in the portfolio ledger.<br>
+<strong>Proof</strong> · Server-authoritative execution and portfolio state<br>
+<strong>My contribution</strong> · FULL-STACK PRODUCT ENGINEERING<br>
+<a href="https://github.com/kavya-jain14/PAPER_TRADE">Inspect repository →</a>
+</details>
+<!-- GENERATED:PROJECTS:END -->
 
 ---
 
 <div align="center">
 
-### `~/` build something difficult
+### `~/` build the difficult thing
 
-Open to software engineering internships and ambitious product collaborations.
+If the system has incomplete evidence, difficult state, or an unhappy path worth designing properly, I want to work on it.
 
-[GitHub](https://github.com/kavya-jain14) · [Repositories](https://github.com/kavya-jain14?tab=repositories) · [LeetCode](https://leetcode.com/u/Kavya_Jain_14/) · [Codeforces](https://codeforces.com/profile/kavya_jain)
+<a href="#-selected-work"><img alt="Explore selected work" src="https://img.shields.io/badge/EXPLORE_SELECTED_WORK-1f883d?style=for-the-badge&logo=github&logoColor=white"></a>
+
+<a href="https://github.com/kavya-jain14"><img alt="GitHub" src="https://img.shields.io/badge/GITHUB-181717?style=flat-square&logo=github&logoColor=white"></a>
+<a href="https://leetcode.com/u/Kavya_Jain_14/"><img alt="LeetCode" src="https://img.shields.io/badge/LEETCODE-FFA116?style=flat-square&logo=leetcode&logoColor=111111"></a>
+<a href="https://codeforces.com/profile/kavya_jain"><img alt="Codeforces" src="https://img.shields.io/badge/CODEFORCES-1F8ACB?style=flat-square&logo=codeforces&logoColor=white"></a>
+<a href="https://www.codechef.com/users/kavya_jain_14"><img alt="CodeChef" src="https://img.shields.io/badge/CODECHEF-5B4638?style=flat-square&logo=codechef&logoColor=white"></a>
 
 </div>
