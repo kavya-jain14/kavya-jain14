@@ -1,15 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 322" width="880" height="322" role="img" aria-labelledby="title desc" data-seed="3370073532">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 322" width="880" height="322" role="img" aria-labelledby="title desc" data-seed="2961885211">
   <title id="title">Kavya Jain pixel rabbit contribution calendar</title>
   <desc id="desc">A pixel rabbit visits twelve monthly contribution pillars in a generation-seeded random order. Taller targets produce higher jump arcs.</desc>
   <style>.eyebrow{font:700 9px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.14em;fill:#1F2328}.stamp,.month,.note{font:650 7px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.08em;fill:#59636E}.month{font-size:6.5px}</style>
   <rect x=".5" y=".5" width="879" height="321" rx="7" fill="#FFFFFF" stroke="#D0D7DE"/>
   <text x="20" y="25" class="eyebrow">~/ RANDOM HOP CONTRIBUTIONS</text>
-  <text x="860" y="25" text-anchor="end" class="stamp">REFRESHED 06 SEPT 2026</text>
+  <text x="860" y="25" text-anchor="end" class="stamp">REFRESHED 07 SEPT 2026</text>
   <path d="M24 266H856" stroke="#8C959F" stroke-width="2" stroke-dasharray="2 5"/>
   <g aria-label="OCT: 6 contributions"><title>OCT: 6 contributions</title>
-      <rect x="52" y="240" width="32" height="26" fill="#DDF4E4"/>
-      <path d="M52 240l6 -5h32l-6 5Z" fill="#7EE2A1"/>
-      <path d="M84 240l6 -5v26l-6 5Z" fill="#18783A"/>
+      <rect x="52" y="239" width="32" height="27" fill="#DDF4E4"/>
+      <path d="M52 239l6 -5h32l-6 5Z" fill="#7EE2A1"/>
+      <path d="M84 239l6 -5v27l-6 5Z" fill="#18783A"/>
       <text x="68" y="290" text-anchor="middle" class="month">OCT</text>
     </g><g aria-label="NOV: 0 contributions"><title>NOV: 0 contributions</title>
       <rect x="120" y="261" width="32" height="5" fill="#DDF4E4"/>
@@ -17,9 +17,9 @@
       <path d="M152 261l6 -5v5l-6 5Z" fill="#18783A"/>
       <text x="136" y="290" text-anchor="middle" class="month">NOV</text>
     </g><g aria-label="DEC: 12 contributions"><title>DEC: 12 contributions</title>
-      <rect x="188" y="233" width="32" height="33" fill="#DDF4E4"/>
-      <path d="M188 233l6 -5h32l-6 5Z" fill="#7EE2A1"/>
-      <path d="M220 233l6 -5v33l-6 5Z" fill="#18783A"/>
+      <rect x="188" y="231" width="32" height="35" fill="#DDF4E4"/>
+      <path d="M188 231l6 -5h32l-6 5Z" fill="#7EE2A1"/>
+      <path d="M220 231l6 -5v35l-6 5Z" fill="#18783A"/>
       <text x="204" y="290" text-anchor="middle" class="month">DEC</text>
     </g><g aria-label="JAN: 1 contributions"><title>JAN: 1 contributions</title>
       <rect x="256" y="249" width="32" height="17" fill="#DDF4E4"/>
@@ -27,50 +27,50 @@
       <path d="M288 249l6 -5v17l-6 5Z" fill="#18783A"/>
       <text x="272" y="290" text-anchor="middle" class="month">JAN</text>
     </g><g aria-label="FEB: 37 contributions"><title>FEB: 37 contributions</title>
-      <rect x="324" y="216" width="32" height="50" fill="#DDF4E4"/>
-      <path d="M324 216l6 -5h32l-6 5Z" fill="#7EE2A1"/>
-      <path d="M356 216l6 -5v50l-6 5Z" fill="#18783A"/>
+      <rect x="324" y="213" width="32" height="53" fill="#ACEEBF"/>
+      <path d="M324 213l6 -5h32l-6 5Z" fill="#7EE2A1"/>
+      <path d="M356 213l6 -5v53l-6 5Z" fill="#18783A"/>
       <text x="340" y="290" text-anchor="middle" class="month">FEB</text>
     </g><g aria-label="MAR: 15 contributions"><title>MAR: 15 contributions</title>
-      <rect x="392" y="231" width="32" height="35" fill="#DDF4E4"/>
-      <path d="M392 231l6 -5h32l-6 5Z" fill="#7EE2A1"/>
-      <path d="M424 231l6 -5v35l-6 5Z" fill="#18783A"/>
+      <rect x="392" y="229" width="32" height="37" fill="#DDF4E4"/>
+      <path d="M392 229l6 -5h32l-6 5Z" fill="#7EE2A1"/>
+      <path d="M424 229l6 -5v37l-6 5Z" fill="#18783A"/>
       <text x="408" y="290" text-anchor="middle" class="month">MAR</text>
     </g><g aria-label="APR: 9 contributions"><title>APR: 9 contributions</title>
-      <rect x="460" y="236" width="32" height="30" fill="#DDF4E4"/>
-      <path d="M460 236l6 -5h32l-6 5Z" fill="#7EE2A1"/>
-      <path d="M492 236l6 -5v30l-6 5Z" fill="#18783A"/>
+      <rect x="460" y="235" width="32" height="31" fill="#DDF4E4"/>
+      <path d="M460 235l6 -5h32l-6 5Z" fill="#7EE2A1"/>
+      <path d="M492 235l6 -5v31l-6 5Z" fill="#18783A"/>
       <text x="476" y="290" text-anchor="middle" class="month">APR</text>
     </g><g aria-label="MAY: 13 contributions"><title>MAY: 13 contributions</title>
-      <rect x="528" y="232" width="32" height="34" fill="#DDF4E4"/>
-      <path d="M528 232l6 -5h32l-6 5Z" fill="#7EE2A1"/>
-      <path d="M560 232l6 -5v34l-6 5Z" fill="#18783A"/>
+      <rect x="528" y="230" width="32" height="36" fill="#DDF4E4"/>
+      <path d="M528 230l6 -5h32l-6 5Z" fill="#7EE2A1"/>
+      <path d="M560 230l6 -5v36l-6 5Z" fill="#18783A"/>
       <text x="544" y="290" text-anchor="middle" class="month">MAY</text>
-    </g><g aria-label="JUN: 13 contributions"><title>JUN: 13 contributions</title>
-      <rect x="596" y="232" width="32" height="34" fill="#DDF4E4"/>
-      <path d="M596 232l6 -5h32l-6 5Z" fill="#7EE2A1"/>
-      <path d="M628 232l6 -5v34l-6 5Z" fill="#18783A"/>
+    </g><g aria-label="JUN: 9 contributions"><title>JUN: 9 contributions</title>
+      <rect x="596" y="235" width="32" height="31" fill="#DDF4E4"/>
+      <path d="M596 235l6 -5h32l-6 5Z" fill="#7EE2A1"/>
+      <path d="M628 235l6 -5v31l-6 5Z" fill="#18783A"/>
       <text x="612" y="290" text-anchor="middle" class="month">JUN</text>
-    </g><g aria-label="JUL: 29 contributions"><title>JUL: 29 contributions</title>
-      <rect x="664" y="221" width="32" height="45" fill="#DDF4E4"/>
-      <path d="M664 221l6 -5h32l-6 5Z" fill="#7EE2A1"/>
-      <path d="M696 221l6 -5v45l-6 5Z" fill="#18783A"/>
+    </g><g aria-label="JUL: 33 contributions"><title>JUL: 33 contributions</title>
+      <rect x="664" y="215" width="32" height="51" fill="#DDF4E4"/>
+      <path d="M664 215l6 -5h32l-6 5Z" fill="#7EE2A1"/>
+      <path d="M696 215l6 -5v51l-6 5Z" fill="#18783A"/>
       <text x="680" y="290" text-anchor="middle" class="month">JUL</text>
-    </g><g aria-label="AUG: 163 contributions"><title>AUG: 163 contributions</title>
+    </g><g aria-label="AUG: 141 contributions"><title>AUG: 141 contributions</title>
       <rect x="732" y="172" width="32" height="94" fill="#2DA44E"/>
       <path d="M732 172l6 -5h32l-6 5Z" fill="#7EE2A1"/>
       <path d="M764 172l6 -5v94l-6 5Z" fill="#18783A"/>
       <text x="748" y="290" text-anchor="middle" class="month">AUG</text>
-    </g><g aria-label="SEP: 1 contributions"><title>SEP: 1 contributions</title>
-      <rect x="800" y="249" width="32" height="17" fill="#DDF4E4"/>
-      <path d="M800 249l6 -5h32l-6 5Z" fill="#7EE2A1"/>
-      <path d="M832 249l6 -5v17l-6 5Z" fill="#18783A"/>
+    </g><g aria-label="SEP: 32 contributions"><title>SEP: 32 contributions</title>
+      <rect x="800" y="216" width="32" height="50" fill="#DDF4E4"/>
+      <path d="M800 216l6 -5h32l-6 5Z" fill="#7EE2A1"/>
+      <path d="M832 216l6 -5v50l-6 5Z" fill="#18783A"/>
       <text x="816" y="290" text-anchor="middle" class="month">SEP</text>
     </g>
   <g id="rabbit-motion" shape-rendering="crispEdges">
-    <animateTransform attributeName="transform" type="translate" values="28.0 234.0;28.0 234.0;55.0 208.2;82.0 196.7;109.0 203.2;136.0 224.0;136.0 224.0;136.0 224.0;204.0 183.3;272.0 162.9;340.0 168.3;408.0 194.0;408.0 194.0;408.0 194.0;459.0 161.4;510.0 148.9;561.0 161.9;612.0 195.0;612.0 195.0;612.0 195.0;629.0 155.7;646.0 138.8;663.0 150.2;680.0 184.0;680.0 184.0;680.0 184.0;595.0 144.6;510.0 128.5;425.0 142.1;340.0 179.0;340.0 179.0;340.0 179.0;323.0 160.0;306.0 157.7;289.0 176.5;272.0 212.0;272.0 212.0;272.0 212.0;221.0 179.5;170.0 165.5;119.0 175.0;68.0 203.0;68.0 203.0;68.0 203.0;102.0 168.7;136.0 154.3;170.0 165.2;204.0 196.0;204.0 196.0;204.0 196.0;340.0 128.0;476.0 92.3;612.0 97.5;748.0 135.0;748.0 135.0;748.0 135.0;680.0 119.5;612.0 123.2;544.0 151.5;476.0 199.0;476.0 199.0;476.0 199.0;561.0 175.0;646.0 167.7;731.0 181.5;816.0 212.0;816.0 212.0;816.0 212.0;748.0 174.9;680.0 157.9;612.0 166.4;544.0 195.0;544.0 195.0;544.0 195.0;618.0 174.5;692.0 172.5;766.0 194.0;840.0 234.0;840.0 234.0;840.0 234.0" keyTimes="0.000000;0.005114;0.018182;0.031818;0.045455;0.059091;0.070455;0.075568;0.088636;0.102273;0.115909;0.129545;0.140909;0.146023;0.159091;0.172727;0.186364;0.200000;0.211364;0.216477;0.229545;0.243182;0.256818;0.270455;0.281818;0.286932;0.300000;0.313636;0.327273;0.340909;0.352273;0.357386;0.370455;0.384091;0.397727;0.411364;0.422727;0.427841;0.440909;0.454545;0.468182;0.481818;0.493182;0.498295;0.511364;0.525000;0.538636;0.552273;0.563636;0.568750;0.581818;0.595455;0.609091;0.622727;0.634091;0.639205;0.652273;0.665909;0.679545;0.693182;0.704545;0.709659;0.722727;0.736364;0.750000;0.763636;0.775000;0.780114;0.793182;0.806818;0.820455;0.834091;0.845455;0.850568;0.863636;0.877273;0.890909;0.904545;0.915909;1.000000" dur="8.8s" calcMode="linear" repeatCount="indefinite"/>
+    <animateTransform attributeName="transform" type="translate" values="28.0 234.0;28.0 234.0;140.0 193.1;252.0 171.7;364.0 175.1;476.0 198.0;476.0 198.0;476.0 198.0;527.0 154.5;578.0 134.5;629.0 144.5;680.0 178.0;680.0 178.0;680.0 178.0;561.0 148.8;442.0 139.9;323.0 156.8;204.0 194.0;204.0 194.0;204.0 194.0;170.0 165.5;136.0 155.6;102.0 169.5;68.0 202.0;68.0 202.0;68.0 202.0;85.0 184.2;102.0 180.7;119.0 195.2;136.0 224.0;136.0 224.0;136.0 224.0;204.0 182.1;272.0 161.0;340.0 166.1;408.0 192.0;408.0 192.0;408.0 192.0;442.0 158.7;476.0 145.9;510.0 159.2;544.0 193.0;544.0 193.0;544.0 193.0;595.0 125.8;646.0 90.8;697.0 96.8;748.0 135.0;748.0 135.0;748.0 135.0;629.0 127.0;510.0 135.7;391.0 165.5;272.0 212.0;272.0 212.0;272.0 212.0;408.0 165.6;544.0 142.5;680.0 149.1;816.0 179.0;816.0 179.0;816.0 179.0;697.0 139.1;578.0 123.1;459.0 137.6;340.0 176.0;340.0 176.0;340.0 176.0;408.0 149.6;476.0 142.7;544.0 160.6;612.0 198.0;612.0 198.0;612.0 198.0;669.0 176.8;726.0 174.0;783.0 194.8;840.0 234.0;840.0 234.0;840.0 234.0" keyTimes="0.000000;0.005114;0.018182;0.031818;0.045455;0.059091;0.070455;0.075568;0.088636;0.102273;0.115909;0.129545;0.140909;0.146023;0.159091;0.172727;0.186364;0.200000;0.211364;0.216477;0.229545;0.243182;0.256818;0.270455;0.281818;0.286932;0.300000;0.313636;0.327273;0.340909;0.352273;0.357386;0.370455;0.384091;0.397727;0.411364;0.422727;0.427841;0.440909;0.454545;0.468182;0.481818;0.493182;0.498295;0.511364;0.525000;0.538636;0.552273;0.563636;0.568750;0.581818;0.595455;0.609091;0.622727;0.634091;0.639205;0.652273;0.665909;0.679545;0.693182;0.704545;0.709659;0.722727;0.736364;0.750000;0.763636;0.775000;0.780114;0.793182;0.806818;0.820455;0.834091;0.845455;0.850568;0.863636;0.877273;0.890909;0.904545;0.915909;1.000000" dur="8.8s" calcMode="linear" repeatCount="indefinite"/>
     <g id="rabbit-direction">
-      <animateTransform attributeName="transform" type="scale" values="1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;1 1;1 1;1 1;1 1;1 1;1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1" keyTimes="0.000000;0.005114;0.018182;0.031818;0.045455;0.059091;0.070455;0.075568;0.088636;0.102273;0.115909;0.129545;0.140909;0.146023;0.159091;0.172727;0.186364;0.200000;0.211364;0.216477;0.229545;0.243182;0.256818;0.270455;0.281818;0.286932;0.300000;0.313636;0.327273;0.340909;0.352273;0.357386;0.370455;0.384091;0.397727;0.411364;0.422727;0.427841;0.440909;0.454545;0.468182;0.481818;0.493182;0.498295;0.511364;0.525000;0.538636;0.552273;0.563636;0.568750;0.581818;0.595455;0.609091;0.622727;0.634091;0.639205;0.652273;0.665909;0.679545;0.693182;0.704545;0.709659;0.722727;0.736364;0.750000;0.763636;0.775000;0.780114;0.793182;0.806818;0.820455;0.834091;0.845455;0.850568;0.863636;0.877273;0.890909;0.904545;0.915909;1.000000" dur="8.8s" calcMode="discrete" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="scale" values="1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;1 1;1 1;1 1;1 1;1 1;1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1" keyTimes="0.000000;0.005114;0.018182;0.031818;0.045455;0.059091;0.070455;0.075568;0.088636;0.102273;0.115909;0.129545;0.140909;0.146023;0.159091;0.172727;0.186364;0.200000;0.211364;0.216477;0.229545;0.243182;0.256818;0.270455;0.281818;0.286932;0.300000;0.313636;0.327273;0.340909;0.352273;0.357386;0.370455;0.384091;0.397727;0.411364;0.422727;0.427841;0.440909;0.454545;0.468182;0.481818;0.493182;0.498295;0.511364;0.525000;0.538636;0.552273;0.563636;0.568750;0.581818;0.595455;0.609091;0.622727;0.634091;0.639205;0.652273;0.665909;0.679545;0.693182;0.704545;0.709659;0.722727;0.736364;0.750000;0.763636;0.775000;0.780114;0.793182;0.806818;0.820455;0.834091;0.845455;0.850568;0.863636;0.877273;0.890909;0.904545;0.915909;1.000000" dur="8.8s" calcMode="discrete" repeatCount="indefinite"/>
       <g id="rabbit-crouch" opacity="0">
         <animate attributeName="opacity" values="0;1;0;0;0;0;0;1;0;0;0;0;0;1;0;0;0;0;0;1;0;0;0;0;0;1;0;0;0;0;0;1;0;0;0;0;0;1;0;0;0;0;0;1;0;0;0;0;0;1;0;0;0;0;0;1;0;0;0;0;0;1;0;0;0;0;0;1;0;0;0;0;0;1;0;0;0;0;0;0" keyTimes="0.000000;0.005114;0.018182;0.031818;0.045455;0.059091;0.070455;0.075568;0.088636;0.102273;0.115909;0.129545;0.140909;0.146023;0.159091;0.172727;0.186364;0.200000;0.211364;0.216477;0.229545;0.243182;0.256818;0.270455;0.281818;0.286932;0.300000;0.313636;0.327273;0.340909;0.352273;0.357386;0.370455;0.384091;0.397727;0.411364;0.422727;0.427841;0.440909;0.454545;0.468182;0.481818;0.493182;0.498295;0.511364;0.525000;0.538636;0.552273;0.563636;0.568750;0.581818;0.595455;0.609091;0.622727;0.634091;0.639205;0.652273;0.665909;0.679545;0.693182;0.704545;0.709659;0.722727;0.736364;0.750000;0.763636;0.775000;0.780114;0.793182;0.806818;0.820455;0.834091;0.845455;0.850568;0.863636;0.877273;0.890909;0.904545;0.915909;1.000000" dur="8.8s" calcMode="discrete" repeatCount="indefinite"/>
         <path d="M-17 17h5V8h5V1h5v13h5V3h5v11h7v4h4v10h-5v4h-27v-4h-7V20h3Z" fill="#FFFFFF" stroke="#111820" stroke-width="2.5" stroke-linejoin="miter"/>
@@ -89,5 +89,5 @@
     </g>
   </g>
   <text x="20" y="309" class="note">HEIGHT = MONTHLY CONTRIBUTIONS · ORDER RESEEDED ON REFRESH</text>
-  <text x="860" y="309" text-anchor="end" class="note">299 CONTRIBUTIONS · 8.8S LOOP</text>
+  <text x="860" y="309" text-anchor="end" class="note">308 CONTRIBUTIONS · 8.8S LOOP</text>
 </svg>

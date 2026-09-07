@@ -37,11 +37,11 @@ Hi, I'm **Kavya Jain**. I build systems for decisions that become difficult when
 
 <!-- GENERATED:TOOLBOX:START -->
 <p align="center">
-  <img src="./assets/toolbox/typescript.svg" width="72" height="72" alt="TypeScript" title="TypeScript · 66.7% · 1.6 MB">
-  <img src="./assets/toolbox/javascript.svg" width="72" height="72" alt="JavaScript" title="JavaScript · 18.1% · 457.6 KB">
-  <img src="./assets/toolbox/css.svg" width="72" height="72" alt="CSS" title="CSS · 11.2% · 283.6 KB">
+  <img src="./assets/toolbox/typescript.svg" width="72" height="72" alt="TypeScript" title="TypeScript · 66.0% · 1.6 MB">
+  <img src="./assets/toolbox/javascript.svg" width="72" height="72" alt="JavaScript" title="JavaScript · 18.8% · 479.5 KB">
+  <img src="./assets/toolbox/css.svg" width="72" height="72" alt="CSS" title="CSS · 11.1% · 283.6 KB">
   <img src="./assets/toolbox/html5.svg" width="72" height="72" alt="HTML" title="HTML · 1.7% · 44.2 KB">
-  <img src="./assets/toolbox/python.svg" width="72" height="72" alt="Python" title="Python · 1.1% · 27.0 KB">
+  <img src="./assets/toolbox/python.svg" width="72" height="72" alt="Python" title="Python · 1.1% · 29.1 KB">
   <img src="./assets/toolbox/postgresql.svg" width="72" height="72" alt="PLpgSQL" title="PLpgSQL · 0.7% · 18.0 KB">
   <img src="./assets/toolbox/openjdk.svg" width="72" height="72" alt="Java" title="Java · 0.4% · 11.2 KB">
   <img src="./assets/toolbox/docker.svg" width="72" height="72" alt="Dockerfile" title="Dockerfile · &lt;0.1% · 897 B">
