@@ -1,0 +1,8 @@
+$ cat about.txt
+
+Hi, I'm Kavya Jain. I build systems for decisions that become difficult when evidence is incomplete, providers fail, or the happy path stops being honest.
+
+- Currently building TRISHUL, a financial cyber-fraud intelligence system.
+- Strongest lane: product architecture, frontend QA, backend reliability and explainable state.
+- Learning track: DSA in C++ and production-grade full-stack systems.
+- I treat failure recovery as a product feature, not a cleanup task.

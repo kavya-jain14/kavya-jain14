@@ -1,0 +1,176 @@
+{
+  "generatedAt": "2026-09-07T18:45:37.778Z",
+  "username": "kavya-jain14",
+  "scope": "default branches of selected public repositories; all authors; rolling 7 days",
+  "projects": [
+    {
+      "id": "trinetra",
+      "repo": "kavya-jain14/TRINETRA",
+      "commitsLast7Days": 0,
+      "recent": [
+        {
+          "sha": "d3f12d46fb1d971101c23a4977ec093f4693caa3",
+          "date": "2026-08-16T20:08:21Z",
+          "title": "feat(graph): add bounded mule-risk checkpoint (#13)",
+          "url": "https://github.com/kavya-jain14/TRINETRA/commit/d3f12d46fb1d971101c23a4977ec093f4693caa3",
+          "author": "kavya-jain14"
+        },
+        {
+          "sha": "7d6b18313bd5236f38605bec62e2adc231ad3d26",
+          "date": "2026-08-16T17:25:50Z",
+          "title": "feat(demo): add reversal recovery checkpoint (#11)",
+          "url": "https://github.com/kavya-jain14/TRINETRA/commit/7d6b18313bd5236f38605bec62e2adc231ad3d26",
+          "author": "kavya-jain14"
+        },
+        {
+          "sha": "e92175890855a52a17fa604a6b79c7d128c3e4eb",
+          "date": "2026-08-16T12:19:37Z",
+          "title": "feat(recovery): add timeout-safe payment checkpoint (#10)",
+          "url": "https://github.com/kavya-jain14/TRINETRA/commit/e92175890855a52a17fa604a6b79c7d128c3e4eb",
+          "author": "kavya-jain14"
+        }
+      ]
+    },
+    {
+      "id": "trishul",
+      "repo": "kavya-jain14/TRISHUL",
+      "commitsLast7Days": 0,
+      "recent": [
+        {
+          "sha": "55b09c321af0f7ee163b134f4b44f695cf7211ec",
+          "date": "2026-08-28T07:59:56Z",
+          "title": "feat(deploy): wire synthetic frontend demo runtime (#22)",
+          "url": "https://github.com/kavya-jain14/TRISHUL/commit/55b09c321af0f7ee163b134f4b44f695cf7211ec",
+          "author": "kavya-jain14"
+        },
+        {
+          "sha": "e7a40e4f1c30061f1f26e8db6a209a9bf83c1ed8",
+          "date": "2026-08-25T04:15:35Z",
+          "title": "Merge PR #13: complete TRISHUL backend and presentation stack",
+          "url": "https://github.com/kavya-jain14/TRISHUL/commit/e7a40e4f1c30061f1f26e8db6a209a9bf83c1ed8",
+          "author": "kavya-jain14"
+        },
+        {
+          "sha": "4003d34095f5758462b9eb83b43f5b293265ad5e",
+          "date": "2026-08-25T04:03:39Z",
+          "title": "Merge PR #16: complete verified backend stack",
+          "url": "https://github.com/kavya-jain14/TRISHUL/commit/4003d34095f5758462b9eb83b43f5b293265ad5e",
+          "author": "kavya-jain14"
+        }
+      ]
+    },
+    {
+      "id": "mira",
+      "repo": "kavya-jain14/MIRA",
+      "commitsLast7Days": 0,
+      "recent": [
+        {
+          "sha": "8926a34b2677da0fd1e872800fc2985c3fb98699",
+          "date": "2026-08-10T10:08:50Z",
+          "title": "Prefer meaningful editorial reasons in the decision ledger (#18)",
+          "url": "https://github.com/kavya-jain14/MIRA/commit/8926a34b2677da0fd1e872800fc2985c3fb98699",
+          "author": "kavya-jain14"
+        },
+        {
+          "sha": "5bea458f09d27c274d811aa6a024e1f98e89e397",
+          "date": "2026-08-10T10:02:17Z",
+          "title": "Repair autonomous backlog publishing and decision ledger (#17)",
+          "url": "https://github.com/kavya-jain14/MIRA/commit/5bea458f09d27c274d811aa6a024e1f98e89e397",
+          "author": "kavya-jain14"
+        },
+        {
+          "sha": "cca25c2d08e02896f72f3d4fa0630e620753f2d0",
+          "date": "2026-08-09T19:29:27Z",
+          "title": "Add the MIRA browser favicon (#16)",
+          "url": "https://github.com/kavya-jain14/MIRA/commit/cca25c2d08e02896f72f3d4fa0630e620753f2d0",
+          "author": "kavya-jain14"
+        }
+      ]
+    },
+    {
+      "id": "socrates",
+      "repo": "gargibhardwaj24/Socrates",
+      "commitsLast7Days": 0,
+      "recent": [
+        {
+          "sha": "4a7b989daf5306277253b224395b7012aeec68a0",
+          "date": "2026-07-24T16:30:24Z",
+          "title": "Merge pull request #3 from gargibhardwaj24/kavya/learn-nav-ratio-polish",
+          "url": "https://github.com/gargibhardwaj24/Socrates/commit/4a7b989daf5306277253b224395b7012aeec68a0",
+          "author": "gargibhardwaj24"
+        },
+        {
+          "sha": "d01b1b6170568d0cd34960bb48c7e8249e04029e",
+          "date": "2026-07-24T16:27:45Z",
+          "title": "feat(ui): refine learn catalogue and authenticated nav",
+          "url": "https://github.com/gargibhardwaj24/Socrates/commit/d01b1b6170568d0cd34960bb48c7e8249e04029e",
+          "author": "kavya-jain14"
+        },
+        {
+          "sha": "1372eb907e5d95574b3de525db360f2cb913071f",
+          "date": "2026-07-24T15:33:18Z",
+          "title": "Merge pull request #2 from gargibhardwaj24/kavya/day1-ui-demo",
+          "url": "https://github.com/gargibhardwaj24/Socrates/commit/1372eb907e5d95574b3de525db360f2cb913071f",
+          "author": "gargibhardwaj24"
+        }
+      ]
+    },
+    {
+      "id": "counselflow",
+      "repo": "kavya-jain14/COUNSEL-FLOW",
+      "commitsLast7Days": 0,
+      "recent": [
+        {
+          "sha": "d116e83f61be8f6e85bf1ef22b794ab830d9bd6b",
+          "date": "2026-08-21T22:32:59Z",
+          "title": "feat: make counselling flow attention-first",
+          "url": "https://github.com/kavya-jain14/COUNSEL-FLOW/commit/d116e83f61be8f6e85bf1ef22b794ab830d9bd6b",
+          "author": "kavya-jain14"
+        },
+        {
+          "sha": "cb4a6faed4de4313d9916aee1eabdbde373e7a24",
+          "date": "2026-08-21T19:57:44Z",
+          "title": "Merge pull request #12 from kavya-jain14/feature/gargi-profile-conflicts",
+          "url": "https://github.com/kavya-jain14/COUNSEL-FLOW/commit/cb4a6faed4de4313d9916aee1eabdbde373e7a24",
+          "author": "gargibhardwaj24"
+        },
+        {
+          "sha": "44f79cb35008cd2cc0b9f084f0f49d88ac2b9487",
+          "date": "2026-08-21T19:50:44Z",
+          "title": "Merge pull request #11 from kavya-jain14/feat/calm-scholar-ui",
+          "url": "https://github.com/kavya-jain14/COUNSEL-FLOW/commit/44f79cb35008cd2cc0b9f084f0f49d88ac2b9487",
+          "author": "gargibhardwaj24"
+        }
+      ]
+    },
+    {
+      "id": "papertrade",
+      "repo": "kavya-jain14/PAPER_TRADE",
+      "commitsLast7Days": 0,
+      "recent": [
+        {
+          "sha": "74c51023c86155ee62bbe8651e7f7599504e73ef",
+          "date": "2026-08-08T18:00:55Z",
+          "title": "Ship PaperTrade terminal redesign and auth experience (#1)",
+          "url": "https://github.com/kavya-jain14/PAPER_TRADE/commit/74c51023c86155ee62bbe8651e7f7599504e73ef",
+          "author": "kavya-jain14"
+        },
+        {
+          "sha": "2f2dca1a4b8d631eeb270308a4ae3e693d88b85e",
+          "date": "2026-07-13T08:38:14Z",
+          "title": "fix(backend): cache yahoo finance calls and fallback to synthetic prices to prevent rate-limiting",
+          "url": "https://github.com/kavya-jain14/PAPER_TRADE/commit/2f2dca1a4b8d631eeb270308a4ae3e693d88b85e",
+          "author": "kavya-jain14"
+        },
+        {
+          "sha": "5b63b11e691934f98b83ab4ef0cbf0f6bef8f739",
+          "date": "2026-07-12T21:23:38Z",
+          "title": "feat(components): phase 4 — extract TradeModal & AppShell, rewrite CommandPalette, add Stat & EmptyState components",
+          "url": "https://github.com/kavya-jain14/PAPER_TRADE/commit/5b63b11e691934f98b83ab4ef0cbf0f6bef8f739",
+          "author": "kavya-jain14"
+        }
+      ]
+    }
+  ]
+}
+

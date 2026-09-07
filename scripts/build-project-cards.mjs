@@ -2,6 +2,7 @@ import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 
 const config = JSON.parse(readFileSync("data/profile-config.json", "utf8"));
 const projects = config.projects;
+const activity = JSON.parse(readFileSync("data/project-activity.json", "utf8"));
 const themes = {
   dark: { background: "#0d1117", border: "#30363d", ink: "#f0f6fc", muted: "#8b949e", accent: "#39d353", faint: "#132217" },
   light: { background: "#ffffff", border: "#d0d7de", ink: "#1f2328", muted: "#59636e", accent: "#1f883d", faint: "#dafbe1" },
@@ -51,7 +52,24 @@ function projectGrid() {
 
 function evidenceChain(project) {
   const url = `https://github.com/${project.repo}`;
-  return `<details>\n<summary><strong>${project.index} · ${escapeHtml(project.name)}</strong> · ${escapeHtml(project.type)}</summary>\n<br>\n<strong>Problem</strong> · ${escapeHtml(project.problem)}<br>\n<strong>Constraint</strong> · ${escapeHtml(project.constraint)}<br>\n<strong>Decision</strong> · ${escapeHtml(project.decision)}<br>\n<strong>Proof</strong> · ${escapeHtml(project.proof)}<br>\n<strong>My contribution</strong> · ${escapeHtml(project.contribution)}<br>\n<a href="${url}">Inspect repository →</a>\n</details>`;
+  const changes = activity.projects.find((entry) => entry.id === project.id)?.recent || [];
+  const trail = changes.length
+    ? `<ol>\n${[...changes].reverse().map((commit) => `<li><code>${escapeHtml(commit.date.slice(0, 10))}</code> · <a href="${escapeHtml(commit.url)}">${escapeHtml(commit.title)}</a> <small>(${escapeHtml(commit.author)})</small></li>`).join("\n")}\n</ol>`
+    : "<p>No commits published on this repository's default branch yet.</p>";
+  return `<details>
+<summary><strong>${project.index} · ${escapeHtml(project.name)}</strong> · expand reasoning + changes</summary>
+
+<p><strong>Problem</strong><br>${escapeHtml(project.problem)}</p>
+<p><strong>Constraint</strong><br>${escapeHtml(project.constraint)}</p>
+<p><strong>Decision</strong><br>${escapeHtml(project.decision)}</p>
+<p><strong>Engineering focus</strong><br>${escapeHtml(project.proof)}</p>
+<p><strong>My contribution</strong><br>${escapeHtml(project.contribution)}</p>
+<p><strong>Repository trail</strong> · latest three default-branch changes, oldest first</p>
+${trail}
+<p><sub>Commit titles link to the actual diffs. All repository authors are credited; refreshed ${escapeHtml(activity.generatedAt.slice(0, 10))}.</sub></p>
+<p><a href="${url}">Inspect repository →</a></p>
+
+</details>`;
 }
 
 function updateReadme() {
@@ -61,7 +79,7 @@ function updateReadme() {
   const readme = readFileSync(path, "utf8");
   if (!readme.includes(start) || !readme.includes(end)) throw new Error("README project markers are missing; refusing an unsafe rewrite.");
   const generated = `${start}\n${projectGrid()}\n\n### Evidence chains\n\n${projects.map(evidenceChain).join("\n\n")}\n${end}`;
-  const next = readme.replace(new RegExp(`${start}[\\s\\S]*?${end}`), generated);
+  const next = readme.replace(new RegExp(`${start}[\\s\\S]*?${end}`), () => generated);
   writeFileSync(path, next, "utf8");
 }
 
