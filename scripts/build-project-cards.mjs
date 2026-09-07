@@ -79,7 +79,7 @@ function updateReadme() {
   const readme = readFileSync(path, "utf8");
   if (!readme.includes(start) || !readme.includes(end)) throw new Error("README project markers are missing; refusing an unsafe rewrite.");
   const generated = `${start}\n${projectGrid()}\n\n### Evidence chains\n\n${projects.map(evidenceChain).join("\n\n")}\n${end}`;
-  const next = readme.replace(new RegExp(`${start}[\\s\\S]*?${end}`), generated);
+  const next = readme.replace(new RegExp(`${start}[\\s\\S]*?${end}`), () => generated);
   writeFileSync(path, next, "utf8");
 }
 
