@@ -1,4 +1,4 @@
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
 
 const read = (path) => readFileSync(path, "utf8");
 const config = JSON.parse(read("data/profile-config.json"));
@@ -17,10 +17,16 @@ assert(signals.engineeringRange.length === 6, "Engineering radar requires six co
 assert([...signals.workingLanguages, ...signals.engineeringRange].every((axis) => axis.value >= 0 && axis.value <= 1), "Radar values must be normalized to 0..1.");
 assert(!readme.toLowerCase().includes("snake"), "Generic contribution snake must not return.");
 assert(!readme.includes("role-typing.svg"), "Generic role typing animation must not return.");
-assert(!readme.toLowerCase().includes("contribution calendar"), "Contribution calendar must remain removed.");
 assert(!readme.toLowerCase().includes("decision log"), "Decision log must remain removed.");
+assert(!existsSync("assets/decision-log-light.svg") && !existsSync("assets/decision-log-dark.svg"), "Decision-log assets must remain removed.");
+assert(!existsSync("scripts/build-decision-log.mjs"), "Decision-log data generator must remain removed.");
 assert((readme.match(/<details>/g) || []).length === config.projects.length, "README evidence-chain count must match project config.");
 assert(readme.includes('width="520"'), "Hero portrait must retain its wider 520px presentation.");
+
+const toolboxAssets = readdirSync("assets/toolbox").filter((name) => name.endsWith(".svg"));
+assert(toolboxAssets.length === signals.languages.length, "Toolbox badge count must match detected GitHub languages.");
+assert((readme.match(/assets\/toolbox\/[^"]+\.svg/g) || []).length === signals.languages.length, "README toolbox must list every generated badge exactly once.");
+assert(!existsSync("assets/toolbox-light.svg") && !existsSync("assets/toolbox-dark.svg"), "Legacy toolbox bar assets must remain removed.");
 
 for (const project of config.projects) {
   for (const theme of ["light", "dark"]) {
@@ -29,9 +35,10 @@ for (const project of config.projects) {
 }
 
 const generatedSvgPaths = [
-  "assets/toolbox-light.svg", "assets/toolbox-dark.svg",
+  ...toolboxAssets.map((name) => `assets/toolbox/${name}`),
   "assets/skill-radar-light.svg", "assets/skill-radar-dark.svg",
   "assets/numbers-light.svg", "assets/numbers-dark.svg",
+  "assets/generated/rabbit-calendar-light.svg", "assets/generated/rabbit-calendar-dark.svg",
   ...config.projects.flatMap((project) => [
     `assets/projects/${project.id}-light.svg`, `assets/projects/${project.id}-dark.svg`,
   ]),
@@ -42,4 +49,13 @@ for (const path of generatedSvgPaths) {
   assert(!/NaN|undefined|null/.test(source), `${path} contains an invalid generated value.`);
 }
 
-console.log(`Validated ${generatedSvgPaths.length} SVGs and ${config.projects.length} evidence chains.`);
+for (const theme of ["light", "dark"]) {
+  const rabbit = read(`assets/generated/rabbit-calendar-${theme}.svg`);
+  assert((rabbit.match(/aria-label="[A-Z]{3}: \d+ contributions"/g) || []).length === 12, `${theme} rabbit calendar must render twelve monthly pillars.`);
+  assert(rabbit.includes('id="rabbit-crouch"') && rabbit.includes('id="rabbit-air"') && rabbit.includes('id="rabbit-land"'), `${theme} rabbit calendar needs crouch, air and land frames.`);
+  assert(rabbit.includes('data-seed=') && rabbit.includes('repeatCount="indefinite"'), `${theme} rabbit calendar must use a seeded looping animation.`);
+  const loop = Number(rabbit.match(/dur="([\d.]+)s"/)?.[1]);
+  assert(loop > 0 && loop <= 10, `${theme} rabbit loop must remain under ten seconds.`);
+}
+
+console.log(`Validated ${generatedSvgPaths.length} SVGs, ${toolboxAssets.length} live toolbox badges, two rabbit calendars and ${config.projects.length} evidence chains.`);
