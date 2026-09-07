@@ -1,10 +1,12 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { collectProjectActivity } from "./lib/project-activity.mjs";
 
 const config = JSON.parse(readFileSync("data/profile-config.json", "utf8"));
 const contributions = JSON.parse(readFileSync("data/contributions.json", "utf8"));
 const outputPath = "data/profile-signals.json";
 const token = process.env.GITHUB_TOKEN;
 const username = process.env.PROFILE_USERNAME || config.username;
+const now = new Date();
 
 const headers = {
   accept: "application/vnd.github+json",
@@ -72,10 +74,11 @@ async function authoredCommitCount(fullName) {
 }
 
 async function repositorySignals(project) {
-  const [{ data: repository }, languages, commitCount] = await Promise.all([
+  const [{ data: repository }, languages, commitCount, activity] = await Promise.all([
     request(`/repos/${project.repo}`),
     languageBytes(project.repo),
     authoredCommitCount(project.repo),
+    collectProjectActivity(request, project, now),
   ]);
   return {
     id: project.id,
@@ -83,6 +86,7 @@ async function repositorySignals(project) {
     pushedAt: repository.pushed_at,
     commitCount,
     languageBytes: Object.values(languages).reduce((sum, value) => sum + value, 0),
+    activity,
   };
 }
 
@@ -105,10 +109,10 @@ const languages = Object.entries(aggregateLanguages)
 const totalLanguageBytes = languages.reduce((sum, language) => sum + language.bytes, 0);
 for (const language of languages) language.share = totalLanguageBytes ? language.bytes / totalLanguageBytes : 0;
 
-const rawProjectSignals = await mapLimit(config.projects, 3, repositorySignals);
+const collectedProjects = await mapLimit(config.projects, 3, repositorySignals);
+const rawProjectSignals = collectedProjects.map(({ activity, ...signals }) => signals);
 const maxCommits = Math.max(1, ...rawProjectSignals.map((project) => Math.log1p(project.commitCount)));
 const maxBytes = Math.max(1, ...rawProjectSignals.map((project) => Math.log1p(project.languageBytes)));
-const now = new Date();
 const projectSignals = rawProjectSignals.map((project) => {
   const ageDays = Math.max(0, (now - new Date(project.pushedAt)) / 86_400_000);
   const commitSignal = Math.log1p(project.commitCount) / maxCommits;
@@ -173,4 +177,10 @@ const payload = {
 
 mkdirSync("data", { recursive: true });
 writeFileSync(outputPath, `${JSON.stringify(payload, null, 2)}\n`, "utf8");
+writeFileSync("data/project-activity.json", `${JSON.stringify({
+  generatedAt: now.toISOString(),
+  username,
+  scope: "default branches of selected public repositories; all authors; rolling 7 days",
+  projects: collectedProjects.map((project) => project.activity),
+}, null, 2)}\n`, "utf8");
 console.log(`Fetched ${ownedRepositories.length} repositories and ${languages.length} languages for ${username}.`);

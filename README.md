@@ -1,5 +1,9 @@
 <div align="center">
 
+<!-- GENERATED:STATUS:START -->
+<p align="center"><a href="https://github.com/kavya-jain14/TRISHUL/commit/55b09c321af0f7ee163b134f4b44f695cf7211ec" title="Default branches of 6 selected repositories; all authors. Last 7 days through 2026-09-07T18:45:37.778Z."><code>$ status: latest TRISHUL · 0 default-branch commits / 7d</code></a></p>
+<!-- GENERATED:STATUS:END -->
+
 <picture>
   <source type="image/svg+xml" srcset="./assets/hero/portrait-reveal.svg">
   <img src="./assets/hero/portrait-pixel.png" width="520" alt="Kavya Jain in a transparent dot-pixel portrait">
@@ -20,16 +24,15 @@
 
 ## `~/` whoami
 
-```console
-$ cat about.txt
-```
-
-Hi, I'm **Kavya Jain**. I build systems for decisions that become difficult when evidence is incomplete, providers fail, or the happy path stops being honest.
-
-- Currently building **TRISHUL**, a financial cyber-fraud intelligence system.
-- Strongest lane: product architecture, frontend QA, backend reliability and explainable state.
-- Learning track: DSA in C++ and production-grade full-stack systems.
-- I treat failure recovery as a product feature, not a cleanup task.
+<!-- GENERATED:ABOUT:START -->
+<picture>
+  <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="./assets/generated/about-terminal-dark-compact.svg">
+  <source media="(max-width: 600px)" srcset="./assets/generated/about-terminal-light-compact.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/generated/about-terminal-dark.svg">
+  <img src="./assets/generated/about-terminal-light.svg" width="880" loading="lazy" alt="$ cat about.txt  Hi, I'm Kavya Jain. I build systems for decisions that become difficult when evidence is incomplete, providers fail, or the happy path stops being honest.  - Currently building TRISHUL, a financial cyber-fraud intelligence system. - Strongest lane: product architecture, frontend QA, backend reliability and explainable state. - Learning track: DSA in C++ and production-grade full-stack systems. - I treat failure recovery as a product feature, not a cleanup task.">
+</picture>
+<sub><a href="./data/about.txt">Read about.txt</a></sub>
+<!-- GENERATED:ABOUT:END -->
 
 ---
 
@@ -153,69 +156,117 @@ Hi, I'm **Kavya Jain**. I build systems for decisions that become difficult when
 ### Evidence chains
 
 <details>
-<summary><strong>01 · TRINETRA</strong> · UPI RISK + RECOVERY</summary>
-<br>
-<strong>Problem</strong> · UPI risk and recovery<br>
-<strong>Constraint</strong> · A payment must remain retry-safe while every risk decision stays explainable.<br>
-<strong>Decision</strong> · Model payment state as a durable ledger and make each risk verdict an auditable transition.<br>
-<strong>Proof</strong> · Durable payment state and explainable recovery<br>
-<strong>My contribution</strong> · ARCHITECTURE · BACKEND · QA<br>
-<a href="https://github.com/kavya-jain14/TRINETRA">Inspect repository →</a>
+<summary><strong>01 · TRINETRA</strong> · expand reasoning + changes</summary>
+
+<p><strong>Problem</strong><br>UPI risk and recovery</p>
+<p><strong>Constraint</strong><br>A payment must remain retry-safe while every risk decision stays explainable.</p>
+<p><strong>Decision</strong><br>Model payment state as a durable ledger and make each risk verdict an auditable transition.</p>
+<p><strong>Engineering focus</strong><br>Durable payment state and explainable recovery</p>
+<p><strong>My contribution</strong><br>ARCHITECTURE · BACKEND · QA</p>
+<p><strong>Repository trail</strong> · latest three default-branch changes, oldest first</p>
+<ol>
+<li><code>2026-08-16</code> · <a href="https://github.com/kavya-jain14/TRINETRA/commit/e92175890855a52a17fa604a6b79c7d128c3e4eb">feat(recovery): add timeout-safe payment checkpoint (#10)</a> <small>(kavya-jain14)</small></li>
+<li><code>2026-08-16</code> · <a href="https://github.com/kavya-jain14/TRINETRA/commit/7d6b18313bd5236f38605bec62e2adc231ad3d26">feat(demo): add reversal recovery checkpoint (#11)</a> <small>(kavya-jain14)</small></li>
+<li><code>2026-08-16</code> · <a href="https://github.com/kavya-jain14/TRINETRA/commit/d3f12d46fb1d971101c23a4977ec093f4693caa3">feat(graph): add bounded mule-risk checkpoint (#13)</a> <small>(kavya-jain14)</small></li>
+</ol>
+<p><sub>Commit titles link to the actual diffs. All repository authors are credited; refreshed 2026-09-07.</sub></p>
+<p><a href="https://github.com/kavya-jain14/TRINETRA">Inspect repository →</a></p>
+
 </details>
 
 <details>
-<summary><strong>02 · TRISHUL</strong> · FRAUD INTELLIGENCE</summary>
-<br>
-<strong>Problem</strong> · Financial cyber-fraud intelligence<br>
-<strong>Constraint</strong> · Fraud signals are incomplete, so suspicion cannot be presented as certainty.<br>
-<strong>Decision</strong> · Gate every claim through provenance, confidence and a traceable evidence chain.<br>
-<strong>Proof</strong> · Evidence gates and traceable decisions<br>
-<strong>My contribution</strong> · PRODUCT · DATA DESIGN · FRONTEND QA<br>
-<a href="https://github.com/kavya-jain14/TRISHUL">Inspect repository →</a>
+<summary><strong>02 · TRISHUL</strong> · expand reasoning + changes</summary>
+
+<p><strong>Problem</strong><br>Financial cyber-fraud intelligence</p>
+<p><strong>Constraint</strong><br>Fraud signals are incomplete, so suspicion cannot be presented as certainty.</p>
+<p><strong>Decision</strong><br>Gate every claim through provenance, confidence and a traceable evidence chain.</p>
+<p><strong>Engineering focus</strong><br>Evidence gates and traceable decisions</p>
+<p><strong>My contribution</strong><br>PRODUCT · DATA DESIGN · FRONTEND QA</p>
+<p><strong>Repository trail</strong> · latest three default-branch changes, oldest first</p>
+<ol>
+<li><code>2026-08-25</code> · <a href="https://github.com/kavya-jain14/TRISHUL/commit/4003d34095f5758462b9eb83b43f5b293265ad5e">Merge PR #16: complete verified backend stack</a> <small>(kavya-jain14)</small></li>
+<li><code>2026-08-25</code> · <a href="https://github.com/kavya-jain14/TRISHUL/commit/e7a40e4f1c30061f1f26e8db6a209a9bf83c1ed8">Merge PR #13: complete TRISHUL backend and presentation stack</a> <small>(kavya-jain14)</small></li>
+<li><code>2026-08-28</code> · <a href="https://github.com/kavya-jain14/TRISHUL/commit/55b09c321af0f7ee163b134f4b44f695cf7211ec">feat(deploy): wire synthetic frontend demo runtime (#22)</a> <small>(kavya-jain14)</small></li>
+</ol>
+<p><sub>Commit titles link to the actual diffs. All repository authors are credited; refreshed 2026-09-07.</sub></p>
+<p><a href="https://github.com/kavya-jain14/TRISHUL">Inspect repository →</a></p>
+
 </details>
 
 <details>
-<summary><strong>03 · MIRA</strong> · AUTONOMOUS CREATOR</summary>
-<br>
-<strong>Problem</strong> · Autonomous publishing<br>
-<strong>Constraint</strong> · Autonomy without sources or memory becomes opaque and difficult to audit.<br>
-<strong>Decision</strong> · Separate discovery, decision, memory and publishing into a visible decision ledger.<br>
-<strong>Proof</strong> · Source gates and a visible decision ledger<br>
-<strong>My contribution</strong> · FULL FRONTEND · FLOW · INTEGRATION<br>
-<a href="https://github.com/kavya-jain14/MIRA">Inspect repository →</a>
+<summary><strong>03 · MIRA</strong> · expand reasoning + changes</summary>
+
+<p><strong>Problem</strong><br>Autonomous publishing</p>
+<p><strong>Constraint</strong><br>Autonomy without sources or memory becomes opaque and difficult to audit.</p>
+<p><strong>Decision</strong><br>Separate discovery, decision, memory and publishing into a visible decision ledger.</p>
+<p><strong>Engineering focus</strong><br>Source gates and a visible decision ledger</p>
+<p><strong>My contribution</strong><br>FULL FRONTEND · FLOW · INTEGRATION</p>
+<p><strong>Repository trail</strong> · latest three default-branch changes, oldest first</p>
+<ol>
+<li><code>2026-08-09</code> · <a href="https://github.com/kavya-jain14/MIRA/commit/cca25c2d08e02896f72f3d4fa0630e620753f2d0">Add the MIRA browser favicon (#16)</a> <small>(kavya-jain14)</small></li>
+<li><code>2026-08-10</code> · <a href="https://github.com/kavya-jain14/MIRA/commit/5bea458f09d27c274d811aa6a024e1f98e89e397">Repair autonomous backlog publishing and decision ledger (#17)</a> <small>(kavya-jain14)</small></li>
+<li><code>2026-08-10</code> · <a href="https://github.com/kavya-jain14/MIRA/commit/8926a34b2677da0fd1e872800fc2985c3fb98699">Prefer meaningful editorial reasons in the decision ledger (#18)</a> <small>(kavya-jain14)</small></li>
+</ol>
+<p><sub>Commit titles link to the actual diffs. All repository authors are credited; refreshed 2026-09-07.</sub></p>
+<p><a href="https://github.com/kavya-jain14/MIRA">Inspect repository →</a></p>
+
 </details>
 
 <details>
-<summary><strong>04 · SOCRATES</strong> · TEACH-BACK LEARNING</summary>
-<br>
-<strong>Problem</strong> · Teach-back learning<br>
-<strong>Constraint</strong> · A confident answer can still hide shallow understanding or a missed misconception.<br>
-<strong>Decision</strong> · Make the learner correct seeded misconceptions against a repeatable evaluation rubric.<br>
-<strong>Proof</strong> · Curated misconceptions and repeatable evaluation<br>
-<strong>My contribution</strong> · LEARNING UX · FRONTEND · EVALUATION<br>
-<a href="https://github.com/gargibhardwaj24/Socrates">Inspect repository →</a>
+<summary><strong>04 · SOCRATES</strong> · expand reasoning + changes</summary>
+
+<p><strong>Problem</strong><br>Teach-back learning</p>
+<p><strong>Constraint</strong><br>A confident answer can still hide shallow understanding or a missed misconception.</p>
+<p><strong>Decision</strong><br>Make the learner correct seeded misconceptions against a repeatable evaluation rubric.</p>
+<p><strong>Engineering focus</strong><br>Curated misconceptions and repeatable evaluation</p>
+<p><strong>My contribution</strong><br>LEARNING UX · FRONTEND · EVALUATION</p>
+<p><strong>Repository trail</strong> · latest three default-branch changes, oldest first</p>
+<ol>
+<li><code>2026-07-24</code> · <a href="https://github.com/gargibhardwaj24/Socrates/commit/1372eb907e5d95574b3de525db360f2cb913071f">Merge pull request #2 from gargibhardwaj24/kavya/day1-ui-demo</a> <small>(gargibhardwaj24)</small></li>
+<li><code>2026-07-24</code> · <a href="https://github.com/gargibhardwaj24/Socrates/commit/d01b1b6170568d0cd34960bb48c7e8249e04029e">feat(ui): refine learn catalogue and authenticated nav</a> <small>(kavya-jain14)</small></li>
+<li><code>2026-07-24</code> · <a href="https://github.com/gargibhardwaj24/Socrates/commit/4a7b989daf5306277253b224395b7012aeec68a0">Merge pull request #3 from gargibhardwaj24/kavya/learn-nav-ratio-polish</a> <small>(gargibhardwaj24)</small></li>
+</ol>
+<p><sub>Commit titles link to the actual diffs. All repository authors are credited; refreshed 2026-09-07.</sub></p>
+<p><a href="https://github.com/gargibhardwaj24/Socrates">Inspect repository →</a></p>
+
 </details>
 
 <details>
-<summary><strong>05 · COUNSELFLOW</strong> · DECISION COUNSELLING</summary>
-<br>
-<strong>Problem</strong> · College preference decisions<br>
-<strong>Constraint</strong> · Rank, branch priority, budget and distance can contradict one another before choice lock.<br>
-<strong>Decision</strong> · Surface constraint conflicts before producing a deterministic preference order.<br>
-<strong>Proof</strong> · Constraint conflicts before list lock<br>
-<strong>My contribution</strong> · PRODUCT ARCHITECTURE · DECISION UX<br>
-<a href="https://github.com/kavya-jain14/COUNSEL-FLOW">Inspect repository →</a>
+<summary><strong>05 · COUNSELFLOW</strong> · expand reasoning + changes</summary>
+
+<p><strong>Problem</strong><br>College preference decisions</p>
+<p><strong>Constraint</strong><br>Rank, branch priority, budget and distance can contradict one another before choice lock.</p>
+<p><strong>Decision</strong><br>Surface constraint conflicts before producing a deterministic preference order.</p>
+<p><strong>Engineering focus</strong><br>Constraint conflicts before list lock</p>
+<p><strong>My contribution</strong><br>PRODUCT ARCHITECTURE · DECISION UX</p>
+<p><strong>Repository trail</strong> · latest three default-branch changes, oldest first</p>
+<ol>
+<li><code>2026-08-21</code> · <a href="https://github.com/kavya-jain14/COUNSEL-FLOW/commit/44f79cb35008cd2cc0b9f084f0f49d88ac2b9487">Merge pull request #11 from kavya-jain14/feat/calm-scholar-ui</a> <small>(gargibhardwaj24)</small></li>
+<li><code>2026-08-21</code> · <a href="https://github.com/kavya-jain14/COUNSEL-FLOW/commit/cb4a6faed4de4313d9916aee1eabdbde373e7a24">Merge pull request #12 from kavya-jain14/feature/gargi-profile-conflicts</a> <small>(gargibhardwaj24)</small></li>
+<li><code>2026-08-21</code> · <a href="https://github.com/kavya-jain14/COUNSEL-FLOW/commit/d116e83f61be8f6e85bf1ef22b794ab830d9bd6b">feat: make counselling flow attention-first</a> <small>(kavya-jain14)</small></li>
+</ol>
+<p><sub>Commit titles link to the actual diffs. All repository authors are credited; refreshed 2026-09-07.</sub></p>
+<p><a href="https://github.com/kavya-jain14/COUNSEL-FLOW">Inspect repository →</a></p>
+
 </details>
 
 <details>
-<summary><strong>06 · PAPERTRADE</strong> · MARKET SIMULATION</summary>
-<br>
-<strong>Problem</strong> · Market simulation<br>
-<strong>Constraint</strong> · Client prices can drift or be manipulated while portfolio state must remain authoritative.<br>
-<strong>Decision</strong> · Resolve execution prices on the server and preserve every transaction in the portfolio ledger.<br>
-<strong>Proof</strong> · Server-authoritative execution and portfolio state<br>
-<strong>My contribution</strong> · FULL-STACK PRODUCT ENGINEERING<br>
-<a href="https://github.com/kavya-jain14/PAPER_TRADE">Inspect repository →</a>
+<summary><strong>06 · PAPERTRADE</strong> · expand reasoning + changes</summary>
+
+<p><strong>Problem</strong><br>Market simulation</p>
+<p><strong>Constraint</strong><br>Client prices can drift or be manipulated while portfolio state must remain authoritative.</p>
+<p><strong>Decision</strong><br>Resolve execution prices on the server and preserve every transaction in the portfolio ledger.</p>
+<p><strong>Engineering focus</strong><br>Server-authoritative execution and portfolio state</p>
+<p><strong>My contribution</strong><br>FULL-STACK PRODUCT ENGINEERING</p>
+<p><strong>Repository trail</strong> · latest three default-branch changes, oldest first</p>
+<ol>
+<li><code>2026-07-12</code> · <a href="https://github.com/kavya-jain14/PAPER_TRADE/commit/5b63b11e691934f98b83ab4ef0cbf0f6bef8f739">feat(components): phase 4 — extract TradeModal &amp; AppShell, rewrite CommandPalette, add Stat &amp; EmptyState components</a> <small>(kavya-jain14)</small></li>
+<li><code>2026-07-13</code> · <a href="https://github.com/kavya-jain14/PAPER_TRADE/commit/2f2dca1a4b8d631eeb270308a4ae3e693d88b85e">fix(backend): cache yahoo finance calls and fallback to synthetic prices to prevent rate-limiting</a> <small>(kavya-jain14)</small></li>
+<li><code>2026-08-08</code> · <a href="https://github.com/kavya-jain14/PAPER_TRADE/commit/74c51023c86155ee62bbe8651e7f7599504e73ef">Ship PaperTrade terminal redesign and auth experience (#1)</a> <small>(kavya-jain14)</small></li>
+</ol>
+<p><sub>Commit titles link to the actual diffs. All repository authors are credited; refreshed 2026-09-07.</sub></p>
+<p><a href="https://github.com/kavya-jain14/PAPER_TRADE">Inspect repository →</a></p>
+
 </details>
 <!-- GENERATED:PROJECTS:END -->
 

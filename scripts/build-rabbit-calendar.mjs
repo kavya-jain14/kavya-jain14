@@ -78,6 +78,7 @@ function buildTimeline(months, order) {
   const times = [];
   const states = [];
   const directions = [];
+  const landings = [];
   let elapsed = 0;
   let current = { x: 28, y: groundY - rabbitHeight };
   let facing = 1;
@@ -107,6 +108,7 @@ function buildTimeline(months, order) {
     push(interpolate(0.5, 1), elapsed + 0.28, "air", facing);
     push(interpolate(0.75, 0.72), elapsed + 0.40, "air", facing);
     push(target, elapsed + 0.52, "land", facing);
+    landings.push({ index, time: elapsed + 0.52, x: target.x, y: groundY - pillar.height - 3 });
     push(target, elapsed + 0.62, "land", facing);
     current = target;
     elapsed += 0.62;
@@ -132,7 +134,26 @@ function buildTimeline(months, order) {
     keyTimes: times.map((time) => (time / duration).toFixed(6)),
     states,
     directions,
+    landings,
   };
+}
+
+function footprints(theme, timeline) {
+  return `<g id="footprint-trail" shape-rendering="crispEdges" fill="${theme.rabbit}">
+    ${timeline.landings.map((landing) => {
+      // Fade with age, and clear before the next loop. Times share the rabbit's clock.
+      const times = [0, landing.time, landing.time + 0.001];
+      const values = [0, 0, 0.9];
+      for (const [age, opacity] of [[0.62, 0.65], [1.24, 0.38], [2.48, 0.12], [3.10, 0]]) {
+        if (landing.time + age < duration - 0.12) { times.push(landing.time + age); values.push(opacity); }
+      }
+      times.push(duration - 0.02, duration); values.push(0, 0);
+      return `<g class="footprint" data-pillar="${landing.index}" data-land-at="${landing.time.toFixed(2)}" opacity="0" transform="translate(${landing.x} ${landing.y})">
+        <animate attributeName="opacity" values="${values.join(";")}" keyTimes="${times.map((time) => (time / duration).toFixed(7)).join(";")}" dur="${duration}s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-7 -2h4v2h-4zM3 -2h4v2H3z" stroke="${theme.side}" stroke-width=".5"/>
+      </g>`;
+    }).join("\n")}
+  </g>`;
 }
 
 function rabbitFrames(theme, timeline) {
@@ -203,6 +224,7 @@ function render(themeName, months, order, seed) {
   <text x="860" y="25" text-anchor="end" class="stamp">REFRESHED ${refreshed}</text>
   <path d="M24 ${groundY}H856" stroke="${theme.ground}" stroke-width="2" stroke-dasharray="2 5"/>
   ${pillars}
+  ${footprints(theme, timeline)}
   ${rabbitFrames(theme, timeline)}
   <text x="20" y="309" class="note">HEIGHT = MONTHLY CONTRIBUTIONS · ORDER RESEEDED ON REFRESH</text>
   <text x="860" y="309" text-anchor="end" class="note">${months.reduce((sum, month) => sum + month.count, 0)} CONTRIBUTIONS · ${duration.toFixed(1)}S LOOP</text>

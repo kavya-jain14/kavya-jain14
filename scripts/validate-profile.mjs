@@ -4,6 +4,7 @@ const read = (path) => readFileSync(path, "utf8");
 const config = JSON.parse(read("data/profile-config.json"));
 const signals = JSON.parse(read("data/profile-signals.json"));
 const readme = read("README.md");
+const activity = JSON.parse(read("data/project-activity.json"));
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
@@ -22,6 +23,15 @@ assert(!existsSync("assets/decision-log-light.svg") && !existsSync("assets/decis
 assert(!existsSync("scripts/build-decision-log.mjs"), "Decision-log data generator must remain removed.");
 assert((readme.match(/<details>/g) || []).length === config.projects.length, "README evidence-chain count must match project config.");
 assert(readme.includes('width="520"'), "Hero portrait must retain its wider 520px presentation.");
+assert(activity.projects.length === config.projects.length, "Activity must cover all selected projects.");
+for (const project of activity.projects) {
+  assert(Number.isInteger(project.commitsLast7Days) && project.commitsLast7Days >= 0, "Activity counts must be real nonnegative integers.");
+  for (const commit of project.recent) {
+    assert(commit.url === `https://github.com/${project.repo}/commit/${commit.sha}`, "Evidence must link to a scoped commit diff.");
+    assert(readme.includes(commit.url), "Every captured evidence link must appear inside the README.");
+  }
+}
+assert(readme.indexOf('GENERATED:STATUS:START') < readme.indexOf('portrait-reveal.svg'), "Live status must precede the portrait.");
 
 const toolboxAssets = readdirSync("assets/toolbox").filter((name) => name.endsWith(".svg"));
 assert(toolboxAssets.length === signals.languages.length, "Toolbox badge count must match detected GitHub languages.");
@@ -39,6 +49,7 @@ const generatedSvgPaths = [
   "assets/skill-radar-light.svg", "assets/skill-radar-dark.svg",
   "assets/numbers-light.svg", "assets/numbers-dark.svg",
   "assets/generated/rabbit-calendar-light.svg", "assets/generated/rabbit-calendar-dark.svg",
+  ...["light", "dark"].flatMap((theme) => ["", "-compact"].map((suffix) => `assets/generated/about-terminal-${theme}${suffix}.svg`)),
   ...config.projects.flatMap((project) => [
     `assets/projects/${project.id}-light.svg`, `assets/projects/${project.id}-dark.svg`,
   ]),
@@ -56,6 +67,13 @@ for (const theme of ["light", "dark"]) {
   assert(rabbit.includes('data-seed=') && rabbit.includes('repeatCount="indefinite"'), `${theme} rabbit calendar must use a seeded looping animation.`);
   const loop = Number(rabbit.match(/dur="([\d.]+)s"/)?.[1]);
   assert(loop > 0 && loop <= 10, `${theme} rabbit loop must remain under ten seconds.`);
+  assert((rabbit.match(/class="footprint"/g) || []).length === 12, "Every visited pillar requires one footprint pair.");
+  for (const suffix of ["", "-compact"]) {
+    const terminal = read(`assets/generated/about-terminal-${theme}${suffix}.svg`);
+    assert(terminal.includes('dur="1.8s"') && terminal.includes('fill="freeze"'), "Terminal must reveal in 1.8s and hold.");
+    assert(!terminal.includes('indefinite'), "Terminal must not repeatedly erase its output.");
+    assert(terminal.includes('prefers-reduced-motion'), "Terminal needs an immediate reduced-motion view.");
+  }
 }
 
 console.log(`Validated ${generatedSvgPaths.length} SVGs, ${toolboxAssets.length} live toolbox badges, two rabbit calendars and ${config.projects.length} evidence chains.`);

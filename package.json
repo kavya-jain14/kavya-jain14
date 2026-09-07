@@ -8,7 +8,8 @@
     "build:projects": "node scripts/build-project-cards.mjs",
     "build:numbers": "node scripts/build-profile-numbers.mjs",
     "build:rabbit": "node scripts/build-rabbit-calendar.mjs",
-    "build": "npm run build:profile-style && npm run build:projects && npm run build:numbers && npm run build:rabbit",
+    "build:terminal": "node scripts/build-profile-terminal.mjs",
+    "build": "npm run build:profile-style && npm run build:projects && npm run build:numbers && npm run build:rabbit && npm run build:terminal",
     "validate": "node scripts/validate-profile.mjs"
   },
   "engines": {
