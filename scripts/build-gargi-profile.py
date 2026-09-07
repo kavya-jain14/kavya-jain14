@@ -10,6 +10,7 @@ from __future__ import annotations
 import base64
 import json
 import math
+import re
 import sys
 from io import BytesIO
 from pathlib import Path
@@ -24,6 +25,23 @@ CUTOUT = HERO_DIR / "portrait-cutout.png"
 PIXEL = HERO_DIR / "portrait-pixel.png"
 REVEAL = HERO_DIR / "portrait-reveal.svg"
 SIGNALS = ROOT / "data" / "profile-signals.json"
+README = ROOT / "README.md"
+TOOLBOX_DIR = ROOT / "assets" / "toolbox"
+ICON_DIR = ROOT / "assets" / "icons"
+TOOLBOX_START = "<!-- GENERATED:TOOLBOX:START -->"
+TOOLBOX_END = "<!-- GENERATED:TOOLBOX:END -->"
+
+ICON_ALIASES = {
+    "TypeScript": ("typescript", "#3178C6", "#FFFFFF"),
+    "JavaScript": ("javascript", "#F7DF1E", "#111111"),
+    "CSS": ("css", "#663399", "#FFFFFF"),
+    "HTML": ("html5", "#E34F26", "#FFFFFF"),
+    "Python": ("python", "#3776AB", "#FFFFFF"),
+    "PLpgSQL": ("postgresql", "#4169E1", "#FFFFFF"),
+    "Java": ("openjdk", "#437291", "#FFFFFF"),
+    "Dockerfile": ("docker", "#2496ED", "#FFFFFF"),
+    "C++": ("cplusplus", "#00599C", "#FFFFFF"),
+}
 
 
 def clean_cutout(source: Image.Image) -> Image.Image:
@@ -117,40 +135,89 @@ def display_label(value: str, limit: int = 17) -> str:
     return label if len(label) <= limit else f"{label[: limit - 1]}…"
 
 
-def language_colour(name: str) -> str:
-    palette = ["#3178c6", "#3776ab", "#1f883d", "#7c3aed", "#b45309", "#0e7490", "#be123c", "#4f46e5"]
+def slugify(value: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-") or "language"
+
+
+def badge_slug(language_name: str) -> str:
+    icon_name = ICON_ALIASES.get(language_name, ("", "", ""))[0]
+    return slugify(icon_name or language_name)
+
+
+def human_bytes(value: int) -> str:
+    amount = float(value)
+    for unit in ("B", "KB", "MB", "GB"):
+        if amount < 1024 or unit == "GB":
+            return f"{amount:.1f} {unit}" if unit != "B" else f"{int(amount)} B"
+        amount /= 1024
+    return f"{int(value)} B"
+
+
+def icon_path(icon_name: str) -> str | None:
+    source = ICON_DIR / f"{icon_name}.svg"
+    if not source.exists():
+        return None
+    match = re.search(r'<path[^>]+d="([^"]+)"', source.read_text(encoding="utf-8"))
+    return match.group(1) if match else None
+
+
+def fallback_colour(name: str) -> str:
+    palette = ["#1F883D", "#0E7490", "#7C3AED", "#B45309", "#BE123C", "#4F46E5"]
     return palette[sum((index + 1) * ord(character) for index, character in enumerate(name)) % len(palette)]
 
 
-def toolbox_svg(theme: str, signals: dict) -> str:
-    dark = theme == "dark"
-    ink = "#f0f6fc" if dark else "#1f2328"
-    muted = "#8b949e" if dark else "#59636e"
-    border = "#30363d" if dark else "#d0d7de"
-    soft = "#161b22" if dark else "#f6f8fa"
-    languages = signals["languages"]
-    columns = 4
-    rows = max(1, math.ceil(len(languages) / columns))
-    height = 62 + rows * 46
-    badges = []
-    for index, language in enumerate(languages):
-        row, column = divmod(index, columns)
-        x = 20 + column * 213
-        y = 45 + row * 46
-        colour = language_colour(language["name"])
-        share = "&lt;0.1%" if 0 < language["share"] < 0.0005 else f'{language["share"] * 100:.1f}%'
-        badges.append(
-            f'<g><rect x="{x}" y="{y}" width="196" height="34" rx="7" fill="{soft}" stroke="{border}"/>'
-            f'<circle cx="{x + 17}" cy="{y + 17}" r="5" fill="{colour}"/>'
-            f'<text x="{x + 30}" y="{y + 21}" class="language">{escape_xml(display_label(language["name"]))}</text>'
-            f'<text x="{x + 183}" y="{y + 21}" text-anchor="end" class="share">{share}</text></g>'
-        )
-    repo_count = signals["languageRepositoryCount"]
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 {height}" width="880" height="{height}" role="img" aria-labelledby="tools-title tools-desc">
-  <title id="tools-title">Kavya Jain's live language toolbox</title><desc id="tools-desc">Languages derived from GitHub language bytes across {repo_count} public owned non-fork repositories.</desc>
-  <style>.eyebrow{{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:9px;font-weight:700;letter-spacing:.14em;fill:{ink}}}.source{{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:8px;font-weight:650;letter-spacing:.08em;fill:{muted}}}.language{{font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:11px;font-weight:700;fill:{ink}}}.share{{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:8px;font-weight:700;fill:{muted}}}</style>
-  <text x="20" y="24" class="eyebrow">LANGUAGE FOOTPRINT</text><text x="860" y="24" text-anchor="end" class="source">GITHUB LINGUIST BYTES · {repo_count} REPOSITORIES</text>{''.join(badges)}
+def toolbox_badge_svg(language: dict) -> str:
+    name = language["name"]
+    icon_name, background, foreground = ICON_ALIASES.get(name, ("", fallback_colour(name), "#FFFFFF"))
+    path = icon_path(icon_name) if icon_name else None
+    label = display_label(name, 12)
+    share = "<0.1%" if 0 < language["share"] < 0.0005 else f'{language["share"] * 100:.1f}%'
+    tooltip = f'{name}: {share} · {human_bytes(int(language["bytes"]))}'
+    if path:
+        glyph = f'<path d="{path}" fill="{foreground}" transform="translate(20 10) scale(1.3333)"/>'
+    else:
+        glyph = f'<text x="36" y="39" text-anchor="middle" class="fallback" fill="{foreground}">&lt;/&gt;</text>'
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" width="72" height="72" role="img" aria-labelledby="title desc">
+  <title id="title">{escape_xml(tooltip)}</title><desc id="desc">Live GitHub language badge for {escape_xml(name)}.</desc>
+  <style>.label{{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:7px;font-weight:800;letter-spacing:.02em}}.fallback{{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:15px;font-weight:900}}</style>
+  <rect width="72" height="72" rx="10" fill="{background}"/>{glyph}
+  <rect y="54" width="72" height="18" fill="#000" fill-opacity=".16"/>
+  <text x="36" y="66" text-anchor="middle" class="label" fill="{foreground}">{escape_xml(label)}</text>
 </svg>'''
+
+
+def render_toolbox(signals: dict) -> None:
+    TOOLBOX_DIR.mkdir(parents=True, exist_ok=True)
+    for stale in TOOLBOX_DIR.glob("*.svg"):
+        stale.unlink()
+
+    images = []
+    used_slugs: set[str] = set()
+    for language in signals["languages"]:
+        slug = badge_slug(language["name"])
+        suffix = 2
+        while slug in used_slugs:
+            slug = f"{slug}-{suffix}"
+            suffix += 1
+        used_slugs.add(slug)
+        (TOOLBOX_DIR / f"{slug}.svg").write_text(toolbox_badge_svg(language), encoding="utf-8")
+        share = "<0.1%" if 0 < language["share"] < 0.0005 else f'{language["share"] * 100:.1f}%'
+        tooltip = escape_xml(f'{language["name"]} · {share} · {human_bytes(int(language["bytes"]))}')
+        images.append(f'<img src="./assets/toolbox/{slug}.svg" width="72" height="72" alt="{escape_xml(language["name"])}" title="{tooltip}">')
+
+    block = (
+        f"{TOOLBOX_START}\n"
+        '<p align="center">\n  '
+        + "\n  ".join(images)
+        + "\n</p>\n"
+        f'<sub>Detected from GitHub Linguist bytes across {signals["languageRepositoryCount"]} public repositories. Hover any badge for its live share and byte count.</sub>\n'
+        f"{TOOLBOX_END}"
+    )
+    readme = README.read_text(encoding="utf-8")
+    pattern = re.compile(re.escape(TOOLBOX_START) + r".*?" + re.escape(TOOLBOX_END), re.DOTALL)
+    if not pattern.search(readme):
+        raise RuntimeError("README toolbox markers are missing.")
+    README.write_text(pattern.sub(block, readme), encoding="utf-8")
 
 
 def radar_points(center_x: float, center_y: float, radius: float, values: list[float]) -> str:
@@ -210,8 +277,8 @@ def main() -> None:
         cutout.save(CUTOUT, optimize=True)
         pixel.save(PIXEL, optimize=True)
         REVEAL.write_text(portrait_reveal_svg(pixel), encoding="utf-8")
+    render_toolbox(signals)
     for theme in ("light", "dark"):
-        (ROOT / "assets" / f"toolbox-{theme}.svg").write_text(toolbox_svg(theme, signals), encoding="utf-8")
         (ROOT / "assets" / f"skill-radar-{theme}.svg").write_text(radar_svg(theme, signals), encoding="utf-8")
     mode = "signals only" if "--signals-only" in sys.argv else "portrait and signals"
     print(f"Built live toolbox and repo-driven skill radars ({mode}).")

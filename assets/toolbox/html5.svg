@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" width="72" height="72" role="img" aria-labelledby="title desc">
+  <title id="title">HTML: 1.7% · 44.2 KB</title><desc id="desc">Live GitHub language badge for HTML.</desc>
+  <style>.label{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:7px;font-weight:800;letter-spacing:.02em}.fallback{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:15px;font-weight:900}</style>
+  <rect width="72" height="72" rx="10" fill="#E34F26"/><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z" fill="#FFFFFF" transform="translate(20 10) scale(1.3333)"/>
+  <rect y="54" width="72" height="18" fill="#000" fill-opacity=".16"/>
+  <text x="36" y="66" text-anchor="middle" class="label" fill="#FFFFFF">HTML</text>
+</svg>

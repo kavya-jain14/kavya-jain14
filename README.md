@@ -35,11 +35,20 @@ Hi, I'm **Kavya Jain**. I build systems for decisions that become difficult when
 
 ## `~/` toolbox
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/toolbox-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/toolbox-light.svg">
-  <img src="./assets/toolbox-light.svg" width="880" alt="Kavya Jain's live language footprint derived from public repositories">
-</picture>
+<!-- GENERATED:TOOLBOX:START -->
+<p align="center">
+  <img src="./assets/toolbox/typescript.svg" width="72" height="72" alt="TypeScript" title="TypeScript · 66.7% · 1.6 MB">
+  <img src="./assets/toolbox/javascript.svg" width="72" height="72" alt="JavaScript" title="JavaScript · 18.1% · 457.6 KB">
+  <img src="./assets/toolbox/css.svg" width="72" height="72" alt="CSS" title="CSS · 11.2% · 283.6 KB">
+  <img src="./assets/toolbox/html5.svg" width="72" height="72" alt="HTML" title="HTML · 1.7% · 44.2 KB">
+  <img src="./assets/toolbox/python.svg" width="72" height="72" alt="Python" title="Python · 1.1% · 27.0 KB">
+  <img src="./assets/toolbox/postgresql.svg" width="72" height="72" alt="PLpgSQL" title="PLpgSQL · 0.7% · 18.0 KB">
+  <img src="./assets/toolbox/openjdk.svg" width="72" height="72" alt="Java" title="Java · 0.4% · 11.2 KB">
+  <img src="./assets/toolbox/docker.svg" width="72" height="72" alt="Dockerfile" title="Dockerfile · &lt;0.1% · 897 B">
+  <img src="./assets/toolbox/cplusplus.svg" width="72" height="72" alt="C++" title="C++ · &lt;0.1% · 403 B">
+</p>
+<sub>Detected from GitHub Linguist bytes across 16 public repositories. Hover any badge for its live share and byte count.</sub>
+<!-- GENERATED:TOOLBOX:END -->
 
 ---
 
@@ -52,6 +61,16 @@ Hi, I'm **Kavya Jain**. I build systems for decisions that become difficult when
 </picture>
 
 <sub>Relative working range, not proficiency percentages. Engineering axes combine configured project relevance with authored commits, recency and GitHub language bytes.</sub>
+
+---
+
+## `~/` contribution calendar
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/generated/rabbit-calendar-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/generated/rabbit-calendar-light.svg">
+  <img src="./assets/generated/rabbit-calendar-light.svg" width="880" alt="A pixel rabbit hops across Kavya Jain's monthly contribution pillars in a seeded random order">
+</picture>
 
 ---
 
