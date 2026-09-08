@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 322" width="880" height="322" role="img" aria-labelledby="title desc" data-seed="2961885211">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 322" width="880" height="322" role="img" aria-labelledby="title desc" data-seed="2217742358">
   <title id="title">Kavya Jain pixel rabbit contribution calendar</title>
   <desc id="desc">A pixel rabbit visits twelve monthly contribution pillars in a generation-seeded random order. Taller targets produce higher jump arcs.</desc>
   <style>.eyebrow{font:700 9px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.14em;fill:#1F2328}.stamp,.month,.note{font:650 7px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.08em;fill:#59636E}.month{font-size:6.5px}</style>
   <rect x=".5" y=".5" width="879" height="321" rx="7" fill="#FFFFFF" stroke="#D0D7DE"/>
   <text x="20" y="25" class="eyebrow">~/ RANDOM HOP CONTRIBUTIONS</text>
-  <text x="860" y="25" text-anchor="end" class="stamp">REFRESHED 07 SEPT 2026</text>
+  <text x="860" y="25" text-anchor="end" class="stamp">REFRESHED 08 SEPT 2026</text>
   <path d="M24 266H856" stroke="#8C959F" stroke-width="2" stroke-dasharray="2 5"/>
   <g aria-label="OCT: 6 contributions"><title>OCT: 6 contributions</title>
       <rect x="52" y="239" width="32" height="27" fill="#DDF4E4"/>
@@ -61,66 +61,66 @@
       <path d="M732 172l6 -5h32l-6 5Z" fill="#7EE2A1"/>
       <path d="M764 172l6 -5v94l-6 5Z" fill="#18783A"/>
       <text x="748" y="290" text-anchor="middle" class="month">AUG</text>
-    </g><g aria-label="SEP: 32 contributions"><title>SEP: 32 contributions</title>
-      <rect x="800" y="216" width="32" height="50" fill="#DDF4E4"/>
-      <path d="M800 216l6 -5h32l-6 5Z" fill="#7EE2A1"/>
-      <path d="M832 216l6 -5v50l-6 5Z" fill="#18783A"/>
+    </g><g aria-label="SEP: 40 contributions"><title>SEP: 40 contributions</title>
+      <rect x="800" y="211" width="32" height="55" fill="#ACEEBF"/>
+      <path d="M800 211l6 -5h32l-6 5Z" fill="#7EE2A1"/>
+      <path d="M832 211l6 -5v55l-6 5Z" fill="#18783A"/>
       <text x="816" y="290" text-anchor="middle" class="month">SEP</text>
     </g>
   <g id="footprint-trail" shape-rendering="crispEdges" fill="#FFFFFF">
-    <g class="footprint" data-pillar="6" data-land-at="0.52" opacity="0" transform="translate(476 232)">
+    <g class="footprint" data-pillar="11" data-land-at="0.52" opacity="0" transform="translate(816 208)">
         <animate attributeName="opacity" values="0;0;0.9;0.65;0.38;0.12;0;0;0" keyTimes="0.0000000;0.0590909;0.0592045;0.1295455;0.2000000;0.3409091;0.4113636;0.9977273;1.0000000" dur="8.8s" calcMode="linear" repeatCount="indefinite"/>
         <path d="M-7 -2h4v2h-4zM3 -2h4v2H3z" stroke="#18783A" stroke-width=".5"/>
       </g>
-<g class="footprint" data-pillar="9" data-land-at="1.14" opacity="0" transform="translate(680 212)">
+<g class="footprint" data-pillar="6" data-land-at="1.14" opacity="0" transform="translate(476 232)">
         <animate attributeName="opacity" values="0;0;0.9;0.65;0.38;0.12;0;0;0" keyTimes="0.0000000;0.1295455;0.1296591;0.2000000;0.2704545;0.4113636;0.4818182;0.9977273;1.0000000" dur="8.8s" calcMode="linear" repeatCount="indefinite"/>
         <path d="M-7 -2h4v2h-4zM3 -2h4v2H3z" stroke="#18783A" stroke-width=".5"/>
       </g>
-<g class="footprint" data-pillar="2" data-land-at="1.76" opacity="0" transform="translate(204 228)">
+<g class="footprint" data-pillar="8" data-land-at="1.76" opacity="0" transform="translate(612 232)">
         <animate attributeName="opacity" values="0;0;0.9;0.65;0.38;0.12;0;0;0" keyTimes="0.0000000;0.2000000;0.2001136;0.2704545;0.3409091;0.4818182;0.5522727;0.9977273;1.0000000" dur="8.8s" calcMode="linear" repeatCount="indefinite"/>
         <path d="M-7 -2h4v2h-4zM3 -2h4v2H3z" stroke="#18783A" stroke-width=".5"/>
       </g>
-<g class="footprint" data-pillar="0" data-land-at="2.38" opacity="0" transform="translate(68 236)">
+<g class="footprint" data-pillar="10" data-land-at="2.38" opacity="0" transform="translate(748 169)">
         <animate attributeName="opacity" values="0;0;0.9;0.65;0.38;0.12;0;0;0" keyTimes="0.0000000;0.2704545;0.2705682;0.3409091;0.4113636;0.5522727;0.6227273;0.9977273;1.0000000" dur="8.8s" calcMode="linear" repeatCount="indefinite"/>
         <path d="M-7 -2h4v2h-4zM3 -2h4v2H3z" stroke="#18783A" stroke-width=".5"/>
       </g>
-<g class="footprint" data-pillar="1" data-land-at="3.00" opacity="0" transform="translate(136 258)">
+<g class="footprint" data-pillar="3" data-land-at="3.00" opacity="0" transform="translate(272 246)">
         <animate attributeName="opacity" values="0;0;0.9;0.65;0.38;0.12;0;0;0" keyTimes="0.0000000;0.3409091;0.3410227;0.4113636;0.4818182;0.6227273;0.6931818;0.9977273;1.0000000" dur="8.8s" calcMode="linear" repeatCount="indefinite"/>
         <path d="M-7 -2h4v2h-4zM3 -2h4v2H3z" stroke="#18783A" stroke-width=".5"/>
       </g>
-<g class="footprint" data-pillar="5" data-land-at="3.62" opacity="0" transform="translate(408 226)">
+<g class="footprint" data-pillar="9" data-land-at="3.62" opacity="0" transform="translate(680 212)">
         <animate attributeName="opacity" values="0;0;0.9;0.65;0.38;0.12;0;0;0" keyTimes="0.0000000;0.4113636;0.4114773;0.4818182;0.5522727;0.6931818;0.7636364;0.9977273;1.0000000" dur="8.8s" calcMode="linear" repeatCount="indefinite"/>
         <path d="M-7 -2h4v2h-4zM3 -2h4v2H3z" stroke="#18783A" stroke-width=".5"/>
       </g>
-<g class="footprint" data-pillar="7" data-land-at="4.24" opacity="0" transform="translate(544 227)">
+<g class="footprint" data-pillar="2" data-land-at="4.24" opacity="0" transform="translate(204 228)">
         <animate attributeName="opacity" values="0;0;0.9;0.65;0.38;0.12;0;0;0" keyTimes="0.0000000;0.4818182;0.4819318;0.5522727;0.6227273;0.7636364;0.8340909;0.9977273;1.0000000" dur="8.8s" calcMode="linear" repeatCount="indefinite"/>
         <path d="M-7 -2h4v2h-4zM3 -2h4v2H3z" stroke="#18783A" stroke-width=".5"/>
       </g>
-<g class="footprint" data-pillar="10" data-land-at="4.86" opacity="0" transform="translate(748 169)">
+<g class="footprint" data-pillar="5" data-land-at="4.86" opacity="0" transform="translate(408 226)">
         <animate attributeName="opacity" values="0;0;0.9;0.65;0.38;0.12;0;0;0" keyTimes="0.0000000;0.5522727;0.5523864;0.6227273;0.6931818;0.8340909;0.9045455;0.9977273;1.0000000" dur="8.8s" calcMode="linear" repeatCount="indefinite"/>
         <path d="M-7 -2h4v2h-4zM3 -2h4v2H3z" stroke="#18783A" stroke-width=".5"/>
       </g>
-<g class="footprint" data-pillar="3" data-land-at="5.48" opacity="0" transform="translate(272 246)">
+<g class="footprint" data-pillar="1" data-land-at="5.48" opacity="0" transform="translate(136 258)">
         <animate attributeName="opacity" values="0;0;0.9;0.65;0.38;0.12;0;0;0" keyTimes="0.0000000;0.6227273;0.6228409;0.6931818;0.7636364;0.9045455;0.9750000;0.9977273;1.0000000" dur="8.8s" calcMode="linear" repeatCount="indefinite"/>
         <path d="M-7 -2h4v2h-4zM3 -2h4v2H3z" stroke="#18783A" stroke-width=".5"/>
       </g>
-<g class="footprint" data-pillar="11" data-land-at="6.10" opacity="0" transform="translate(816 213)">
+<g class="footprint" data-pillar="4" data-land-at="6.10" opacity="0" transform="translate(340 210)">
         <animate attributeName="opacity" values="0;0;0.9;0.65;0.38;0.12;0;0" keyTimes="0.0000000;0.6931818;0.6932955;0.7636364;0.8340909;0.9750000;0.9977273;1.0000000" dur="8.8s" calcMode="linear" repeatCount="indefinite"/>
         <path d="M-7 -2h4v2h-4zM3 -2h4v2H3z" stroke="#18783A" stroke-width=".5"/>
       </g>
-<g class="footprint" data-pillar="4" data-land-at="6.72" opacity="0" transform="translate(340 210)">
+<g class="footprint" data-pillar="0" data-land-at="6.72" opacity="0" transform="translate(68 236)">
         <animate attributeName="opacity" values="0;0;0.9;0.65;0.38;0;0" keyTimes="0.0000000;0.7636364;0.7637500;0.8340909;0.9045455;0.9977273;1.0000000" dur="8.8s" calcMode="linear" repeatCount="indefinite"/>
         <path d="M-7 -2h4v2h-4zM3 -2h4v2H3z" stroke="#18783A" stroke-width=".5"/>
       </g>
-<g class="footprint" data-pillar="8" data-land-at="7.34" opacity="0" transform="translate(612 232)">
+<g class="footprint" data-pillar="7" data-land-at="7.34" opacity="0" transform="translate(544 227)">
         <animate attributeName="opacity" values="0;0;0.9;0.65;0.38;0;0" keyTimes="0.0000000;0.8340909;0.8342045;0.9045455;0.9750000;0.9977273;1.0000000" dur="8.8s" calcMode="linear" repeatCount="indefinite"/>
         <path d="M-7 -2h4v2h-4zM3 -2h4v2H3z" stroke="#18783A" stroke-width=".5"/>
       </g>
   </g>
   <g id="rabbit-motion" shape-rendering="crispEdges">
-    <animateTransform attributeName="transform" type="translate" values="28.0 234.0;28.0 234.0;140.0 193.1;252.0 171.7;364.0 175.1;476.0 198.0;476.0 198.0;476.0 198.0;527.0 154.5;578.0 134.5;629.0 144.5;680.0 178.0;680.0 178.0;680.0 178.0;561.0 148.8;442.0 139.9;323.0 156.8;204.0 194.0;204.0 194.0;204.0 194.0;170.0 165.5;136.0 155.6;102.0 169.5;68.0 202.0;68.0 202.0;68.0 202.0;85.0 184.2;102.0 180.7;119.0 195.2;136.0 224.0;136.0 224.0;136.0 224.0;204.0 182.1;272.0 161.0;340.0 166.1;408.0 192.0;408.0 192.0;408.0 192.0;442.0 158.7;476.0 145.9;510.0 159.2;544.0 193.0;544.0 193.0;544.0 193.0;595.0 125.8;646.0 90.8;697.0 96.8;748.0 135.0;748.0 135.0;748.0 135.0;629.0 127.0;510.0 135.7;391.0 165.5;272.0 212.0;272.0 212.0;272.0 212.0;408.0 165.6;544.0 142.5;680.0 149.1;816.0 179.0;816.0 179.0;816.0 179.0;697.0 139.1;578.0 123.1;459.0 137.6;340.0 176.0;340.0 176.0;340.0 176.0;408.0 149.6;476.0 142.7;544.0 160.6;612.0 198.0;612.0 198.0;612.0 198.0;669.0 176.8;726.0 174.0;783.0 194.8;840.0 234.0;840.0 234.0;840.0 234.0" keyTimes="0.000000;0.005114;0.018182;0.031818;0.045455;0.059091;0.070455;0.075568;0.088636;0.102273;0.115909;0.129545;0.140909;0.146023;0.159091;0.172727;0.186364;0.200000;0.211364;0.216477;0.229545;0.243182;0.256818;0.270455;0.281818;0.286932;0.300000;0.313636;0.327273;0.340909;0.352273;0.357386;0.370455;0.384091;0.397727;0.411364;0.422727;0.427841;0.440909;0.454545;0.468182;0.481818;0.493182;0.498295;0.511364;0.525000;0.538636;0.552273;0.563636;0.568750;0.581818;0.595455;0.609091;0.622727;0.634091;0.639205;0.652273;0.665909;0.679545;0.693182;0.704545;0.709659;0.722727;0.736364;0.750000;0.763636;0.775000;0.780114;0.793182;0.806818;0.820455;0.834091;0.845455;0.850568;0.863636;0.877273;0.890909;0.904545;0.915909;1.000000" dur="8.8s" calcMode="linear" repeatCount="indefinite"/>
+    <animateTransform attributeName="transform" type="translate" values="28.0 234.0;28.0 234.0;225.0 179.2;422.0 148.7;619.0 149.2;816.0 174.0;816.0 174.0;816.0 174.0;731.0 148.1;646.0 141.7;561.0 160.1;476.0 198.0;476.0 198.0;476.0 198.0;510.0 166.1;544.0 153.7;578.0 166.1;612.0 198.0;612.0 198.0;612.0 198.0;646.0 129.5;680.0 93.3;714.0 98.0;748.0 135.0;748.0 135.0;748.0 135.0;629.0 127.0;510.0 135.7;391.0 165.5;272.0 212.0;272.0 212.0;272.0 212.0;374.0 165.0;476.0 141.5;578.0 148.0;680.0 178.0;680.0 178.0;680.0 178.0;561.0 148.8;442.0 139.9;323.0 156.8;204.0 194.0;204.0 194.0;204.0 194.0;255.0 159.6;306.0 146.0;357.0 158.6;408.0 192.0;408.0 192.0;408.0 192.0;340.0 176.7;272.0 175.7;204.0 192.7;136.0 224.0;136.0 224.0;136.0 224.0;187.0 172.8;238.0 145.6;289.0 148.8;340.0 176.0;340.0 176.0;340.0 176.0;272.0 152.0;204.0 146.6;136.0 165.0;68.0 202.0;68.0 202.0;68.0 202.0;187.0 166.2;306.0 150.9;425.0 161.7;544.0 193.0;544.0 193.0;544.0 193.0;618.0 173.0;692.0 171.5;766.0 193.5;840.0 234.0;840.0 234.0;840.0 234.0" keyTimes="0.000000;0.005114;0.018182;0.031818;0.045455;0.059091;0.070455;0.075568;0.088636;0.102273;0.115909;0.129545;0.140909;0.146023;0.159091;0.172727;0.186364;0.200000;0.211364;0.216477;0.229545;0.243182;0.256818;0.270455;0.281818;0.286932;0.300000;0.313636;0.327273;0.340909;0.352273;0.357386;0.370455;0.384091;0.397727;0.411364;0.422727;0.427841;0.440909;0.454545;0.468182;0.481818;0.493182;0.498295;0.511364;0.525000;0.538636;0.552273;0.563636;0.568750;0.581818;0.595455;0.609091;0.622727;0.634091;0.639205;0.652273;0.665909;0.679545;0.693182;0.704545;0.709659;0.722727;0.736364;0.750000;0.763636;0.775000;0.780114;0.793182;0.806818;0.820455;0.834091;0.845455;0.850568;0.863636;0.877273;0.890909;0.904545;0.915909;1.000000" dur="8.8s" calcMode="linear" repeatCount="indefinite"/>
     <g id="rabbit-direction">
-      <animateTransform attributeName="transform" type="scale" values="1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;1 1;1 1;1 1;1 1;1 1;1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1" keyTimes="0.000000;0.005114;0.018182;0.031818;0.045455;0.059091;0.070455;0.075568;0.088636;0.102273;0.115909;0.129545;0.140909;0.146023;0.159091;0.172727;0.186364;0.200000;0.211364;0.216477;0.229545;0.243182;0.256818;0.270455;0.281818;0.286932;0.300000;0.313636;0.327273;0.340909;0.352273;0.357386;0.370455;0.384091;0.397727;0.411364;0.422727;0.427841;0.440909;0.454545;0.468182;0.481818;0.493182;0.498295;0.511364;0.525000;0.538636;0.552273;0.563636;0.568750;0.581818;0.595455;0.609091;0.622727;0.634091;0.639205;0.652273;0.665909;0.679545;0.693182;0.704545;0.709659;0.722727;0.736364;0.750000;0.763636;0.775000;0.780114;0.793182;0.806818;0.820455;0.834091;0.845455;0.850568;0.863636;0.877273;0.890909;0.904545;0.915909;1.000000" dur="8.8s" calcMode="discrete" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="scale" values="1 1;1 1;1 1;1 1;1 1;1 1;1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;1 1;1 1;1 1;1 1;1 1;1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;1 1;1 1;1 1;1 1;1 1;1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;1 1;1 1;1 1;1 1;1 1;1 1;-1 1;-1 1;-1 1;-1 1;-1 1;-1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1;1 1" keyTimes="0.000000;0.005114;0.018182;0.031818;0.045455;0.059091;0.070455;0.075568;0.088636;0.102273;0.115909;0.129545;0.140909;0.146023;0.159091;0.172727;0.186364;0.200000;0.211364;0.216477;0.229545;0.243182;0.256818;0.270455;0.281818;0.286932;0.300000;0.313636;0.327273;0.340909;0.352273;0.357386;0.370455;0.384091;0.397727;0.411364;0.422727;0.427841;0.440909;0.454545;0.468182;0.481818;0.493182;0.498295;0.511364;0.525000;0.538636;0.552273;0.563636;0.568750;0.581818;0.595455;0.609091;0.622727;0.634091;0.639205;0.652273;0.665909;0.679545;0.693182;0.704545;0.709659;0.722727;0.736364;0.750000;0.763636;0.775000;0.780114;0.793182;0.806818;0.820455;0.834091;0.845455;0.850568;0.863636;0.877273;0.890909;0.904545;0.915909;1.000000" dur="8.8s" calcMode="discrete" repeatCount="indefinite"/>
       <g id="rabbit-crouch" opacity="0">
         <animate attributeName="opacity" values="0;1;0;0;0;0;0;1;0;0;0;0;0;1;0;0;0;0;0;1;0;0;0;0;0;1;0;0;0;0;0;1;0;0;0;0;0;1;0;0;0;0;0;1;0;0;0;0;0;1;0;0;0;0;0;1;0;0;0;0;0;1;0;0;0;0;0;1;0;0;0;0;0;1;0;0;0;0;0;0" keyTimes="0.000000;0.005114;0.018182;0.031818;0.045455;0.059091;0.070455;0.075568;0.088636;0.102273;0.115909;0.129545;0.140909;0.146023;0.159091;0.172727;0.186364;0.200000;0.211364;0.216477;0.229545;0.243182;0.256818;0.270455;0.281818;0.286932;0.300000;0.313636;0.327273;0.340909;0.352273;0.357386;0.370455;0.384091;0.397727;0.411364;0.422727;0.427841;0.440909;0.454545;0.468182;0.481818;0.493182;0.498295;0.511364;0.525000;0.538636;0.552273;0.563636;0.568750;0.581818;0.595455;0.609091;0.622727;0.634091;0.639205;0.652273;0.665909;0.679545;0.693182;0.704545;0.709659;0.722727;0.736364;0.750000;0.763636;0.775000;0.780114;0.793182;0.806818;0.820455;0.834091;0.845455;0.850568;0.863636;0.877273;0.890909;0.904545;0.915909;1.000000" dur="8.8s" calcMode="discrete" repeatCount="indefinite"/>
         <path d="M-17 17h5V8h5V1h5v13h5V3h5v11h7v4h4v10h-5v4h-27v-4h-7V20h3Z" fill="#FFFFFF" stroke="#111820" stroke-width="2.5" stroke-linejoin="miter"/>
@@ -139,5 +139,5 @@
     </g>
   </g>
   <text x="20" y="309" class="note">HEIGHT = MONTHLY CONTRIBUTIONS · ORDER RESEEDED ON REFRESH</text>
-  <text x="860" y="309" text-anchor="end" class="note">308 CONTRIBUTIONS · 8.8S LOOP</text>
+  <text x="860" y="309" text-anchor="end" class="note">316 CONTRIBUTIONS · 8.8S LOOP</text>
 </svg>
