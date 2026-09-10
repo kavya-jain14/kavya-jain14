@@ -1,7 +1,7 @@
 <div align="center">
 
 <!-- GENERATED:STATUS:START -->
-<p align="center"><a href="https://github.com/kavya-jain14/TRISHUL/commit/55b09c321af0f7ee163b134f4b44f695cf7211ec" title="Default branches of 6 selected repositories; all authors. Last 7 days through 2026-09-09T08:13:25.950Z."><code>$ status: latest TRISHUL · 0 default-branch commits / 7d</code></a></p>
+<p align="center"><a href="https://github.com/kavya-jain14/TRISHUL/commit/55b09c321af0f7ee163b134f4b44f695cf7211ec" title="Default branches of 6 selected repositories; all authors. Last 7 days through 2026-09-10T08:12:57.197Z."><code>$ status: latest TRISHUL · 0 default-branch commits / 7d</code></a></p>
 <!-- GENERATED:STATUS:END -->
 
 <picture>
@@ -169,7 +169,7 @@
 <li><code>2026-08-16</code> · <a href="https://github.com/kavya-jain14/TRINETRA/commit/7d6b18313bd5236f38605bec62e2adc231ad3d26">feat(demo): add reversal recovery checkpoint (#11)</a> <small>(kavya-jain14)</small></li>
 <li><code>2026-08-16</code> · <a href="https://github.com/kavya-jain14/TRINETRA/commit/d3f12d46fb1d971101c23a4977ec093f4693caa3">feat(graph): add bounded mule-risk checkpoint (#13)</a> <small>(kavya-jain14)</small></li>
 </ol>
-<p><sub>Commit titles link to the actual diffs. All repository authors are credited; refreshed 2026-09-09.</sub></p>
+<p><sub>Commit titles link to the actual diffs. All repository authors are credited; refreshed 2026-09-10.</sub></p>
 <p><a href="https://github.com/kavya-jain14/TRINETRA">Inspect repository →</a></p>
 
 </details>
@@ -188,7 +188,7 @@
 <li><code>2026-08-25</code> · <a href="https://github.com/kavya-jain14/TRISHUL/commit/e7a40e4f1c30061f1f26e8db6a209a9bf83c1ed8">Merge PR #13: complete TRISHUL backend and presentation stack</a> <small>(kavya-jain14)</small></li>
 <li><code>2026-08-28</code> · <a href="https://github.com/kavya-jain14/TRISHUL/commit/55b09c321af0f7ee163b134f4b44f695cf7211ec">feat(deploy): wire synthetic frontend demo runtime (#22)</a> <small>(kavya-jain14)</small></li>
 </ol>
-<p><sub>Commit titles link to the actual diffs. All repository authors are credited; refreshed 2026-09-09.</sub></p>
+<p><sub>Commit titles link to the actual diffs. All repository authors are credited; refreshed 2026-09-10.</sub></p>
 <p><a href="https://github.com/kavya-jain14/TRISHUL">Inspect repository →</a></p>
 
 </details>
@@ -207,7 +207,7 @@
 <li><code>2026-08-10</code> · <a href="https://github.com/kavya-jain14/MIRA/commit/5bea458f09d27c274d811aa6a024e1f98e89e397">Repair autonomous backlog publishing and decision ledger (#17)</a> <small>(kavya-jain14)</small></li>
 <li><code>2026-08-10</code> · <a href="https://github.com/kavya-jain14/MIRA/commit/8926a34b2677da0fd1e872800fc2985c3fb98699">Prefer meaningful editorial reasons in the decision ledger (#18)</a> <small>(kavya-jain14)</small></li>
 </ol>
-<p><sub>Commit titles link to the actual diffs. All repository authors are credited; refreshed 2026-09-09.</sub></p>
+<p><sub>Commit titles link to the actual diffs. All repository authors are credited; refreshed 2026-09-10.</sub></p>
 <p><a href="https://github.com/kavya-jain14/MIRA">Inspect repository →</a></p>
 
 </details>
@@ -226,7 +226,7 @@
 <li><code>2026-07-24</code> · <a href="https://github.com/gargibhardwaj24/Socrates/commit/d01b1b6170568d0cd34960bb48c7e8249e04029e">feat(ui): refine learn catalogue and authenticated nav</a> <small>(kavya-jain14)</small></li>
 <li><code>2026-07-24</code> · <a href="https://github.com/gargibhardwaj24/Socrates/commit/4a7b989daf5306277253b224395b7012aeec68a0">Merge pull request #3 from gargibhardwaj24/kavya/learn-nav-ratio-polish</a> <small>(gargibhardwaj24)</small></li>
 </ol>
-<p><sub>Commit titles link to the actual diffs. All repository authors are credited; refreshed 2026-09-09.</sub></p>
+<p><sub>Commit titles link to the actual diffs. All repository authors are credited; refreshed 2026-09-10.</sub></p>
 <p><a href="https://github.com/gargibhardwaj24/Socrates">Inspect repository →</a></p>
 
 </details>
@@ -245,7 +245,7 @@
 <li><code>2026-08-21</code> · <a href="https://github.com/kavya-jain14/COUNSEL-FLOW/commit/cb4a6faed4de4313d9916aee1eabdbde373e7a24">Merge pull request #12 from kavya-jain14/feature/gargi-profile-conflicts</a> <small>(gargibhardwaj24)</small></li>
 <li><code>2026-08-21</code> · <a href="https://github.com/kavya-jain14/COUNSEL-FLOW/commit/d116e83f61be8f6e85bf1ef22b794ab830d9bd6b">feat: make counselling flow attention-first</a> <small>(kavya-jain14)</small></li>
 </ol>
-<p><sub>Commit titles link to the actual diffs. All repository authors are credited; refreshed 2026-09-09.</sub></p>
+<p><sub>Commit titles link to the actual diffs. All repository authors are credited; refreshed 2026-09-10.</sub></p>
 <p><a href="https://github.com/kavya-jain14/COUNSEL-FLOW">Inspect repository →</a></p>
 
 </details>
@@ -264,7 +264,7 @@
 <li><code>2026-07-13</code> · <a href="https://github.com/kavya-jain14/PAPER_TRADE/commit/2f2dca1a4b8d631eeb270308a4ae3e693d88b85e">fix(backend): cache yahoo finance calls and fallback to synthetic prices to prevent rate-limiting</a> <small>(kavya-jain14)</small></li>
 <li><code>2026-08-08</code> · <a href="https://github.com/kavya-jain14/PAPER_TRADE/commit/74c51023c86155ee62bbe8651e7f7599504e73ef">Ship PaperTrade terminal redesign and auth experience (#1)</a> <small>(kavya-jain14)</small></li>
 </ol>
-<p><sub>Commit titles link to the actual diffs. All repository authors are credited; refreshed 2026-09-09.</sub></p>
+<p><sub>Commit titles link to the actual diffs. All repository authors are credited; refreshed 2026-09-10.</sub></p>
 <p><a href="https://github.com/kavya-jain14/PAPER_TRADE">Inspect repository →</a></p>
 
 </details>
