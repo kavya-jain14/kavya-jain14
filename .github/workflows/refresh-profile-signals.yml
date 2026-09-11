@@ -41,7 +41,6 @@ jobs:
       - name: Rebuild repo-driven profile visuals
         run: |
           python scripts/build-gargi-profile.py --signals-only
-          node scripts/build-profile-numbers.mjs
           node scripts/build-project-cards.mjs
           node scripts/build-rabbit-calendar.mjs
           node scripts/build-profile-terminal.mjs
@@ -55,7 +54,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add README.md data/contributions.json data/profile-signals.json data/project-activity.json assets/toolbox assets/skill-radar-*.svg assets/numbers-*.svg assets/projects assets/generated
+          git add README.md data/contributions.json data/profile-signals.json data/project-activity.json assets/toolbox assets/skill-radar-*.svg assets/projects assets/generated
           git diff --cached --quiet && exit 0
           git commit -m "chore(profile): refresh activity signals"
           git push

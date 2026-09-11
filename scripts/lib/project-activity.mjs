@@ -41,8 +41,8 @@ export function statusFromActivity(activity, projects) {
   const count = activity.projects.reduce((sum, project) => sum + project.commitsLast7Days, 0);
   const name = projects.find((project) => project.id === latest?.id)?.name;
   return {
-    text: `$ status: ${name ? `latest ${name}` : "awaiting first commit"} · ${count} default-branch ${count === 1 ? "commit" : "commits"} / 7d`,
+    text: `$ open to software engineering internships · ${name ? `latest work: ${name}` : "building in public"}`,
     url: latest?.url || `https://github.com/${activity.username}?tab=repositories`,
-    scope: `Default branches of ${projects.length} selected repositories; all authors. Last 7 days through ${activity.generatedAt}.`,
+    scope: `Latest default-branch activity across ${projects.length} selected repositories; all authors. ${count} ${count === 1 ? "commit" : "commits"} in the last 7 days through ${activity.generatedAt}.`,
   };
 }
