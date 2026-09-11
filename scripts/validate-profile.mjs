@@ -58,6 +58,7 @@ for (const project of config.projects) {
 const generatedSvgPaths = [
   ...toolboxAssets.map((name) => `assets/toolbox/${name}`),
   "assets/skill-radar-light.svg", "assets/skill-radar-dark.svg",
+  "assets/skill-radar-light-compact.svg", "assets/skill-radar-dark-compact.svg",
   "assets/generated/rabbit-calendar-light.svg", "assets/generated/rabbit-calendar-dark.svg",
   ...["light", "dark"].flatMap((theme) => ["", "-compact"].map((suffix) => `assets/generated/about-terminal-${theme}${suffix}.svg`)),
   ...config.projects.flatMap((project) => [
@@ -74,6 +75,9 @@ for (const theme of ["light", "dark"]) {
   const radar = read(`assets/skill-radar-${theme}.svg`);
   assert(radar.includes('viewBox="0 0 880 634"'), `${theme} radar must retain the enlarged stacked layout.`);
   assert(radar.includes('REPOSITORY FOOTPRINT'), `${theme} radar must distinguish repository bytes from language proficiency.`);
+  const compactRadar = read(`assets/skill-radar-${theme}-compact.svg`);
+  assert(compactRadar.includes('viewBox="0 0 440 634"'), `${theme} compact radar must retain mobile-readable geometry.`);
+  assert(readme.includes(`assets/skill-radar-${theme}-compact.svg`), `${theme} compact radar must appear in the README picture sources.`);
 }
 
 for (const theme of ["light", "dark"]) {

@@ -228,7 +228,7 @@ def radar_points(center_x: float, center_y: float, radius: float, values: list[f
     return " ".join(points)
 
 
-def radar_panel(y: int, entries: list[dict], theme: str, title: str) -> str:
+def radar_panel(y: int, entries: list[dict], theme: str, title: str, compact: bool) -> str:
     dark = theme == "dark"
     muted = "#8b949e" if dark else "#59636e"
     border = "#30363d" if dark else "#d0d7de"
@@ -236,7 +236,8 @@ def radar_panel(y: int, entries: list[dict], theme: str, title: str) -> str:
     accent = "#39d353" if dark else "#1f883d"
     labels = [display_label(entry["label"].upper(), 13) for entry in entries]
     values = [float(entry["value"]) for entry in entries]
-    center_x, center_y, radius = 440, y + 158, 112
+    width = 440 if compact else 880
+    center_x, center_y, radius = width / 2, y + 158, 105 if compact else 112
     axes = []
     label_nodes = []
     for index, label in enumerate(labels):
@@ -251,16 +252,17 @@ def radar_panel(y: int, entries: list[dict], theme: str, title: str) -> str:
     rings = [f'<polygon points="{radar_points(center_x, center_y, radius, [scale] * len(labels))}" fill="none" stroke="{border}"/>' for scale in (0.25, 0.5, 0.75, 1)]
     data_points = radar_points(center_x, center_y, radius, values)
     circles = "".join(f'<circle cx="{point.split(",")[0]}" cy="{point.split(",")[1]}" r="3"/>' for point in data_points.split())
-    return f'''<g><rect x=".5" y="{y + .5}" width="879" height="307" rx="7" fill="{background}" stroke="{border}"/><text x="24" y="{y + 29}" class="title">{title}</text>{''.join(rings)}{''.join(axes)}<polygon points="{data_points}" fill="{accent}" fill-opacity=".24" stroke="{accent}" stroke-width="2.4"/><g fill="{accent}">{circles}</g>{''.join(label_nodes)}<text x="24" y="{y + 289}" class="source" fill="{muted}">REPO-DRIVEN SIGNAL · NOT SELF-RATING</text></g>'''
+    return f'''<g><rect x=".5" y="{y + .5}" width="{width - 1}" height="307" rx="7" fill="{background}" stroke="{border}"/><text x="{16 if compact else 24}" y="{y + 29}" class="title">{title}</text>{''.join(rings)}{''.join(axes)}<polygon points="{data_points}" fill="{accent}" fill-opacity=".24" stroke="{accent}" stroke-width="2.4"/><g fill="{accent}">{circles}</g>{''.join(label_nodes)}<text x="{16 if compact else 24}" y="{y + 289}" class="source" fill="{muted}">REPO-DRIVEN SIGNAL · NOT SELF-RATING</text></g>'''
 
 
-def radar_svg(theme: str, signals: dict) -> str:
+def radar_svg(theme: str, signals: dict, compact: bool = False) -> str:
     dark = theme == "dark"
     ink = "#f0f6fc" if dark else "#1f2328"
     muted = "#8b949e" if dark else "#59636e"
-    engineering = radar_panel(0, signals["engineeringRange"], theme, "ENGINEERING RANGE")
-    footprint = radar_panel(326, signals["workingLanguages"], theme, "REPOSITORY FOOTPRINT")
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 634" width="880" height="634" role="img" aria-labelledby="radar-title radar-desc"><title id="radar-title">Kavya Jain repo-driven engineering range and repository footprint</title><desc id="radar-desc">Two large radar panels. Engineering axes combine configured project relevance with authored commits, recency and language bytes. Repository-footprint axes come directly from GitHub language bytes. They are not proficiency percentages.</desc><style>.title{{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;font-weight:750;fill:{ink};letter-spacing:.1em}}.axis{{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:10px;font-weight:700;fill:{muted};letter-spacing:.05em}}.source{{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:8.5px;font-weight:700;letter-spacing:.07em}}</style>{engineering}{footprint}</svg>'''
+    width = 440 if compact else 880
+    engineering = radar_panel(0, signals["engineeringRange"], theme, "ENGINEERING RANGE", compact)
+    footprint = radar_panel(326, signals["workingLanguages"], theme, "REPOSITORY FOOTPRINT", compact)
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} 634" width="{width}" height="634" role="img" aria-labelledby="radar-title radar-desc"><title id="radar-title">Kavya Jain repo-driven engineering range and repository footprint</title><desc id="radar-desc">Two large radar panels. Engineering axes combine configured project relevance with authored commits, recency and language bytes. Repository-footprint axes come directly from GitHub language bytes. They are not proficiency percentages.</desc><style>.title{{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;font-weight:750;fill:{ink};letter-spacing:.1em}}.axis{{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:{9.5 if compact else 10}px;font-weight:700;fill:{muted};letter-spacing:.04em}}.source{{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:8.5px;font-weight:700;letter-spacing:.06em}}</style>{engineering}{footprint}</svg>'''
 
 
 def main() -> None:
@@ -280,6 +282,7 @@ def main() -> None:
     render_toolbox(signals)
     for theme in ("light", "dark"):
         (ROOT / "assets" / f"skill-radar-{theme}.svg").write_text(radar_svg(theme, signals), encoding="utf-8")
+        (ROOT / "assets" / f"skill-radar-{theme}-compact.svg").write_text(radar_svg(theme, signals, compact=True), encoding="utf-8")
     mode = "signals only" if "--signals-only" in sys.argv else "portrait and signals"
     print(f"Built live toolbox and repo-driven skill radars ({mode}).")
 

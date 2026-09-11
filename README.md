@@ -235,6 +235,8 @@
 ## `~/` skill radar
 
 <picture>
+  <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="./assets/skill-radar-dark-compact.svg">
+  <source media="(max-width: 600px)" srcset="./assets/skill-radar-light-compact.svg">
   <source media="(prefers-color-scheme: dark)" srcset="./assets/skill-radar-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="./assets/skill-radar-light.svg">
   <img src="./assets/skill-radar-light.svg" width="880" alt="Relative radar charts of Kavya Jain's engineering focus and working languages">
