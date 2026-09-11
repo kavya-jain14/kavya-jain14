@@ -37,11 +37,22 @@ function card(project, themeName) {
 
 function picture(project) {
   const url = `https://github.com/${project.repo}`;
-  return `  <a href="${url}">\n    <picture>\n      <source media="(prefers-color-scheme: dark)" srcset="./assets/projects/${project.id}-dark.svg">\n      <source media="(prefers-color-scheme: light)" srcset="./assets/projects/${project.id}-light.svg">\n      <img src="./assets/projects/${project.id}-light.svg" width="760" alt="${escapeHtml(project.name)}, ${escapeHtml(project.summary)} Stack: ${escapeHtml(project.stack)}. Role: ${escapeHtml(project.contribution)}.">\n    </picture>\n  </a>`;
+  return `  <a href="${url}">\n    <picture>\n      <source media="(prefers-color-scheme: dark)" srcset="./assets/projects/${project.id}-dark.svg">\n      <source media="(prefers-color-scheme: light)" srcset="./assets/projects/${project.id}-light.svg">\n      <img src="./assets/projects/${project.id}-light.svg" width="420" alt="${escapeHtml(project.name)}, ${escapeHtml(project.summary)} Stack: ${escapeHtml(project.stack)}. Role: ${escapeHtml(project.contribution)}.">\n    </picture>\n  </a>`;
 }
 
 function projectGrid() {
-  return projects.map((project) => `<p align="center">\n${picture(project)}\n</p>`).join("\n");
+  const rows = [];
+  for (let index = 0; index < projects.length; index += 2) {
+    rows.push(`<tr>
+<td width="50%">
+${picture(projects[index])}
+</td>
+<td width="50%">
+${picture(projects[index + 1])}
+</td>
+</tr>`);
+  }
+  return `<table>\n${rows.join("\n")}\n</table>`;
 }
 
 function evidenceChain(project) {
