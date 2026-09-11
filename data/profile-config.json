@@ -15,15 +15,31 @@
       "name": "TRINETRA",
       "repo": "kavya-jain14/TRINETRA",
       "type": "UPI RISK + RECOVERY",
-      "problem": "UPI risk and recovery",
-      "summary": "Explain the decision. Preserve the payment state.",
-      "constraint": "A payment must remain retry-safe while every risk decision stays explainable.",
-      "decision": "Model payment state as a durable ledger and make each risk verdict an auditable transition.",
-      "proof": "Durable payment state and explainable recovery",
+      "summary": "Recover once when the provider times out.",
+      "evidenceTitle": "accepted timeout → one replay-safe recovery path",
+      "problem": "A provider can accept a payment and time out before confirmation. A blind retry risks a duplicate submission, while the payer and operator still need one explainable history.",
+      "constraint": "Replay safety, provider recovery and ordered risk evidence must survive across API replicas without turning a pending state into a retry instruction.",
+      "decision": "Keep payment and provider-attempt history in a tenant-scoped ledger, reuse the original idempotent resource on replay, then resolve uncertainty through status inquiry.",
+      "result": "The synthetic accepted-timeout checkpoint and PostgreSQL/Redis integration test exercise one provider submission, cross-replica replay and recovery to the original payment.",
+      "stack": "TypeScript · Fastify · PostgreSQL · Redis · React",
       "capability": "DURABLE RECOVERY",
       "contribution": "ARCHITECTURE · BACKEND · QA",
       "glyph": "route",
       "flagship": true,
+      "proofLinks": [
+        {
+          "label": "Accepted-timeout recovery checkpoint",
+          "url": "https://github.com/kavya-jain14/TRINETRA#third-integration-checkpoint"
+        },
+        {
+          "label": "PostgreSQL and Redis integration test",
+          "url": "https://github.com/kavya-jain14/TRINETRA/blob/main/apps/api/test/postgres-redis.integration.test.ts"
+        },
+        {
+          "label": "Recovery checkpoint change",
+          "url": "https://github.com/kavya-jain14/TRINETRA/commit/e92175890855a52a17fa604a6b79c7d128c3e4eb"
+        }
+      ],
       "axisWeights": {
         "PRODUCT": 0.8,
         "FRONTEND": 0.35,
@@ -39,15 +55,31 @@
       "name": "TRISHUL",
       "repo": "kavya-jain14/TRISHUL",
       "type": "FRAUD INTELLIGENCE",
-      "problem": "Financial cyber-fraud intelligence",
-      "summary": "Trace evidence without overstating certainty.",
-      "constraint": "Fraud signals are incomplete, so suspicion cannot be presented as certainty.",
-      "decision": "Gate every claim through provenance, confidence and a traceable evidence chain.",
-      "proof": "Evidence gates and traceable decisions",
+      "summary": "Trace money while uncertainty stays visible.",
+      "evidenceTitle": "cash-out forecast → explicit PASS or ABSTAIN",
+      "problem": "After a fraud complaint, investigators need to trace attributable exposure and assess probable cash-out behaviour without presenting incomplete signals as certainty.",
+      "constraint": "Money can commingle, records arrive from authorised sources at different times, and location and time may have different levels of support.",
+      "decision": "Build a provenance-backed case graph, represent exposure as a range, and gate geo and time forecasts independently so either dimension can abstain.",
+      "result": "The prediction and API tests cover supported forecasts, partial evidence, stationary funds and intentional abstention without inventing candidates.",
+      "stack": "TypeScript · Fastify · PostgreSQL · React · Vitest",
       "capability": "EVIDENCE GATES",
       "contribution": "PRODUCT · DATA DESIGN · FRONTEND QA",
       "glyph": "graph",
       "flagship": true,
+      "proofLinks": [
+        {
+          "label": "Evidence-gate unit tests",
+          "url": "https://github.com/kavya-jain14/TRISHUL/blob/main/packages/prediction/test/evidence-gate.test.ts"
+        },
+        {
+          "label": "Exit-mode and forecast API flow",
+          "url": "https://github.com/kavya-jain14/TRISHUL/blob/main/apps/api/test/exit-evidence-flow.test.ts"
+        },
+        {
+          "label": "Locked product boundary",
+          "url": "https://github.com/kavya-jain14/TRISHUL#product-boundary"
+        }
+      ],
       "axisWeights": {
         "PRODUCT": 1.0,
         "FRONTEND": 0.7,
@@ -63,15 +95,31 @@
       "name": "MIRA",
       "repo": "kavya-jain14/MIRA",
       "type": "AUTONOMOUS CREATOR",
-      "problem": "Autonomous publishing",
-      "summary": "Discover, decide, remember, then publish.",
-      "constraint": "Autonomy without sources or memory becomes opaque and difficult to audit.",
-      "decision": "Separate discovery, decision, memory and publishing into a visible decision ledger.",
-      "proof": "Source gates and a visible decision ledger",
-      "capability": "DECISION LEDGER",
-      "contribution": "FULL FRONTEND · FLOW · INTEGRATION",
+      "summary": "Publish only after evidence clears the gate.",
+      "evidenceTitle": "autonomous publishing → threshold, memory and audit",
+      "problem": "An autonomous editor can repeat stories, amplify weak sources or publish hype while hiding why a candidate was accepted or rejected.",
+      "constraint": "The agent must continue after initialization, limit each cycle, survive refreshes and retain evidence for both publication and rejection.",
+      "decision": "Separate discovery, editorial scoring, durable decision memory and publishing; enforce source gates, a fixed threshold and duplicate fingerprints.",
+      "result": "The backend and policy tests exercise one-item pacing, rejected candidates, later backlog publication and duplicate suppression in durable memory.",
+      "stack": "TypeScript · Node.js · React · SQLite · Docker",
+      "capability": "DECISION MEMORY",
+      "contribution": "FRONTEND · PRODUCT FLOW · INTEGRATION",
       "glyph": "cycle",
       "flagship": true,
+      "proofLinks": [
+        {
+          "label": "Autonomous runtime behaviour tests",
+          "url": "https://github.com/kavya-jain14/MIRA/blob/main/apps/api/src/backend.test.ts"
+        },
+        {
+          "label": "Editorial threshold and rejection tests",
+          "url": "https://github.com/kavya-jain14/MIRA/blob/main/packages/agent-core/src/editorial-policy.test.ts"
+        },
+        {
+          "label": "Decision-ledger repair change",
+          "url": "https://github.com/kavya-jain14/MIRA/commit/5bea458f09d27c274d811aa6a024e1f98e89e397"
+        }
+      ],
       "axisWeights": {
         "PRODUCT": 0.9,
         "FRONTEND": 1.0,
@@ -87,15 +135,32 @@
       "name": "SOCRATES",
       "repo": "gargibhardwaj24/Socrates",
       "type": "TEACH-BACK LEARNING",
-      "problem": "Teach-back learning",
-      "summary": "Find the gap behind a confident explanation.",
-      "constraint": "A confident answer can still hide shallow understanding or a missed misconception.",
-      "decision": "Make the learner correct seeded misconceptions against a repeatable evaluation rubric.",
-      "proof": "Curated misconceptions and repeatable evaluation",
+      "summary": "Teach the AI. Expose the misconception.",
+      "evidenceTitle": "confident explanation → deterministic misconception test",
+      "problem": "A learner can sound confident while missing a core misconception, so completion alone cannot show whether the concept was understood.",
+      "constraint": "Evaluation must remain repeatable and explainable even when no LLM key is available.",
+      "decision": "Seed known misconceptions and score the learner's correction, reasoning and evidence with a transparent stage-based rubric.",
+      "result": "The rubric maps each learning stage to observable signals and returns the evidence span used by the scoring flow.",
+      "stack": "Next.js · TypeScript · Prisma · PostgreSQL",
       "capability": "REPEATABLE SCORE",
       "contribution": "LEARNING UX · FRONTEND · EVALUATION",
       "glyph": "teach",
       "flagship": true,
+      "demo": "https://socrates-one-coral.vercel.app",
+      "proofLinks": [
+        {
+          "label": "Transparent stage-based rubric",
+          "url": "https://github.com/gargibhardwaj24/Socrates/blob/main/src/lib/rubric.ts"
+        },
+        {
+          "label": "Misconception evidence surface",
+          "url": "https://github.com/gargibhardwaj24/Socrates/blob/main/src/components/MisconceptionFingerprint.tsx"
+        },
+        {
+          "label": "Kavya's learning-catalogue and navigation change",
+          "url": "https://github.com/gargibhardwaj24/Socrates/commit/d01b1b6170568d0cd34960bb48c7e8249e04029e"
+        }
+      ],
       "axisWeights": {
         "PRODUCT": 0.85,
         "FRONTEND": 0.9,
@@ -111,15 +176,31 @@
       "name": "COUNSELFLOW",
       "repo": "kavya-jain14/COUNSEL-FLOW",
       "type": "DECISION COUNSELLING",
-      "problem": "College preference decisions",
-      "summary": "Resolve the conflict before locking the list.",
-      "constraint": "Rank, branch priority, budget and distance can contradict one another before choice lock.",
-      "decision": "Surface constraint conflicts before producing a deterministic preference order.",
-      "proof": "Constraint conflicts before list lock",
-      "capability": "CONFLICT CHECKS",
+      "summary": "Resolve conflicts before locking a list.",
+      "evidenceTitle": "preference list → conflict audit before lock",
+      "problem": "A candidate can receive a plausible college list that violates their branch priority, budget, distance or hard exclusions and still lock it by mistake.",
+      "constraint": "Official cutoff evidence, hard constraints and soft preferences must remain distinguishable, deterministic and reviewable after every edit.",
+      "decision": "Generate an ordered strategy, surface coded contradictions, mark the audit stale after edits and block lock while a critical conflict remains.",
+      "result": "Domain tests exercise eight conflict rules, reproducible strategy hashes and the invariant that unresolved critical conflicts prevent lock.",
+      "stack": "React · TypeScript · Vite · Zod · Vitest",
+      "capability": "CONFLICT GATES",
       "contribution": "PRODUCT ARCHITECTURE · DECISION UX",
       "glyph": "conflict",
       "flagship": false,
+      "proofLinks": [
+        {
+          "label": "Eight deterministic conflict rules",
+          "url": "https://github.com/kavya-jain14/COUNSEL-FLOW/blob/main/src/domain/conflicts.test.ts"
+        },
+        {
+          "label": "Lock invariants",
+          "url": "https://github.com/kavya-jain14/COUNSEL-FLOW/blob/main/src/domain/lock.test.ts"
+        },
+        {
+          "label": "Attention-first counselling flow change",
+          "url": "https://github.com/kavya-jain14/COUNSEL-FLOW/commit/d116e83f61be8f6e85bf1ef22b794ab830d9bd6b"
+        }
+      ],
       "axisWeights": {
         "PRODUCT": 1.0,
         "FRONTEND": 0.9,
@@ -135,15 +216,32 @@
       "name": "PAPERTRADE",
       "repo": "kavya-jain14/PAPER_TRADE",
       "type": "MARKET SIMULATION",
-      "problem": "Market simulation",
-      "summary": "Keep execution honest when the client drifts.",
-      "constraint": "Client prices can drift or be manipulated while portfolio state must remain authoritative.",
-      "decision": "Resolve execution prices on the server and preserve every transaction in the portfolio ledger.",
-      "proof": "Server-authoritative execution and portfolio state",
+      "summary": "Keep price and portfolio state authoritative.",
+      "evidenceTitle": "changing market session → one authoritative execution path",
+      "problem": "A trading simulator must keep orders and portfolio state credible when client prices drift, the exchange closes or the live price provider is unavailable.",
+      "constraint": "The server owns execution price and holdings while the interface still needs useful market behaviour outside NSE live hours.",
+      "decision": "Canonicalize symbols, resolve execution prices on the backend, persist transactions and switch between live and bounded simulated market sessions.",
+      "result": "Backend tests cover NSE live boundaries, weekends, published holidays, the special Sunday session and time-bucketed simulated candles.",
+      "stack": "React · Express · MongoDB · SSE · Yahoo Finance",
       "capability": "TRUSTED EXECUTION",
       "contribution": "FULL-STACK PRODUCT ENGINEERING",
       "glyph": "market",
       "flagship": false,
+      "demo": "https://paper-trade-phi.vercel.app",
+      "proofLinks": [
+        {
+          "label": "NSE market-session boundary tests",
+          "url": "https://github.com/kavya-jain14/PAPER_TRADE/blob/main/paper_trade_backend/test/marketSession.test.js"
+        },
+        {
+          "label": "Simulated candle time-bucket test",
+          "url": "https://github.com/kavya-jain14/PAPER_TRADE/blob/main/paper_trade_backend/test/marketBrain.test.js"
+        },
+        {
+          "label": "Terminal and authentication redesign",
+          "url": "https://github.com/kavya-jain14/PAPER_TRADE/commit/74c51023c86155ee62bbe8651e7f7599504e73ef"
+        }
+      ],
       "axisWeights": {
         "PRODUCT": 0.8,
         "FRONTEND": 0.85,

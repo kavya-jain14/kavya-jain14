@@ -29,17 +29,19 @@ test("empty repositories stay empty; a failed API read cannot silently fabricate
   const empty = await collectProjectActivity(async () => ({ data: [] }), project, now);
   assert.equal(empty.commitsLast7Days, 0);
   const status = statusFromActivity({ username: "owner", generatedAt: now.toISOString(), projects: [empty] }, [project]);
-  assert.match(status.text, /awaiting first commit · 0 default-branch commits/);
+  assert.equal(status.text, "$ open to software engineering internships · building in public");
+  assert.match(status.scope, /0 commits in the last 7 days/);
   await assert.rejects(collectProjectActivity(async () => { throw new Error("rate limit"); }, project, now), /rate limit/);
 });
 
-test("status selects observed latest activity without inventing shipping or a version", () => {
+test("status combines availability with observed latest activity", () => {
   const activity = { username: "owner", generatedAt: now.toISOString(), projects: [
     { id: "demo", commitsLast7Days: 1, recent: [normalizeCommit(commit(1), project.repo)] },
     { id: "other", commitsLast7Days: 2, recent: [normalizeCommit(commit(2, "2026-09-07T01:00:00Z"), "owner/other")] },
   ] };
   const status = statusFromActivity(activity, [project, { id: "other", name: "OTHER" }]);
-  assert.equal(status.text, "$ status: latest OTHER · 3 default-branch commits / 7d");
-  assert.match(status.scope, /Default branches of 2 selected repositories; all authors/);
+  assert.equal(status.text, "$ open to software engineering internships · latest work: OTHER");
+  assert.match(status.scope, /Latest default-branch activity across 2 selected repositories; all authors/);
+  assert.match(status.scope, /3 commits in the last 7 days/);
   assert.match(status.url, /owner\/other\/commit\//);
 });

@@ -6,10 +6,9 @@
     "fetch:signals": "node scripts/fetch-profile-signals.mjs",
     "build:profile-style": "python3 scripts/build-gargi-profile.py",
     "build:projects": "node scripts/build-project-cards.mjs",
-    "build:numbers": "node scripts/build-profile-numbers.mjs",
     "build:rabbit": "node scripts/build-rabbit-calendar.mjs",
     "build:terminal": "node scripts/build-profile-terminal.mjs",
-    "build": "npm run build:profile-style && npm run build:projects && npm run build:numbers && npm run build:rabbit && npm run build:terminal",
+    "build": "npm run build:profile-style && npm run build:projects && npm run build:rabbit && npm run build:terminal",
     "validate": "node scripts/validate-profile.mjs"
   },
   "engines": {
