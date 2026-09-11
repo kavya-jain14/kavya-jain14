@@ -242,7 +242,7 @@
   <img src="./assets/skill-radar-light.svg" width="880" alt="Relative radar charts of Kavya Jain's engineering focus and working languages">
 </picture>
 
-<sub>Relative working range, not proficiency percentages. Engineering range is project-driven; repository footprint reports the six largest GitHub Linguist byte totals. Current practice: TypeScript systems and DSA in C++.</sub>
+<p><sub>Relative working range, not proficiency percentages. Engineering range is project-driven; repository footprint reports the six largest GitHub Linguist byte totals. Current practice: TypeScript systems and DSA in C++.</sub></p>
 ---
 
 ## `~/` activity trail
