@@ -28,60 +28,68 @@
 ## `~/` selected work
 
 <!-- GENERATED:PROJECTS:START -->
-<p align="center">
+<table>
+<tr>
+<td width="50%">
   <a href="https://github.com/kavya-jain14/TRINETRA">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="./assets/projects/trinetra-dark.svg">
       <source media="(prefers-color-scheme: light)" srcset="./assets/projects/trinetra-light.svg">
-      <img src="./assets/projects/trinetra-light.svg" width="760" alt="TRINETRA, Recover once when the provider times out. Stack: TypeScript · Fastify · PostgreSQL · Redis · React. Role: ARCHITECTURE · BACKEND · QA.">
+      <img src="./assets/projects/trinetra-light.svg" width="420" alt="TRINETRA, Recover once when the provider times out. Stack: TypeScript · Fastify · PostgreSQL · Redis · React. Role: ARCHITECTURE · BACKEND · QA.">
     </picture>
   </a>
-</p>
-<p align="center">
+</td>
+<td width="50%">
   <a href="https://github.com/kavya-jain14/TRISHUL">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="./assets/projects/trishul-dark.svg">
       <source media="(prefers-color-scheme: light)" srcset="./assets/projects/trishul-light.svg">
-      <img src="./assets/projects/trishul-light.svg" width="760" alt="TRISHUL, Trace money while uncertainty stays visible. Stack: TypeScript · Fastify · PostgreSQL · React · Vitest. Role: PRODUCT · DATA DESIGN · FRONTEND QA.">
+      <img src="./assets/projects/trishul-light.svg" width="420" alt="TRISHUL, Trace money while uncertainty stays visible. Stack: TypeScript · Fastify · PostgreSQL · React · Vitest. Role: PRODUCT · DATA DESIGN · FRONTEND QA.">
     </picture>
   </a>
-</p>
-<p align="center">
+</td>
+</tr>
+<tr>
+<td width="50%">
   <a href="https://github.com/kavya-jain14/MIRA">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="./assets/projects/mira-dark.svg">
       <source media="(prefers-color-scheme: light)" srcset="./assets/projects/mira-light.svg">
-      <img src="./assets/projects/mira-light.svg" width="760" alt="MIRA, Publish only after evidence clears the gate. Stack: TypeScript · Node.js · React · SQLite · Docker. Role: FRONTEND · PRODUCT FLOW · INTEGRATION.">
+      <img src="./assets/projects/mira-light.svg" width="420" alt="MIRA, Publish only after evidence clears the gate. Stack: TypeScript · Node.js · React · SQLite · Docker. Role: FRONTEND · PRODUCT FLOW · INTEGRATION.">
     </picture>
   </a>
-</p>
-<p align="center">
+</td>
+<td width="50%">
   <a href="https://github.com/gargibhardwaj24/Socrates">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="./assets/projects/socrates-dark.svg">
       <source media="(prefers-color-scheme: light)" srcset="./assets/projects/socrates-light.svg">
-      <img src="./assets/projects/socrates-light.svg" width="760" alt="SOCRATES, Teach the AI. Expose the misconception. Stack: Next.js · TypeScript · Prisma · PostgreSQL. Role: LEARNING UX · FRONTEND · EVALUATION.">
+      <img src="./assets/projects/socrates-light.svg" width="420" alt="SOCRATES, Teach the AI. Expose the misconception. Stack: Next.js · TypeScript · Prisma · PostgreSQL. Role: LEARNING UX · FRONTEND · EVALUATION.">
     </picture>
   </a>
-</p>
-<p align="center">
+</td>
+</tr>
+<tr>
+<td width="50%">
   <a href="https://github.com/kavya-jain14/COUNSEL-FLOW">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="./assets/projects/counselflow-dark.svg">
       <source media="(prefers-color-scheme: light)" srcset="./assets/projects/counselflow-light.svg">
-      <img src="./assets/projects/counselflow-light.svg" width="760" alt="COUNSELFLOW, Resolve conflicts before locking a list. Stack: React · TypeScript · Vite · Zod · Vitest. Role: PRODUCT ARCHITECTURE · DECISION UX.">
+      <img src="./assets/projects/counselflow-light.svg" width="420" alt="COUNSELFLOW, Resolve conflicts before locking a list. Stack: React · TypeScript · Vite · Zod · Vitest. Role: PRODUCT ARCHITECTURE · DECISION UX.">
     </picture>
   </a>
-</p>
-<p align="center">
+</td>
+<td width="50%">
   <a href="https://github.com/kavya-jain14/PAPER_TRADE">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="./assets/projects/papertrade-dark.svg">
       <source media="(prefers-color-scheme: light)" srcset="./assets/projects/papertrade-light.svg">
-      <img src="./assets/projects/papertrade-light.svg" width="760" alt="PAPERTRADE, Keep price and portfolio state authoritative. Stack: React · Express · MongoDB · SSE · Yahoo Finance. Role: FULL-STACK PRODUCT ENGINEERING.">
+      <img src="./assets/projects/papertrade-light.svg" width="420" alt="PAPERTRADE, Keep price and portfolio state authoritative. Stack: React · Express · MongoDB · SSE · Yahoo Finance. Role: FULL-STACK PRODUCT ENGINEERING.">
     </picture>
   </a>
-</p>
+</td>
+</tr>
+</table>
 
 ### Evidence chains
 

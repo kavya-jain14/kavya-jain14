@@ -25,6 +25,9 @@ assert(!readme.includes("the numbers"), "Vanity-metric section must remain remov
 assert(!existsSync("assets/numbers-light.svg") && !existsSync("assets/numbers-dark.svg"), "Numbers assets must remain removed.");
 assert(!existsSync("scripts/build-profile-numbers.mjs"), "Numbers generator must remain removed.");
 assert((readme.match(/<details>/g) || []).length === config.projects.length, "README evidence-chain count must match project config.");
+assert((readme.match(/<td width="50%">/g) || []).length === config.projects.length, "Selected work must remain a two-column grid.");
+assert((readme.match(/<tr>/g) || []).length === config.projects.length / 2, "Selected work must remain a compact 3x2 grid.");
+assert((readme.match(/assets\/projects\/[^"]+-light\.svg" width="420"/g) || []).length === config.projects.length, "Every project card must use the compact grid width.");
 assert(readme.includes('width="520"'), "Hero portrait must retain its wider 520px presentation.");
 assert(activity.projects.length === config.projects.length, "Activity must cover all selected projects.");
 for (const project of activity.projects) {
