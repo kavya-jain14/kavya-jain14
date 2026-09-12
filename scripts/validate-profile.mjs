@@ -30,10 +30,12 @@ assert((readme.match(/<tr>/g) || []).length === config.projects.length / 2, "Sel
 assert((readme.match(/assets\/projects\/[^"]+-light\.svg" width="420"/g) || []).length === config.projects.length, "Every project card must use the compact grid width.");
 assert(readme.includes('width="520"'), "Hero portrait must retain its wider 520px presentation.");
 const portrait = read("assets/hero/portrait-reveal.svg");
-const portraitMap = read("data/portrait-duotone.map").trimEnd().split("\n");
-assert(portraitMap.length === 68 && portraitMap.every((row) => row.length === 80 && /^[.BL]+$/.test(row)), "Portrait source map must remain a valid 80×68 two-tone grid.");
-assert(portrait.includes("two-tone pixel portrait") && portrait.includes("#39d353") && portrait.includes("#0d1117"), "Hero must use the black/lime two-tone system.");
-assert((portrait.match(/class="portrait-tile"/g) || []).length >= 100, "Hero must assemble from a meaningful number of pixel blocks.");
+const portraitSource = readFileSync("assets/hero/portrait-source-v3.png");
+assert(portraitSource.subarray(1, 4).toString() === "PNG", "Portrait source must remain a PNG.");
+assert(portraitSource.readUInt32BE(16) === 1843 && portraitSource.readUInt32BE(20) === 1989, "Portrait source dimensions must remain intact.");
+assert([4, 6].includes(portraitSource.readUInt8(25)), "Portrait source must retain real alpha transparency.");
+assert(portrait.includes("terminal-green line portrait") && portrait.includes("data:image/png;base64,"), "Hero must embed the exact detailed black/green source.");
+assert((portrait.match(/class="portrait-tile"/g) || []).length >= 500, "Hero must assemble from enough fine blocks to preserve source detail.");
 assert(portrait.includes('id="portrait-blueprint"'), "Hero needs a subtle intact silhouette beneath the assembling blocks.");
 assert(!portrait.includes("repeatCount"), "Hero block-hop reveal must run once, not loop.");
 assert(!/halftone|dot-pixel|clipPath/.test(portrait), "Legacy halftone and scan reveal must not return.");
