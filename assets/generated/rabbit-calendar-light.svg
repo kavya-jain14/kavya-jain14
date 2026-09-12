@@ -119,148 +119,148 @@
   </g>
   <g id="arc-footprint-trail" shape-rendering="crispEdges" fill="#1F883D">
     <g class="arc-footprint" data-pillar="5" data-step="1" opacity="0" transform="translate(123.0 219.6)">
-        <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.0142857;0.0143506;0.0415584;0.0889610;0.1259740;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <animate attributeName="opacity" values="0;0;1;0.82;0.45;0;0;0" keyTimes="0.0000000;0.0142857;0.0143506;0.0415584;0.0889610;0.1259740;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="#18783A" stroke-width=".5"/>
       </g>
 <g class="arc-footprint" data-pillar="5" data-step="2" opacity="0" transform="translate(218.0 196.0)">
-        <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.0298701;0.0299351;0.0571429;0.1045455;0.1415584;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <animate attributeName="opacity" values="0;0;1;0.82;0.45;0;0;0" keyTimes="0.0000000;0.0298701;0.0299351;0.0571429;0.1045455;0.1415584;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="#18783A" stroke-width=".5"/>
       </g>
 <g class="arc-footprint" data-pillar="5" data-step="3" opacity="0" transform="translate(313.0 198.6)">
-        <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.0454545;0.0455195;0.0727273;0.1201299;0.1571429;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <animate attributeName="opacity" values="0;0;1;0.82;0.45;0;0;0" keyTimes="0.0000000;0.0454545;0.0455195;0.0727273;0.1201299;0.1571429;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="#18783A" stroke-width=".5"/>
       </g>
 <g class="arc-footprint" data-pillar="2" data-step="1" opacity="0" transform="translate(357.0 189.3)">
-        <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.0896104;0.0896753;0.1168831;0.1642857;0.2012987;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <animate attributeName="opacity" values="0;0;1;0.82;0.45;0;0;0" keyTimes="0.0000000;0.0896104;0.0896753;0.1168831;0.1642857;0.2012987;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="#18783A" stroke-width=".5"/>
       </g>
 <g class="arc-footprint" data-pillar="2" data-step="2" opacity="0" transform="translate(306.0 176.9)">
-        <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.1051948;0.1052597;0.1324675;0.1798701;0.2168831;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <animate attributeName="opacity" values="0;0;1;0.82;0.45;0;0;0" keyTimes="0.0000000;0.1051948;0.1052597;0.1324675;0.1798701;0.2168831;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="#18783A" stroke-width=".5"/>
       </g>
 <g class="arc-footprint" data-pillar="2" data-step="3" opacity="0" transform="translate(255.0 190.3)">
-        <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.1207792;0.1208442;0.1480519;0.1954545;0.2324675;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <animate attributeName="opacity" values="0;0;1;0.82;0.45;0;0;0" keyTimes="0.0000000;0.1207792;0.1208442;0.1480519;0.1954545;0.2324675;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="#18783A" stroke-width=".5"/>
       </g>
 <g class="arc-footprint" data-pillar="7" data-step="1" opacity="0" transform="translate(289.0 190.2)">
-        <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.1649351;0.1650000;0.1922078;0.2396104;0.2766234;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <animate attributeName="opacity" values="0;0;1;0.82;0.45;0;0;0" keyTimes="0.0000000;0.1649351;0.1650000;0.1922078;0.2396104;0.2766234;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="#18783A" stroke-width=".5"/>
       </g>
 <g class="arc-footprint" data-pillar="7" data-step="2" opacity="0" transform="translate(374.0 176.9)">
-        <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.1805195;0.1805844;0.2077922;0.2551948;0.2922078;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <animate attributeName="opacity" values="0;0;1;0.82;0.45;0;0;0" keyTimes="0.0000000;0.1805195;0.1805844;0.2077922;0.2551948;0.2922078;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="#18783A" stroke-width=".5"/>
       </g>
 <g class="arc-footprint" data-pillar="7" data-step="3" opacity="0" transform="translate(459.0 189.7)">
-        <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.1961039;0.1961688;0.2233766;0.2707792;0.3077922;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <animate attributeName="opacity" values="0;0;1;0.82;0.45;0;0;0" keyTimes="0.0000000;0.1961039;0.1961688;0.2233766;0.2707792;0.3077922;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="#18783A" stroke-width=".5"/>
       </g>
 <g class="arc-footprint" data-pillar="3" data-step="1" opacity="0" transform="translate(476.0 200.5)">
-        <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.2402597;0.2403247;0.2675325;0.3149351;0.3519481;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <animate attributeName="opacity" values="0;0;1;0.82;0.45;0;0;0" keyTimes="0.0000000;0.2402597;0.2403247;0.2675325;0.3149351;0.3519481;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="#18783A" stroke-width=".5"/>
       </g>
 <g class="arc-footprint" data-pillar="3" data-step="2" opacity="0" transform="translate(408.0 194.7)">
-        <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.2558442;0.2559091;0.2831169;0.3305195;0.3675325;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <animate attributeName="opacity" values="0;0;1;0.82;0.45;0;0;0" keyTimes="0.0000000;0.2558442;0.2559091;0.2831169;0.3305195;0.3675325;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="#18783A" stroke-width=".5"/>
       </g>
 <g class="arc-footprint" data-pillar="3" data-step="3" opacity="0" transform="translate(340.0 210.0)">
-        <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.2714286;0.2714935;0.2987013;0.3461039;0.3831169;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <animate attributeName="opacity" values="0;0;1;0.82;0.45;0;0;0" keyTimes="0.0000000;0.2714286;0.2714935;0.2987013;0.3461039;0.3831169;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="#18783A" stroke-width=".5"/>
       </g>
 <g class="arc-footprint" data-pillar="9" data-step="1" opacity="0" transform="translate(374.0 195.0)">
-        <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.3155844;0.3156494;0.3428571;0.3902597;0.4272727;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <animate attributeName="opacity" values="0;0;1;0.82;0.45;0;0;0" keyTimes="0.0000000;0.3155844;0.3156494;0.3428571;0.3902597;0.4272727;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="#18783A" stroke-width=".5"/>
       </g>
 <g class="arc-footprint" data-pillar="9" data-step="2" opacity="0" transform="translate(476.0 171.5)">
-        <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.3311688;0.3312338;0.3584416;0.4058442;0.4428571;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <animate attributeName="opacity" values="0;0;1;0.82;0.45;0;0;0" keyTimes="0.0000000;0.3311688;0.3312338;0.3584416;0.4058442;0.4428571;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="#18783A" stroke-width=".5"/>
       </g>
 <g class="arc-footprint" data-pillar="9" data-step="3" opacity="0" transform="translate(578.0 178.0)">
-        <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.3467532;0.3468182;0.3740260;0.4214286;0.4584416;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <animate attributeName="opacity" values="0;0;1;0.82;0.45;0;0;0" keyTimes="0.0000000;0.3467532;0.3468182;0.3740260;0.4214286;0.4584416;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="#18783A" stroke-width=".5"/>
       </g>
 <g class="arc-footprint" data-pillar="1" data-step="1" opacity="0" transform="translate(544.0 196.2)">
-        <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.3909091;0.3909740;0.4181818;0.4655844;0.5025974;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <animate attributeName="opacity" values="0;0;1;0.82;0.45;0;0;0" keyTimes="0.0000000;0.3909091;0.3909740;0.4181818;0.4655844;0.5025974;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="#18783A" stroke-width=".5"/>
       </g>
 <g class="arc-footprint" data-pillar="1" data-step="2" opacity="0" transform="translate(408.0 198.7)">
-        <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.4064935;0.4065584;0.4337662;0.4811688;0.5181818;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <animate attributeName="opacity" values="0;0;1;0.82;0.45;0;0;0" keyTimes="0.0000000;0.4064935;0.4065584;0.4337662;0.4811688;0.5181818;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="#18783A" stroke-width=".5"/>
       </g>
 <g class="arc-footprint" data-pillar="1" data-step="3" opacity="0" transform="translate(272.0 219.2)">
-        <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.4220779;0.4221429;0.4493506;0.4967532;0.5337662;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <animate attributeName="opacity" values="0;0;1;0.82;0.45;0;0;0" keyTimes="0.0000000;0.4220779;0.4221429;0.4493506;0.4967532;0.5337662;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="#18783A" stroke-width=".5"/>
       </g>
 <g class="arc-footprint" data-pillar="8" data-step="1" opacity="0" transform="translate(255.0 215.6)">
-        <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.4662338;0.4662987;0.4935065;0.5409091;0.5779221;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <animate attributeName="opacity" values="0;0;1;0.82;0.45;0;0;0" keyTimes="0.0000000;0.4662338;0.4662987;0.4935065;0.5409091;0.5779221;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="#18783A" stroke-width=".5"/>
       </g>
 <g class="arc-footprint" data-pillar="8" data-step="2" opacity="0" transform="translate(374.0 196.7)">
-        <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.4818182;0.4818831;0.5090909;0.5564935;0.5935065;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <animate attributeName="opacity" values="0;0;1;0.82;0.45;0;0;0" keyTimes="0.0000000;0.4818182;0.4818831;0.5090909;0.5564935;0.5935065;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="#18783A" stroke-width=".5"/>
       </g>
 <g class="arc-footprint" data-pillar="8" data-step="3" opacity="0" transform="translate(493.0 202.6)">
-        <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.4974026;0.4974675;0.5246753;0.5720779;0.6090909;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <animate attributeName="opacity" values="0;0;1;0.82;0.45;0;0;0" keyTimes="0.0000000;0.4974026;0.4974675;0.5246753;0.5720779;0.6090909;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="#18783A" stroke-width=".5"/>
       </g>
 <g class="arc-footprint" data-pillar="10" data-step="1" opacity="0" transform="translate(646.0 159.5)">
-        <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.5415584;0.5416234;0.5688312;0.6162338;0.6532468;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <animate attributeName="opacity" values="0;0;1;0.82;0.45;0;0;0" keyTimes="0.0000000;0.5415584;0.5416234;0.5688312;0.6162338;0.6532468;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="#18783A" stroke-width=".5"/>
       </g>
 <g class="arc-footprint" data-pillar="10" data-step="2" opacity="0" transform="translate(680.0 123.3)">
-        <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.5571429;0.5572078;0.5844156;0.6318182;0.6688312;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <animate attributeName="opacity" values="0;0;1;0.82;0.45;0;0;0" keyTimes="0.0000000;0.5571429;0.5572078;0.5844156;0.6318182;0.6688312;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="#18783A" stroke-width=".5"/>
       </g>
 <g class="arc-footprint" data-pillar="10" data-step="3" opacity="0" transform="translate(714.0 128.0)">
-        <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.5727273;0.5727922;0.6000000;0.6474026;0.6844156;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <animate attributeName="opacity" values="0;0;1;0.82;0.45;0;0;0" keyTimes="0.0000000;0.5727273;0.5727922;0.6000000;0.6474026;0.6844156;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="#18783A" stroke-width=".5"/>
       </g>
 <g class="arc-footprint" data-pillar="11" data-step="1" opacity="0" transform="translate(765.0 133.8)">
-        <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.6168831;0.6169481;0.6441558;0.6915584;0.7285714;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <animate attributeName="opacity" values="0;0;1;0.82;0.45;0;0;0" keyTimes="0.0000000;0.6168831;0.6169481;0.6441558;0.6915584;0.7285714;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="#18783A" stroke-width=".5"/>
       </g>
 <g class="arc-footprint" data-pillar="11" data-step="2" opacity="0" transform="translate(782.0 127.3)">
-        <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.6324675;0.6325325;0.6597403;0.7071429;0.7441558;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <animate attributeName="opacity" values="0;0;1;0.82;0.45;0;0;0" keyTimes="0.0000000;0.6324675;0.6325325;0.6597403;0.7071429;0.7441558;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="#18783A" stroke-width=".5"/>
       </g>
 <g class="arc-footprint" data-pillar="11" data-step="3" opacity="0" transform="translate(799.0 152.3)">
-        <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.6480519;0.6481169;0.6753247;0.7227273;0.7597403;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <animate attributeName="opacity" values="0;0;1;0.82;0.45;0;0;0" keyTimes="0.0000000;0.6480519;0.6481169;0.6753247;0.7227273;0.7597403;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="#18783A" stroke-width=".5"/>
       </g>
 <g class="arc-footprint" data-pillar="0" data-step="1" opacity="0" transform="translate(629.0 179.0)">
-        <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.6922078;0.6922727;0.7194805;0.7668831;0.8038961;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <animate attributeName="opacity" values="0;0;1;0.82;0.45;0;0;0" keyTimes="0.0000000;0.6922078;0.6922727;0.7194805;0.7668831;0.8038961;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="#18783A" stroke-width=".5"/>
       </g>
 <g class="arc-footprint" data-pillar="0" data-step="2" opacity="0" transform="translate(442.0 174.6)">
-        <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.7077922;0.7078571;0.7350649;0.7824675;0.8194805;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <animate attributeName="opacity" values="0;0;1;0.82;0.45;0;0;0" keyTimes="0.0000000;0.7077922;0.7078571;0.7350649;0.7824675;0.8194805;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="#18783A" stroke-width=".5"/>
       </g>
 <g class="arc-footprint" data-pillar="0" data-step="3" opacity="0" transform="translate(255.0 194.0)">
-        <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.7233766;0.7234416;0.7506494;0.7980519;0.8350649;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <animate attributeName="opacity" values="0;0;1;0.82;0.45;0;0;0" keyTimes="0.0000000;0.7233766;0.7234416;0.7506494;0.7980519;0.8350649;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="#18783A" stroke-width=".5"/>
       </g>
 <g class="arc-footprint" data-pillar="4" data-step="1" opacity="0" transform="translate(136.0 186.3)">
-        <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.7675325;0.7675974;0.7948052;0.8422078;0.8792208;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <animate attributeName="opacity" values="0;0;1;0.82;0.45;0;0;0" keyTimes="0.0000000;0.7675325;0.7675974;0.7948052;0.8422078;0.8792208;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="#18783A" stroke-width=".5"/>
       </g>
 <g class="arc-footprint" data-pillar="4" data-step="2" opacity="0" transform="translate(204.0 164.6)">
-        <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.7831169;0.7831818;0.8103896;0.8577922;0.8948052;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <animate attributeName="opacity" values="0;0;1;0.82;0.45;0;0;0" keyTimes="0.0000000;0.7831169;0.7831818;0.8103896;0.8577922;0.8948052;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="#18783A" stroke-width=".5"/>
       </g>
 <g class="arc-footprint" data-pillar="4" data-step="3" opacity="0" transform="translate(272.0 173.3)">
-        <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.7987013;0.7987662;0.8259740;0.8733766;0.9103896;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <animate attributeName="opacity" values="0;0;1;0.82;0.45;0;0;0" keyTimes="0.0000000;0.7987013;0.7987662;0.8259740;0.8733766;0.9103896;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="#18783A" stroke-width=".5"/>
       </g>
 <g class="arc-footprint" data-pillar="6" data-step="1" opacity="0" transform="translate(374.0 179.6)">
-        <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.8428571;0.8429221;0.8701299;0.9175325;0.9545455;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <animate attributeName="opacity" values="0;0;1;0.82;0.45;0;0;0" keyTimes="0.0000000;0.8428571;0.8429221;0.8701299;0.9175325;0.9545455;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="#18783A" stroke-width=".5"/>
       </g>
 <g class="arc-footprint" data-pillar="6" data-step="2" opacity="0" transform="translate(408.0 172.7)">
-        <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.8584416;0.8585065;0.8857143;0.9331169;0.9701299;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <animate attributeName="opacity" values="0;0;1;0.82;0.45;0;0;0" keyTimes="0.0000000;0.8584416;0.8585065;0.8857143;0.9331169;0.9701299;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="#18783A" stroke-width=".5"/>
       </g>
 <g class="arc-footprint" data-pillar="6" data-step="3" opacity="0" transform="translate(442.0 190.6)">
-        <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.8740260;0.8740909;0.9012987;0.9487013;0.9857143;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <animate attributeName="opacity" values="0;0;1;0.82;0.45;0;0;0" keyTimes="0.0000000;0.8740260;0.8740909;0.9012987;0.9487013;0.9857143;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="#18783A" stroke-width=".5"/>
       </g>
   </g>
   <g id="landing-dust" shape-rendering="crispEdges" fill="#2DA44E">

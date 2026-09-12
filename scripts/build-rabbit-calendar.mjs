@@ -178,10 +178,10 @@ function arcFootprints(theme, timeline) {
   return `<g id="arc-footprint-trail" shape-rendering="crispEdges" fill="${theme.trail}">
     ${timeline.trails.map((trail) => {
       const times = [0, trail.time, trail.time + 0.001, trail.time + 0.42, trail.time + 1.15, trail.time + 1.72, duration - 0.02, duration];
-      const values = [0, 0, 0.76, 0.54, 0.22, 0, 0, 0];
+      const values = [0, 0, 1, 0.82, 0.45, 0, 0, 0];
       return `<g class="arc-footprint" data-pillar="${trail.index}" data-step="${trail.step}" opacity="0" transform="translate(${trail.x.toFixed(1)} ${trail.y.toFixed(1)})">
         <animate attributeName="opacity" values="${values.join(";")}" keyTimes="${times.map((time) => (time / duration).toFixed(7)).join(";")}" dur="${duration}s" calcMode="linear" repeatCount="indefinite"/>
-        <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
+        <path d="M-6 1h4v4h-4zM2 -4h4v4H2z" stroke="${theme.side}" stroke-width=".5"/>
       </g>`;
     }).join("\n")}
   </g>`;
