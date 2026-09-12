@@ -161,6 +161,9 @@ def portrait_reveal_svg(source_path: Path) -> str:
   <defs><g id="portrait-source">{''.join(source_paths)}</g>{''.join(clip_definitions)}</defs>
   <use id="portrait-blueprint" href="#portrait-source" opacity=".11"/>
   {''.join(tile_groups)}
+  <use id="portrait-final" href="#portrait-source" opacity="1">
+    <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.84;.94;1" dur="2.1s" begin="0s" fill="freeze"/>
+  </use>
 </svg>'''
 
 

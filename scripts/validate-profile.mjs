@@ -39,6 +39,7 @@ assert(!portrait.includes("<image") && !portrait.includes("data:image"), "GitHub
 assert((portrait.match(/class="portrait-tile"/g) || []).length >= 300, "Hero must assemble from enough fine blocks to preserve source detail.");
 assert((portrait.match(/clipPath id="portrait-clip-/g) || []).length === (portrait.match(/class="portrait-tile"/g) || []).length, "Every portrait tile needs one fixed source-space crop.");
 assert(portrait.includes('id="portrait-blueprint"'), "Hero needs a subtle intact silhouette beneath the assembling blocks.");
+assert(portrait.includes('id="portrait-final"') && portrait.includes('keyTimes="0;.84;.94;1"'), "Hero needs a seamless final portrait handoff after tile assembly.");
 assert(!portrait.includes("repeatCount"), "Hero block-hop reveal must run once, not loop.");
 assert(!/halftone|dot-pixel|scanline/.test(portrait), "Legacy halftone and scan reveal must not return.");
 assert(activity.projects.length === config.projects.length, "Activity must cover all selected projects.");
