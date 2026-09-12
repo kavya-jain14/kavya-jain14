@@ -67,6 +67,8 @@ def portrait_reveal_svg(source: list[str]) -> str:
         + rng.uniform(-0.85, 0.85)
     )
     final_begin = 1.34
+    geometry_definitions = []
+    blueprint_uses = []
     tile_groups = []
     for index, ((tile_x, tile_y), rects) in enumerate(ordered_tiles):
         progress = index / max(1, len(ordered_tiles) - 1)
@@ -77,9 +79,12 @@ def portrait_reveal_svg(source: list[str]) -> str:
         apex_y = -rng.randint(4, 8)
         reveal_start = begin / 2
         reveal_end = (begin + 0.16) / 2
+        geometry_id = f"portrait-geometry-{index}"
+        geometry_definitions.append(f'<g id="{geometry_id}">{''.join(rects)}</g>')
+        blueprint_uses.append(f'<use href="#{geometry_id}"/>')
         tile_groups.append(
             f'''<g class="portrait-tile" data-tile="{tile_x}-{tile_y}" opacity="1">
-      {''.join(rects)}
+      <use href="#{geometry_id}"/>
       <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;{reveal_start:.5f};{reveal_end:.5f};1" dur="2s" begin="0s" fill="freeze"/>
       <animateTransform attributeName="transform" type="translate" values="{offset_x} {offset_y};{apex_x} {apex_y};0 0" keyTimes="0;.58;1" dur=".32s" begin="{begin:.3f}s" calcMode="spline" keySplines=".2 .8 .3 1;.2 .8 .2 1" fill="freeze"/>
     </g>'''
@@ -89,6 +94,8 @@ def portrait_reveal_svg(source: list[str]) -> str:
   <title id="portrait-title">Kavya Jain two-tone pixel portrait</title>
   <desc id="portrait-desc">A transparent black and terminal-green portrait assembles once as pixel blocks hop into place.</desc>
   <style>@media (prefers-reduced-motion:reduce){{.portrait-tile{{opacity:1!important;transform:none!important}}.portrait-tile animate,.portrait-tile animateTransform{{display:none}}}}</style>
+  <defs>{''.join(geometry_definitions)}</defs>
+  <g id="portrait-blueprint" opacity=".11">{''.join(blueprint_uses)}</g>
   {''.join(tile_groups)}
 </svg>'''
 

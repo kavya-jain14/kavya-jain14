@@ -34,6 +34,7 @@ const portraitMap = read("data/portrait-duotone.map").trimEnd().split("\n");
 assert(portraitMap.length === 68 && portraitMap.every((row) => row.length === 80 && /^[.BL]+$/.test(row)), "Portrait source map must remain a valid 80×68 two-tone grid.");
 assert(portrait.includes("two-tone pixel portrait") && portrait.includes("#39d353") && portrait.includes("#0d1117"), "Hero must use the black/lime two-tone system.");
 assert((portrait.match(/class="portrait-tile"/g) || []).length >= 100, "Hero must assemble from a meaningful number of pixel blocks.");
+assert(portrait.includes('id="portrait-blueprint"'), "Hero needs a subtle intact silhouette beneath the assembling blocks.");
 assert(!portrait.includes("repeatCount"), "Hero block-hop reveal must run once, not loop.");
 assert(!/halftone|dot-pixel|clipPath/.test(portrait), "Legacy halftone and scan reveal must not return.");
 assert(activity.projects.length === config.projects.length, "Activity must cover all selected projects.");
