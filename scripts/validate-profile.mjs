@@ -29,6 +29,14 @@ assert((readme.match(/<td width="50%">/g) || []).length === config.projects.leng
 assert((readme.match(/<tr>/g) || []).length === config.projects.length / 2, "Selected work must remain a compact 3x2 grid.");
 assert((readme.match(/assets\/projects\/[^"]+-light\.svg" width="420"/g) || []).length === config.projects.length, "Every project card must use the compact grid width.");
 assert(readme.includes('width="520"'), "Hero portrait must retain its wider 520px presentation.");
+const portrait = read("assets/hero/portrait-reveal.svg");
+const portraitMap = read("data/portrait-duotone.map").trimEnd().split("\n");
+assert(portraitMap.length === 68 && portraitMap.every((row) => row.length === 80 && /^[.BL]+$/.test(row)), "Portrait source map must remain a valid 80×68 two-tone grid.");
+assert(portrait.includes("two-tone pixel portrait") && portrait.includes("#39d353") && portrait.includes("#0d1117"), "Hero must use the black/lime two-tone system.");
+assert((portrait.match(/class="portrait-tile"/g) || []).length >= 100, "Hero must assemble from a meaningful number of pixel blocks.");
+assert(portrait.includes('id="portrait-blueprint"'), "Hero needs a subtle intact silhouette beneath the assembling blocks.");
+assert(!portrait.includes("repeatCount"), "Hero block-hop reveal must run once, not loop.");
+assert(!/halftone|dot-pixel|clipPath/.test(portrait), "Legacy halftone and scan reveal must not return.");
 assert(activity.projects.length === config.projects.length, "Activity must cover all selected projects.");
 for (const project of activity.projects) {
   assert(Number.isInteger(project.commitsLast7Days) && project.commitsLast7Days >= 0, "Activity counts must be real nonnegative integers.");
@@ -89,8 +97,11 @@ for (const theme of ["light", "dark"]) {
   assert(rabbit.includes('id="rabbit-crouch"') && rabbit.includes('id="rabbit-air"') && rabbit.includes('id="rabbit-land"'), `${theme} rabbit calendar needs crouch, air and land frames.`);
   assert(rabbit.includes('data-seed=') && rabbit.includes('repeatCount="indefinite"'), `${theme} rabbit calendar must use a seeded looping animation.`);
   const loop = Number(rabbit.match(/dur="([\d.]+)s"/)?.[1]);
-  assert(loop > 0 && loop <= 10, `${theme} rabbit loop must remain under ten seconds.`);
+  assert(loop >= 14 && loop <= 16, `${theme} rabbit loop must stay inside the slower 14–16 second range.`);
   assert((rabbit.match(/class="footprint"/g) || []).length === 12, "Every visited pillar requires one footprint pair.");
+  assert((rabbit.match(/class="arc-footprint"/g) || []).length === 36, "Every jump requires three fading paw marks along its arc.");
+  assert((rabbit.match(/class="dust-puff"/g) || []).length === 12, "Every pillar landing requires a data-weighted dust puff.");
+  assert(rabbit.includes('id="rabbit-squash"') && (rabbit.match(/data-impact="/g) || []).length === 12, "Rabbit landing squash and dust must encode pillar height.");
   for (const suffix of ["", "-compact"]) {
     const terminal = read(`assets/generated/about-terminal-${theme}${suffix}.svg`);
     assert(terminal.includes('dur="1.8s"') && terminal.includes('fill="freeze"'), "Terminal must reveal in 1.8s and hold.");

@@ -1,28 +1,22 @@
 """Build the portrait and repo-driven profile visuals.
 
-The portrait pipeline is deterministic: it cleans the supplied transparent PNG,
-converts it to a dot-pixel rendering, and embeds that single intact image inside
-an animated SVG clip. Toolbox and radar data come from profile-signals.json.
+The portrait pipeline traces a supplied two-tone raster into native SVG blocks
+and gives each occupied block one non-looping hop into place. Toolbox and radar
+data come from profile-signals.json.
 """
 
 from __future__ import annotations
 
-import base64
 import json
 import math
+import random
 import re
 import sys
-from io import BytesIO
 from pathlib import Path
-
-from PIL import Image, ImageChops, ImageEnhance, ImageFilter, ImageStat
-
 
 ROOT = Path(__file__).resolve().parents[1]
 HERO_DIR = ROOT / "assets" / "hero"
-SOURCE = HERO_DIR / "portrait-source.png"
-CUTOUT = HERO_DIR / "portrait-cutout.png"
-PIXEL = HERO_DIR / "portrait-pixel.png"
+DUOTONE_MAP = ROOT / "data" / "portrait-duotone.map"
 REVEAL = HERO_DIR / "portrait-reveal.svg"
 SIGNALS = ROOT / "data" / "profile-signals.json"
 README = ROOT / "README.md"
@@ -44,84 +38,65 @@ ICON_ALIASES = {
 }
 
 
-def clean_cutout(source: Image.Image) -> Image.Image:
-    image = source.convert("RGBA")
-    alpha = image.getchannel("A")
-    eroded = alpha.filter(ImageFilter.MinFilter(5))
-    edge = ImageChops.subtract(alpha, eroded)
-    pixels = image.load()
-    edge_pixels = edge.load()
+def portrait_reveal_svg(source: list[str]) -> str:
+    """Quantise to two colours and animate coarse SVG tiles, not scan lines."""
 
-    for y in range(image.height):
-        for x in range(image.width):
-            red, green, blue, opacity = pixels[x, y]
-            neutral_white = min(red, green, blue) > 165 and max(red, green, blue) - min(red, green, blue) < 35
-            if opacity < 28 or (neutral_white and edge_pixels[x, y] > 16):
-                pixels[x, y] = (red, green, blue, 0)
-            elif opacity < 150:
-                pixels[x, y] = (red, green, blue, int((opacity - 28) / 122 * 255))
+    columns = 80
+    rows = 68
+    cell = 8
+    tile_cells = 5
+    tiles: dict[tuple[int, int], list[str]] = {}
 
-    return image
-
-
-def place_bust(image: Image.Image) -> Image.Image:
-    crop_bottom = min(505, image.height)
-    bust = image.crop((0, 0, image.width, crop_bottom))
-    target_height = 610
-    target_width = round(bust.width * target_height / bust.height)
-    bust = bust.resize((target_width, target_height), Image.Resampling.LANCZOS)
-    canvas = Image.new("RGBA", (640, 640), (0, 0, 0, 0))
-    canvas.alpha_composite(bust, ((640 - target_width) // 2, 25))
-    return canvas
-
-
-def dot_pixel_portrait(cutout: Image.Image) -> Image.Image:
-    boosted = ImageEnhance.Color(cutout).enhance(1.12)
-    boosted = ImageEnhance.Contrast(boosted).enhance(1.18)
-    boosted = ImageEnhance.Brightness(boosted).enhance(1.08)
-    alpha = cutout.getchannel("A")
-    output = Image.new("RGBA", cutout.size, (0, 0, 0, 0))
-    grid = 5
-
-    for top in range(0, cutout.height, grid):
-        for left in range(0, cutout.width, grid):
-            box = (left, top, min(left + grid, cutout.width), min(top + grid, cutout.height))
-            alpha_mean = ImageStat.Stat(alpha.crop(box)).mean[0]
-            if alpha_mean < 22:
+    for row in range(rows):
+        for column in range(columns):
+            pixel = source[row][column]
+            if pixel == ".":
                 continue
-            red, green, blue, _ = [round(channel) for channel in ImageStat.Stat(boosted.crop(box)).mean]
-            luminance = 0.2126 * red + 0.7152 * green + 0.0722 * blue
-            if luminance < 34:
-                red = max(red, 25)
-                green = max(green, 34)
-                blue = max(blue, 52)
-            radius = 1.25 + 0.92 * (alpha_mean / 255) + 0.28 * (luminance / 255)
-            center_x = left + grid / 2
-            center_y = top + grid / 2
-            opacity = min(255, round(alpha_mean * 1.12))
-            for y in range(max(0, math.floor(center_y - radius)), min(output.height, math.ceil(center_y + radius + 1))):
-                for x in range(max(0, math.floor(center_x - radius)), min(output.width, math.ceil(center_x + radius + 1))):
-                    if (x + 0.5 - center_x) ** 2 + (y + 0.5 - center_y) ** 2 <= radius ** 2:
-                        output.putpixel((x, y), (red, green, blue, opacity))
+            colour = "#39d353" if pixel == "L" else "#0d1117"
+            tile = (column // tile_cells, row // tile_cells)
+            tiles.setdefault(tile, []).append(
+                f'<rect x="{column * cell}" y="{row * cell}" width="{cell}" height="{cell}" fill="{colour}"/>'
+            )
 
-    return output
+    rng = random.Random(1407)
+    ordered_tiles = list(tiles.items())
+    # Assemble from the face outward so intermediate frames read as intentional,
+    # not as random missing chunks. Seeded jitter prevents a mechanical ring wipe.
+    ordered_tiles.sort(
+        key=lambda item: math.hypot(item[0][0] - 7.5, (item[0][1] - 5.0) * 0.86)
+        + rng.uniform(-0.85, 0.85)
+    )
+    final_begin = 1.34
+    geometry_definitions = []
+    blueprint_uses = []
+    tile_groups = []
+    for index, ((tile_x, tile_y), rects) in enumerate(ordered_tiles):
+        progress = index / max(1, len(ordered_tiles) - 1)
+        begin = 0.10 + progress * final_begin + rng.uniform(-0.025, 0.025)
+        offset_x = rng.choice((-1, 1)) * rng.randint(4, 11)
+        offset_y = rng.randint(11, 19)
+        apex_x = round(offset_x * 0.22, 1)
+        apex_y = -rng.randint(4, 8)
+        reveal_start = begin / 2
+        reveal_end = (begin + 0.16) / 2
+        geometry_id = f"portrait-geometry-{index}"
+        geometry_definitions.append(f'<g id="{geometry_id}">{''.join(rects)}</g>')
+        blueprint_uses.append(f'<use href="#{geometry_id}"/>')
+        tile_groups.append(
+            f'''<g class="portrait-tile" data-tile="{tile_x}-{tile_y}" opacity="1">
+      <use href="#{geometry_id}"/>
+      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;{reveal_start:.5f};{reveal_end:.5f};1" dur="2s" begin="0s" fill="freeze"/>
+      <animateTransform attributeName="transform" type="translate" values="{offset_x} {offset_y};{apex_x} {apex_y};0 0" keyTimes="0;.58;1" dur=".32s" begin="{begin:.3f}s" calcMode="spline" keySplines=".2 .8 .3 1;.2 .8 .2 1" fill="freeze"/>
+    </g>'''
+        )
 
-
-def portrait_reveal_svg(portrait: Image.Image) -> str:
-    buffer = BytesIO()
-    portrait.save(buffer, format="PNG", optimize=True)
-    payload = base64.b64encode(buffer.getvalue()).decode("ascii")
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 540" width="640" height="540" role="img" aria-labelledby="portrait-title portrait-desc">
-  <title id="portrait-title">Kavya Jain pixel portrait</title>
-  <desc id="portrait-desc">A wide transparent dot-pixel portrait revealed smoothly from hair to shoulders.</desc>
-  <defs>
-    <clipPath id="reveal">
-      <rect x="0" y="0" width="640" height="0">
-        <animate attributeName="height" dur="9.6s" repeatCount="indefinite" calcMode="spline" values="0;0;540;540;0;0" keyTimes="0;0.02;0.365;0.965;0.966;1" keySplines="0.16 1 0.3 1;0.16 1 0.3 1;0 0 1 1;0 0 1 1;0 0 1 1"/>
-      </rect>
-    </clipPath>
-  </defs>
-  <image x="0" y="0" width="640" height="640" clip-path="url(#reveal)" href="data:image/png;base64,{payload}"/>
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 540" width="640" height="540" role="img" aria-labelledby="portrait-title portrait-desc" shape-rendering="crispEdges">
+  <title id="portrait-title">Kavya Jain two-tone pixel portrait</title>
+  <desc id="portrait-desc">A transparent black and terminal-green portrait assembles once as pixel blocks hop into place.</desc>
+  <style>@media (prefers-reduced-motion:reduce){{.portrait-tile{{opacity:1!important;transform:none!important}}.portrait-tile animate,.portrait-tile animateTransform{{display:none}}}}</style>
+  <defs>{''.join(geometry_definitions)}</defs>
+  <g id="portrait-blueprint" opacity=".11">{''.join(blueprint_uses)}</g>
+  {''.join(tile_groups)}
 </svg>'''
 
 
@@ -271,14 +246,12 @@ def main() -> None:
         raise SystemExit(f"Missing live signal snapshot: {SIGNALS}")
     signals = json.loads(SIGNALS.read_text(encoding="utf-8"))
     if "--signals-only" not in sys.argv:
-        if not SOURCE.exists():
-            raise SystemExit(f"Missing portrait source: {SOURCE}")
-        source = clean_cutout(Image.open(SOURCE))
-        cutout = place_bust(source)
-        pixel = dot_pixel_portrait(cutout)
-        cutout.save(CUTOUT, optimize=True)
-        pixel.save(PIXEL, optimize=True)
-        REVEAL.write_text(portrait_reveal_svg(pixel), encoding="utf-8")
+        if not DUOTONE_MAP.exists():
+            raise SystemExit(f"Missing locked duotone portrait map: {DUOTONE_MAP}")
+        portrait_map = DUOTONE_MAP.read_text(encoding="utf-8").splitlines()
+        if len(portrait_map) != 68 or any(len(row) != 80 or set(row) - {".", "B", "L"} for row in portrait_map):
+            raise SystemExit("Portrait map must contain exactly 68 rows × 80 columns of ., B and L.")
+        REVEAL.write_text(portrait_reveal_svg(portrait_map), encoding="utf-8")
     render_toolbox(signals)
     for theme in ("light", "dark"):
         (ROOT / "assets" / f"skill-radar-{theme}.svg").write_text(radar_svg(theme, signals), encoding="utf-8")
