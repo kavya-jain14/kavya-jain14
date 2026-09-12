@@ -74,6 +74,7 @@ def portrait_reveal_svg(source_path: Path) -> str:
         + rng.uniform(-0.72, 0.72)
     )
     final_begin = 1.45
+    clip_definitions = []
     tile_groups = []
     for index, (column, row, x, y, tile_width, tile_height) in enumerate(tiles):
         progress = index / max(1, len(tiles) - 1)
@@ -84,11 +85,15 @@ def portrait_reveal_svg(source_path: Path) -> str:
         apex_y = -rng.randint(14, 28)
         reveal_start = begin / 2.1
         reveal_end = (begin + 0.17) / 2.1
+        clip_id = f"portrait-clip-{index}"
+        clip_definitions.append(
+            f'<clipPath id="{clip_id}" clipPathUnits="userSpaceOnUse">'
+            f'<rect x="{x}" y="{y}" width="{tile_width}" height="{tile_height}"/>'
+            '</clipPath>'
+        )
         tile_groups.append(
             f'''<g class="portrait-tile" data-tile="{column}-{row}" opacity="1">
-      <svg x="{x}" y="{y}" width="{tile_width}" height="{tile_height}" viewBox="{x} {y} {tile_width} {tile_height}" preserveAspectRatio="none" overflow="hidden">
-        <use href="#portrait-source"/>
-      </svg>
+      <use href="#portrait-source" clip-path="url(#{clip_id})"/>
       <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;{reveal_start:.5f};{reveal_end:.5f};1" dur="2.1s" begin="0s" fill="freeze"/>
       <animateTransform attributeName="transform" type="translate" values="{offset_x} {offset_y};{apex_x} {apex_y};0 0" keyTimes="0;.58;1" dur=".32s" begin="{begin:.3f}s" calcMode="spline" keySplines=".2 .8 .3 1;.2 .8 .2 1" fill="freeze"/>
     </g>'''
@@ -99,7 +104,7 @@ def portrait_reveal_svg(source_path: Path) -> str:
   <title id="portrait-title">Kavya Jain terminal-green line portrait</title>
   <desc id="portrait-desc">The exact transparent black and terminal-green portrait assembles once as fine image blocks hop into place.</desc>
   <style>image{{image-rendering:pixelated}}@media (prefers-reduced-motion:reduce){{.portrait-tile{{opacity:1!important;transform:none!important}}.portrait-tile animate,.portrait-tile animateTransform{{display:none}}}}</style>
-  <defs><image id="portrait-source" width="{width}" height="{height}" href="{data_uri}"/></defs>
+  <defs><image id="portrait-source" width="{width}" height="{height}" href="{data_uri}"/>{''.join(clip_definitions)}</defs>
   <use id="portrait-blueprint" href="#portrait-source" opacity=".11"/>
   {''.join(tile_groups)}
 </svg>'''

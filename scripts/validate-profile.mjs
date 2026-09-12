@@ -36,9 +36,10 @@ assert(portraitSource.readUInt32BE(16) === 1843 && portraitSource.readUInt32BE(2
 assert([4, 6].includes(portraitSource.readUInt8(25)), "Portrait source must retain real alpha transparency.");
 assert(portrait.includes("terminal-green line portrait") && portrait.includes("data:image/png;base64,"), "Hero must embed the exact detailed black/green source.");
 assert((portrait.match(/class="portrait-tile"/g) || []).length >= 500, "Hero must assemble from enough fine blocks to preserve source detail.");
+assert((portrait.match(/clipPath id="portrait-clip-/g) || []).length === (portrait.match(/class="portrait-tile"/g) || []).length, "Every portrait tile needs one fixed source-space crop.");
 assert(portrait.includes('id="portrait-blueprint"'), "Hero needs a subtle intact silhouette beneath the assembling blocks.");
 assert(!portrait.includes("repeatCount"), "Hero block-hop reveal must run once, not loop.");
-assert(!/halftone|dot-pixel|clipPath/.test(portrait), "Legacy halftone and scan reveal must not return.");
+assert(!/halftone|dot-pixel|scanline/.test(portrait), "Legacy halftone and scan reveal must not return.");
 assert(activity.projects.length === config.projects.length, "Activity must cover all selected projects.");
 for (const project of activity.projects) {
   assert(Number.isInteger(project.commitsLast7Days) && project.commitsLast7Days >= 0, "Activity counts must be real nonnegative integers.");
