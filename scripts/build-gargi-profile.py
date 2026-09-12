@@ -60,23 +60,28 @@ def portrait_reveal_svg(source: list[str]) -> str:
 
     rng = random.Random(1407)
     ordered_tiles = list(tiles.items())
-    rng.shuffle(ordered_tiles)
-    final_begin = 1.52
+    # Assemble from the face outward so intermediate frames read as intentional,
+    # not as random missing chunks. Seeded jitter prevents a mechanical ring wipe.
+    ordered_tiles.sort(
+        key=lambda item: math.hypot(item[0][0] - 7.5, (item[0][1] - 5.0) * 0.86)
+        + rng.uniform(-0.85, 0.85)
+    )
+    final_begin = 1.34
     tile_groups = []
     for index, ((tile_x, tile_y), rects) in enumerate(ordered_tiles):
         progress = index / max(1, len(ordered_tiles) - 1)
         begin = 0.10 + progress * final_begin + rng.uniform(-0.025, 0.025)
-        offset_x = rng.choice((-1, 1)) * rng.randint(8, 22)
-        offset_y = rng.randint(20, 34)
+        offset_x = rng.choice((-1, 1)) * rng.randint(4, 11)
+        offset_y = rng.randint(11, 19)
         apex_x = round(offset_x * 0.22, 1)
-        apex_y = -rng.randint(6, 13)
+        apex_y = -rng.randint(4, 8)
         reveal_start = begin / 2
         reveal_end = (begin + 0.16) / 2
         tile_groups.append(
             f'''<g class="portrait-tile" data-tile="{tile_x}-{tile_y}" opacity="1">
       {''.join(rects)}
       <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;{reveal_start:.5f};{reveal_end:.5f};1" dur="2s" begin="0s" fill="freeze"/>
-      <animateTransform attributeName="transform" type="translate" values="{offset_x} {offset_y};{apex_x} {apex_y};0 0" keyTimes="0;.58;1" dur=".34s" begin="{begin:.3f}s" calcMode="spline" keySplines=".2 .8 .3 1;.2 .8 .2 1" fill="freeze"/>
+      <animateTransform attributeName="transform" type="translate" values="{offset_x} {offset_y};{apex_x} {apex_y};0 0" keyTimes="0;.58;1" dur=".32s" begin="{begin:.3f}s" calcMode="spline" keySplines=".2 .8 .3 1;.2 .8 .2 1" fill="freeze"/>
     </g>'''
         )
 
