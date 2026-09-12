@@ -1,7 +1,7 @@
 <div align="center">
 
 <!-- GENERATED:STATUS:START -->
-<p align="center"><a href="https://github.com/kavya-jain14/TRISHUL/commit/55b09c321af0f7ee163b134f4b44f695cf7211ec" title="Latest default-branch activity across 6 selected repositories; all authors. 0 commits in the last 7 days through 2026-09-11T08:08:06.901Z."><code>$ open to software engineering internships · latest work: TRISHUL</code></a></p>
+<p align="center"><a href="https://github.com/kavya-jain14/TRISHUL/commit/55b09c321af0f7ee163b134f4b44f695cf7211ec" title="Latest default-branch activity across 6 selected repositories; all authors. 0 commits in the last 7 days through 2026-09-12T07:58:43.699Z."><code>$ open to software engineering internships · latest work: TRISHUL</code></a></p>
 <!-- GENERATED:STATUS:END -->
 
 <picture>
@@ -226,11 +226,11 @@
 
 <!-- GENERATED:TOOLBOX:START -->
 <p align="center">
-  <img src="./assets/toolbox/typescript.svg" width="72" height="72" alt="TypeScript" title="TypeScript · 65.6% · 1.6 MB">
-  <img src="./assets/toolbox/javascript.svg" width="72" height="72" alt="JavaScript" title="JavaScript · 19.3% · 496.5 KB">
+  <img src="./assets/toolbox/typescript.svg" width="72" height="72" alt="TypeScript" title="TypeScript · 65.7% · 1.6 MB">
+  <img src="./assets/toolbox/javascript.svg" width="72" height="72" alt="JavaScript" title="JavaScript · 19.2% · 493.9 KB">
   <img src="./assets/toolbox/css.svg" width="72" height="72" alt="CSS" title="CSS · 11.0% · 283.6 KB">
   <img src="./assets/toolbox/html5.svg" width="72" height="72" alt="HTML" title="HTML · 1.7% · 44.2 KB">
-  <img src="./assets/toolbox/python.svg" width="72" height="72" alt="Python" title="Python · 1.1% · 29.1 KB">
+  <img src="./assets/toolbox/python.svg" width="72" height="72" alt="Python" title="Python · 1.2% · 29.6 KB">
   <img src="./assets/toolbox/postgresql.svg" width="72" height="72" alt="PLpgSQL" title="PLpgSQL · 0.7% · 18.0 KB">
   <img src="./assets/toolbox/openjdk.svg" width="72" height="72" alt="Java" title="Java · 0.4% · 11.2 KB">
   <img src="./assets/toolbox/docker.svg" width="72" height="72" alt="Dockerfile" title="Dockerfile · &lt;0.1% · 897 B">
