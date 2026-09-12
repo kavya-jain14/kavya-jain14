@@ -117,7 +117,7 @@
         <path d="M-8 -3h5v3h-5zM3 -3h5v3H3z" stroke="#18783A" stroke-width=".5"/>
       </g>
   </g>
-  <g id="arc-footprint-trail" shape-rendering="crispEdges" fill="#FFFFFF">
+  <g id="arc-footprint-trail" shape-rendering="crispEdges" fill="#1F883D">
     <g class="arc-footprint" data-pillar="5" data-step="1" opacity="0" transform="translate(123.0 219.6)">
         <animate attributeName="opacity" values="0;0;0.76;0.54;0.22;0;0;0" keyTimes="0.0000000;0.0142857;0.0143506;0.0415584;0.0889610;0.1259740;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
         <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
@@ -263,7 +263,7 @@
         <path d="M-4 0h3v3h-3zM1 -3h3v3H1z"/>
       </g>
   </g>
-  <g id="landing-dust" shape-rendering="crispEdges" fill="#FFFFFF">
+  <g id="landing-dust" shape-rendering="crispEdges" fill="#2DA44E">
     <g class="dust-puff" data-pillar="5" data-impact="0.394" opacity="0" transform="translate(408 226)">
         <animate attributeName="opacity" values="0;0;0.86;0.54;0;0;0" keyTimes="0.0000000;0.0532468;0.0533117;0.0649351;0.0870130;0.9987013;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/>
         <rect x="-3" y="-2" width="2.8" height="2.8"><animate attributeName="x" values="-3;-3;-3;-10.9;-10.9" keyTimes="0.0000000;0.0532468;0.0533117;0.0870130;1.0000000" dur="15.4s" calcMode="linear" repeatCount="indefinite"/></rect>

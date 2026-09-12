@@ -175,7 +175,7 @@ function footprints(theme, timeline) {
 }
 
 function arcFootprints(theme, timeline) {
-  return `<g id="arc-footprint-trail" shape-rendering="crispEdges" fill="${theme.rabbit}">
+  return `<g id="arc-footprint-trail" shape-rendering="crispEdges" fill="${theme.trail}">
     ${timeline.trails.map((trail) => {
       const times = [0, trail.time, trail.time + 0.001, trail.time + 0.42, trail.time + 1.15, trail.time + 1.72, duration - 0.02, duration];
       const values = [0, 0, 0.76, 0.54, 0.22, 0, 0, 0];
@@ -188,7 +188,7 @@ function arcFootprints(theme, timeline) {
 }
 
 function dustPuffs(theme, timeline) {
-  return `<g id="landing-dust" shape-rendering="crispEdges" fill="${theme.rabbit}">
+  return `<g id="landing-dust" shape-rendering="crispEdges" fill="${theme.dust}">
     ${timeline.landings.map((landing) => {
       const spread = (7 + landing.impact * 10).toFixed(1);
       const particle = (2 + landing.impact * 2).toFixed(1);
@@ -248,11 +248,13 @@ const themes = {
     background: "#FFFFFF", border: "#D0D7DE", ink: "#1F2328", muted: "#59636E",
     ground: "#8C959F", front: ["#DDF4E4", "#ACEEBF", "#74D991", "#2DA44E"],
     top: "#7EE2A1", side: "#18783A", rabbit: "#FFFFFF", outline: "#111820", eye: "#1F883D",
+    trail: "#1F883D", dust: "#2DA44E",
   },
   dark: {
     background: "#0D1117", border: "#30363D", ink: "#F0F6FC", muted: "#8B949E",
     ground: "#484F58", front: ["#163C25", "#1F6F3D", "#2EA043", "#39D353"],
     top: "#56D77A", side: "#0E4429", rabbit: "#F0F6FC", outline: "#010409", eye: "#39D353",
+    trail: "#39D353", dust: "#56D77A",
   },
 };
 
