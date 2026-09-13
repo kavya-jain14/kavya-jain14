@@ -1,8 +1,8 @@
 """Build the portrait and repo-driven profile visuals.
 
-The portrait pipeline traces a supplied two-tone raster into native SVG blocks
-and gives each occupied block one non-looping hop into place. Toolbox and radar
-data come from profile-signals.json.
+The portrait pipeline keeps the supplied transparent raster intact, exposes it
+through fine SVG tiles, and gives each tile one non-looping hop into place.
+Toolbox and radar data come from profile-signals.json.
 """
 
 from __future__ import annotations
@@ -11,12 +11,13 @@ import json
 import math
 import random
 import re
+import struct
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 HERO_DIR = ROOT / "assets" / "hero"
-DUOTONE_MAP = ROOT / "data" / "portrait-duotone.map"
+PORTRAIT_SOURCE = HERO_DIR / "portrait-source-v3.png"
 REVEAL = HERO_DIR / "portrait-reveal.svg"
 SIGNALS = ROOT / "data" / "profile-signals.json"
 README = ROOT / "README.md"
@@ -38,65 +39,131 @@ ICON_ALIASES = {
 }
 
 
-def portrait_reveal_svg(source: list[str]) -> str:
-    """Quantise to two colours and animate coarse SVG tiles, not scan lines."""
+def portrait_reveal_svg(source_path: Path) -> str:
+    """Compile the source to paths and animate tiles without external images."""
 
-    columns = 80
-    rows = 68
-    cell = 8
-    tile_cells = 5
-    tiles: dict[tuple[int, int], list[str]] = {}
+    source = source_path.read_bytes()
+    if source[:8] != b"\x89PNG\r\n\x1a\n":
+        raise SystemExit("Portrait source must be a PNG.")
+    width, height = struct.unpack(">II", source[16:24])
+    if source[25] not in (4, 6):
+        raise SystemExit("Portrait source must contain a real alpha channel.")
 
+    try:
+        from PIL import Image
+    except ImportError as error:
+        raise SystemExit("Pillow is required when rebuilding the portrait asset.") from error
+
+    target_width = 614
+    target_height = round(height * target_width / width)
+    with Image.open(source_path) as portrait:
+        pixels = portrait.convert("RGBA").resize((target_width, target_height), Image.Resampling.NEAREST)
+
+    active_rectangles: dict[tuple[tuple[str, int], int, int], list] = {}
+    rectangles: list[tuple[int, int, int, int, tuple[str, int]]] = []
+    for y in range(target_height):
+        runs = []
+        run_start = 0
+        previous = None
+        for x in range(target_width + 1):
+            if x == target_width:
+                key = None
+            else:
+                _, green, _, alpha = pixels.getpixel((x, y))
+                if alpha < 16:
+                    key = None
+                else:
+                    tone = "green" if green > 120 else "black"
+                    key = (tone, max(16, min(255, round(alpha / 16) * 16)))
+            if key != previous:
+                if previous is not None:
+                    runs.append((previous, run_start, x - run_start))
+                run_start = x
+                previous = key
+
+        current_runs = set()
+        for key, x, run_width in runs:
+            identity = (key, x, run_width)
+            current_runs.add(identity)
+            if identity in active_rectangles:
+                active_rectangles[identity][3] += 1
+            else:
+                active_rectangles[identity] = [x, y, run_width, 1, key]
+        for identity in list(active_rectangles):
+            if identity not in current_runs:
+                rectangles.append(tuple(active_rectangles.pop(identity)))
+    rectangles.extend(tuple(rectangle) for rectangle in active_rectangles.values())
+
+    paths: dict[tuple[str, int], list[str]] = {}
+    for x, y, run_width, run_height, key in rectangles:
+        paths.setdefault(key, []).append(f"M{x} {y}h{run_width}v{run_height}h-{run_width}z")
+    source_paths = []
+    for (tone, alpha), commands in sorted(paths.items()):
+        fill = "#2deb56" if tone == "green" else "#000000"
+        opacity = alpha / 255
+        source_paths.append(f'<path d="{"".join(commands)}" fill="{fill}" opacity="{opacity:.4f}"/>')
+
+    width = target_width
+    height = target_height
+    columns = 18
+    tile_size = math.ceil(width / columns)
+    rows = math.ceil(height / tile_size)
+    tiles = []
     for row in range(rows):
         for column in range(columns):
-            pixel = source[row][column]
-            if pixel == ".":
-                continue
-            colour = "#39d353" if pixel == "L" else "#0d1117"
-            tile = (column // tile_cells, row // tile_cells)
-            tiles.setdefault(tile, []).append(
-                f'<rect x="{column * cell}" y="{row * cell}" width="{cell}" height="{cell}" fill="{colour}"/>'
-            )
+            x = column * tile_size
+            y = row * tile_size
+            tile_width = min(tile_size, width - x)
+            tile_height = min(tile_size, height - y)
+            tiles.append((column, row, x, y, tile_width, tile_height))
 
     rng = random.Random(1407)
-    ordered_tiles = list(tiles.items())
-    # Assemble from the face outward so intermediate frames read as intentional,
-    # not as random missing chunks. Seeded jitter prevents a mechanical ring wipe.
-    ordered_tiles.sort(
-        key=lambda item: math.hypot(item[0][0] - 7.5, (item[0][1] - 5.0) * 0.86)
-        + rng.uniform(-0.85, 0.85)
+    # Assemble from the face outward so the intermediate state remains a portrait,
+    # while seeded jitter keeps the motion from reading as a mechanical ring wipe.
+    tiles.sort(
+        key=lambda tile: math.hypot(
+            (tile[2] + tile[4] / 2 - width * 0.50) / tile_size,
+            ((tile[3] + tile[5] / 2 - height * 0.34) / tile_size) * 0.86,
+        )
+        + rng.uniform(-0.72, 0.72)
     )
-    final_begin = 1.34
-    geometry_definitions = []
-    blueprint_uses = []
+    final_begin = 1.45
+    clip_definitions = []
     tile_groups = []
-    for index, ((tile_x, tile_y), rects) in enumerate(ordered_tiles):
-        progress = index / max(1, len(ordered_tiles) - 1)
+    for index, (column, row, x, y, tile_width, tile_height) in enumerate(tiles):
+        progress = index / max(1, len(tiles) - 1)
         begin = 0.10 + progress * final_begin + rng.uniform(-0.025, 0.025)
-        offset_x = rng.choice((-1, 1)) * rng.randint(4, 11)
-        offset_y = rng.randint(11, 19)
+        offset_x = rng.choice((-1, 1)) * rng.randint(14, 42)
+        offset_y = rng.randint(32, 60)
         apex_x = round(offset_x * 0.22, 1)
-        apex_y = -rng.randint(4, 8)
-        reveal_start = begin / 2
-        reveal_end = (begin + 0.16) / 2
-        geometry_id = f"portrait-geometry-{index}"
-        geometry_definitions.append(f'<g id="{geometry_id}">{''.join(rects)}</g>')
-        blueprint_uses.append(f'<use href="#{geometry_id}"/>')
+        apex_y = -rng.randint(14, 28)
+        reveal_start = begin / 2.1
+        reveal_end = (begin + 0.17) / 2.1
+        clip_id = f"portrait-clip-{index}"
+        clip_definitions.append(
+            f'<clipPath id="{clip_id}" clipPathUnits="userSpaceOnUse">'
+            f'<rect x="{x}" y="{y}" width="{tile_width}" height="{tile_height}"/>'
+            '</clipPath>'
+        )
         tile_groups.append(
-            f'''<g class="portrait-tile" data-tile="{tile_x}-{tile_y}" opacity="1">
-      <use href="#{geometry_id}"/>
-      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;{reveal_start:.5f};{reveal_end:.5f};1" dur="2s" begin="0s" fill="freeze"/>
+            f'''<g class="portrait-tile" data-tile="{column}-{row}" opacity="1">
+      <use href="#portrait-source" clip-path="url(#{clip_id})"/>
+      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;{reveal_start:.5f};{reveal_end:.5f};1" dur="2.1s" begin="0s" fill="freeze"/>
       <animateTransform attributeName="transform" type="translate" values="{offset_x} {offset_y};{apex_x} {apex_y};0 0" keyTimes="0;.58;1" dur=".32s" begin="{begin:.3f}s" calcMode="spline" keySplines=".2 .8 .3 1;.2 .8 .2 1" fill="freeze"/>
     </g>'''
         )
 
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 540" width="640" height="540" role="img" aria-labelledby="portrait-title portrait-desc" shape-rendering="crispEdges">
-  <title id="portrait-title">Kavya Jain two-tone pixel portrait</title>
-  <desc id="portrait-desc">A transparent black and terminal-green portrait assembles once as pixel blocks hop into place.</desc>
+    rendered_height = round(640 * height / width)
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" width="640" height="{rendered_height}" role="img" aria-labelledby="portrait-title portrait-desc" shape-rendering="crispEdges">
+  <title id="portrait-title">Kavya Jain terminal-green line portrait</title>
+  <desc id="portrait-desc">The supplied transparent black and terminal-green line portrait assembles once as fine image blocks hop into place.</desc>
   <style>@media (prefers-reduced-motion:reduce){{.portrait-tile{{opacity:1!important;transform:none!important}}.portrait-tile animate,.portrait-tile animateTransform{{display:none}}}}</style>
-  <defs>{''.join(geometry_definitions)}</defs>
-  <g id="portrait-blueprint" opacity=".11">{''.join(blueprint_uses)}</g>
+  <defs><g id="portrait-source">{''.join(source_paths)}</g>{''.join(clip_definitions)}</defs>
+  <use id="portrait-blueprint" href="#portrait-source" opacity=".11"/>
   {''.join(tile_groups)}
+  <use id="portrait-final" href="#portrait-source" opacity="1">
+    <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.84;.94;1" dur="2.1s" begin="0s" fill="freeze"/>
+  </use>
 </svg>'''
 
 
@@ -246,12 +313,9 @@ def main() -> None:
         raise SystemExit(f"Missing live signal snapshot: {SIGNALS}")
     signals = json.loads(SIGNALS.read_text(encoding="utf-8"))
     if "--signals-only" not in sys.argv:
-        if not DUOTONE_MAP.exists():
-            raise SystemExit(f"Missing locked duotone portrait map: {DUOTONE_MAP}")
-        portrait_map = DUOTONE_MAP.read_text(encoding="utf-8").splitlines()
-        if len(portrait_map) != 68 or any(len(row) != 80 or set(row) - {".", "B", "L"} for row in portrait_map):
-            raise SystemExit("Portrait map must contain exactly 68 rows × 80 columns of ., B and L.")
-        REVEAL.write_text(portrait_reveal_svg(portrait_map), encoding="utf-8")
+        if not PORTRAIT_SOURCE.exists():
+            raise SystemExit(f"Missing locked portrait source: {PORTRAIT_SOURCE}")
+        REVEAL.write_text(portrait_reveal_svg(PORTRAIT_SOURCE), encoding="utf-8")
     render_toolbox(signals)
     for theme in ("light", "dark"):
         (ROOT / "assets" / f"skill-radar-{theme}.svg").write_text(radar_svg(theme, signals), encoding="utf-8")

@@ -30,13 +30,18 @@ assert((readme.match(/<tr>/g) || []).length === config.projects.length / 2, "Sel
 assert((readme.match(/assets\/projects\/[^"]+-light\.svg" width="420"/g) || []).length === config.projects.length, "Every project card must use the compact grid width.");
 assert(readme.includes('width="520"'), "Hero portrait must retain its wider 520px presentation.");
 const portrait = read("assets/hero/portrait-reveal.svg");
-const portraitMap = read("data/portrait-duotone.map").trimEnd().split("\n");
-assert(portraitMap.length === 68 && portraitMap.every((row) => row.length === 80 && /^[.BL]+$/.test(row)), "Portrait source map must remain a valid 80×68 two-tone grid.");
-assert(portrait.includes("two-tone pixel portrait") && portrait.includes("#39d353") && portrait.includes("#0d1117"), "Hero must use the black/lime two-tone system.");
-assert((portrait.match(/class="portrait-tile"/g) || []).length >= 100, "Hero must assemble from a meaningful number of pixel blocks.");
+const portraitSource = readFileSync("assets/hero/portrait-source-v3.png");
+assert(portraitSource.subarray(1, 4).toString() === "PNG", "Portrait source must remain a PNG.");
+assert(portraitSource.readUInt32BE(16) === 1843 && portraitSource.readUInt32BE(20) === 1989, "Portrait source dimensions must remain intact.");
+assert([4, 6].includes(portraitSource.readUInt8(25)), "Portrait source must retain real alpha transparency.");
+assert(portrait.includes("terminal-green line portrait") && portrait.includes('id="portrait-source"') && portrait.includes("#2deb56"), "Hero must compile the detailed black/green source into self-contained paths.");
+assert(!portrait.includes("<image") && !portrait.includes("data:image"), "GitHub-blocked embedded raster images must not return.");
+assert((portrait.match(/class="portrait-tile"/g) || []).length >= 300, "Hero must assemble from enough fine blocks to preserve source detail.");
+assert((portrait.match(/clipPath id="portrait-clip-/g) || []).length === (portrait.match(/class="portrait-tile"/g) || []).length, "Every portrait tile needs one fixed source-space crop.");
 assert(portrait.includes('id="portrait-blueprint"'), "Hero needs a subtle intact silhouette beneath the assembling blocks.");
+assert(portrait.includes('id="portrait-final"') && portrait.includes('keyTimes="0;.84;.94;1"'), "Hero needs a seamless final portrait handoff after tile assembly.");
 assert(!portrait.includes("repeatCount"), "Hero block-hop reveal must run once, not loop.");
-assert(!/halftone|dot-pixel|clipPath/.test(portrait), "Legacy halftone and scan reveal must not return.");
+assert(!/halftone|dot-pixel|scanline/.test(portrait), "Legacy halftone and scan reveal must not return.");
 assert(activity.projects.length === config.projects.length, "Activity must cover all selected projects.");
 for (const project of activity.projects) {
   assert(Number.isInteger(project.commitsLast7Days) && project.commitsLast7Days >= 0, "Activity counts must be real nonnegative integers.");
