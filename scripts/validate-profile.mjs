@@ -30,11 +30,12 @@ assert((readme.match(/<tr>/g) || []).length === config.projects.length / 2, "Sel
 assert((readme.match(/assets\/projects\/[^"]+-light\.svg" width="420"/g) || []).length === config.projects.length, "Every project card must use the compact grid width.");
 assert(readme.includes('width="520"'), "Hero portrait must retain its wider 520px presentation.");
 const portrait = read("assets/hero/portrait-reveal.svg");
-const portraitSource = readFileSync("assets/hero/portrait-source-v3.png");
+const portraitSource = readFileSync("assets/hero/kavya-portrait-color-final.png");
 assert(portraitSource.subarray(1, 4).toString() === "PNG", "Portrait source must remain a PNG.");
-assert(portraitSource.readUInt32BE(16) === 1843 && portraitSource.readUInt32BE(20) === 1989, "Portrait source dimensions must remain intact.");
+assert(portraitSource.readUInt32BE(16) === 1024 && portraitSource.readUInt32BE(20) === 1198, "Portrait source dimensions must remain intact.");
 assert([4, 6].includes(portraitSource.readUInt8(25)), "Portrait source must retain real alpha transparency.");
-assert(portrait.includes("terminal-green line portrait") && portrait.includes('id="portrait-source"') && portrait.includes("#2deb56"), "Hero must compile the detailed black/green source into self-contained paths.");
+const portraitColours = new Set([...portrait.matchAll(/fill="(#[0-9a-f]{6})"/g)].map((match) => match[1]));
+assert(portrait.includes("colour pixel portrait") && portrait.includes('id="portrait-source"') && portraitColours.size >= 96, "Hero must compile the supplied full-colour source into self-contained paths.");
 assert(!portrait.includes("<image") && !portrait.includes("data:image"), "GitHub-blocked embedded raster images must not return.");
 assert((portrait.match(/class="portrait-tile"/g) || []).length >= 300, "Hero must assemble from enough fine blocks to preserve source detail.");
 assert((portrait.match(/clipPath id="portrait-clip-/g) || []).length === (portrait.match(/class="portrait-tile"/g) || []).length, "Every portrait tile needs one fixed source-space crop.");
