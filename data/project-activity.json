@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-13T08:23:36.390Z",
+  "generatedAt": "2026-09-14T09:02:03.736Z",
   "username": "kavya-jain14",
   "scope": "default branches of selected public repositories; all authors; rolling 7 days",
   "projects": [
@@ -62,27 +62,27 @@
     {
       "id": "mira",
       "repo": "kavya-jain14/MIRA",
-      "commitsLast7Days": 0,
+      "commitsLast7Days": 2,
       "recent": [
+        {
+          "sha": "64019caacbdde849e140a88211948aa05991bfbe",
+          "date": "2026-09-14T06:05:10Z",
+          "title": "Fix Render disk Blueprint validation (#20)",
+          "url": "https://github.com/kavya-jain14/MIRA/commit/64019caacbdde849e140a88211948aa05991bfbe",
+          "author": "kavya-jain14"
+        },
+        {
+          "sha": "11ef028fd6bff21384a6f6069df3aef4f1cc2dec",
+          "date": "2026-09-14T05:58:31Z",
+          "title": "Deploy MIRA on Render and Vercel (#19)",
+          "url": "https://github.com/kavya-jain14/MIRA/commit/11ef028fd6bff21384a6f6069df3aef4f1cc2dec",
+          "author": "kavya-jain14"
+        },
         {
           "sha": "8926a34b2677da0fd1e872800fc2985c3fb98699",
           "date": "2026-08-10T10:08:50Z",
           "title": "Prefer meaningful editorial reasons in the decision ledger (#18)",
           "url": "https://github.com/kavya-jain14/MIRA/commit/8926a34b2677da0fd1e872800fc2985c3fb98699",
-          "author": "kavya-jain14"
-        },
-        {
-          "sha": "5bea458f09d27c274d811aa6a024e1f98e89e397",
-          "date": "2026-08-10T10:02:17Z",
-          "title": "Repair autonomous backlog publishing and decision ledger (#17)",
-          "url": "https://github.com/kavya-jain14/MIRA/commit/5bea458f09d27c274d811aa6a024e1f98e89e397",
-          "author": "kavya-jain14"
-        },
-        {
-          "sha": "cca25c2d08e02896f72f3d4fa0630e620753f2d0",
-          "date": "2026-08-09T19:29:27Z",
-          "title": "Add the MIRA browser favicon (#16)",
-          "url": "https://github.com/kavya-jain14/MIRA/commit/cca25c2d08e02896f72f3d4fa0630e620753f2d0",
           "author": "kavya-jain14"
         }
       ]
