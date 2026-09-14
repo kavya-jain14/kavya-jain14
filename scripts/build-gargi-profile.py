@@ -17,7 +17,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 HERO_DIR = ROOT / "assets" / "hero"
-PORTRAIT_SOURCE = HERO_DIR / "portrait-source-v3.png"
+PORTRAIT_SOURCE = HERO_DIR / "kavya-portrait-color-final.png"
 REVEAL = HERO_DIR / "portrait-reveal.svg"
 SIGNALS = ROOT / "data" / "profile-signals.json"
 README = ROOT / "README.md"
@@ -50,14 +50,30 @@ def portrait_reveal_svg(source_path: Path) -> str:
         raise SystemExit("Portrait source must contain a real alpha channel.")
 
     try:
-        from PIL import Image
+        from PIL import Image, ImageOps
     except ImportError as error:
         raise SystemExit("Pillow is required when rebuilding the portrait asset.") from error
 
+    # Keep the existing hero canvas fixed so the tile grid and choreography do
+    # not change when the portrait source changes.
     target_width = 614
-    target_height = round(height * target_width / width)
+    target_height = 663
     with Image.open(source_path) as portrait:
-        pixels = portrait.convert("RGBA").resize((target_width, target_height), Image.Resampling.NEAREST)
+        pixels = ImageOps.fit(
+            portrait.convert("RGBA"),
+            (target_width, target_height),
+            method=Image.Resampling.NEAREST,
+            centering=(0.5, 0.0),
+        )
+
+    # Compile the full-colour pixel portrait into GitHub-safe SVG paths rather
+    # than embedding raster data, which GitHub's SVG sanitizer can block.
+    palette_image = pixels.convert("RGB").quantize(
+        colors=128,
+        method=Image.Quantize.MEDIANCUT,
+        dither=Image.Dither.NONE,
+    )
+    palette = palette_image.getpalette()
 
     active_rectangles: dict[tuple[tuple[str, int], int, int], list] = {}
     rectangles: list[tuple[int, int, int, int, tuple[str, int]]] = []
@@ -69,12 +85,12 @@ def portrait_reveal_svg(source_path: Path) -> str:
             if x == target_width:
                 key = None
             else:
-                _, green, _, alpha = pixels.getpixel((x, y))
+                alpha = pixels.getpixel((x, y))[3]
                 if alpha < 16:
                     key = None
                 else:
-                    tone = "green" if green > 120 else "black"
-                    key = (tone, max(16, min(255, round(alpha / 16) * 16)))
+                    colour = palette_image.getpixel((x, y))
+                    key = (colour, max(16, min(255, round(alpha / 16) * 16)))
             if key != previous:
                 if previous is not None:
                     runs.append((previous, run_start, x - run_start))
@@ -94,12 +110,13 @@ def portrait_reveal_svg(source_path: Path) -> str:
                 rectangles.append(tuple(active_rectangles.pop(identity)))
     rectangles.extend(tuple(rectangle) for rectangle in active_rectangles.values())
 
-    paths: dict[tuple[str, int], list[str]] = {}
+    paths: dict[tuple[int, int], list[str]] = {}
     for x, y, run_width, run_height, key in rectangles:
         paths.setdefault(key, []).append(f"M{x} {y}h{run_width}v{run_height}h-{run_width}z")
     source_paths = []
-    for (tone, alpha), commands in sorted(paths.items()):
-        fill = "#2deb56" if tone == "green" else "#000000"
+    for (colour, alpha), commands in sorted(paths.items()):
+        offset = colour * 3
+        fill = f"#{palette[offset]:02x}{palette[offset + 1]:02x}{palette[offset + 2]:02x}"
         opacity = alpha / 255
         source_paths.append(f'<path d="{"".join(commands)}" fill="{fill}" opacity="{opacity:.4f}"/>')
 
@@ -155,8 +172,8 @@ def portrait_reveal_svg(source_path: Path) -> str:
 
     rendered_height = round(640 * height / width)
     return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" width="640" height="{rendered_height}" role="img" aria-labelledby="portrait-title portrait-desc" shape-rendering="crispEdges">
-  <title id="portrait-title">Kavya Jain terminal-green line portrait</title>
-  <desc id="portrait-desc">The supplied transparent black and terminal-green line portrait assembles once as fine image blocks hop into place.</desc>
+  <title id="portrait-title">Kavya Jain colour pixel portrait</title>
+  <desc id="portrait-desc">The supplied transparent full-colour pixel portrait assembles once as fine image blocks hop into place.</desc>
   <style>@media (prefers-reduced-motion:reduce){{.portrait-tile{{opacity:1!important;transform:none!important}}.portrait-tile animate,.portrait-tile animateTransform{{display:none}}}}</style>
   <defs><g id="portrait-source">{''.join(source_paths)}</g>{''.join(clip_definitions)}</defs>
   <use id="portrait-blueprint" href="#portrait-source" opacity=".11"/>
