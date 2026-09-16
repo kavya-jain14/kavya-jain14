@@ -1,23 +1,26 @@
 """Build the portrait and repo-driven profile visuals.
 
-The portrait pipeline keeps the supplied transparent raster intact, compiles it
-to GitHub-safe SVG paths, and reveals it once through a lightweight layered mask.
+The portrait pipeline keeps the supplied RGB source byte-for-byte, applies only
+the approved transparency mask, and creates a lossless top-to-bottom reveal.
 Toolbox and radar data come from profile-signals.json.
 """
 
 from __future__ import annotations
 
+import hashlib
 import json
 import math
 import re
-import struct
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 HERO_DIR = ROOT / "assets" / "hero"
-PORTRAIT_SOURCE = HERO_DIR / "kavya-portrait-color-final.png"
-REVEAL = HERO_DIR / "portrait-reveal.svg"
+PORTRAIT_SOURCE = HERO_DIR / "kavya-portrait-exact.png"
+PORTRAIT_ALPHA = HERO_DIR / "portrait-alpha-mask.png"
+PORTRAIT_STATIC = HERO_DIR / "portrait-exact-static.png"
+REVEAL = HERO_DIR / "portrait-reveal.webp"
+PORTRAIT_SOURCE_SHA256 = "fd03bc35e0b89e2eec21b36e8d03ca3579ef1125efd4e7adf02e9363e356078c"
 SIGNALS = ROOT / "data" / "profile-signals.json"
 README = ROOT / "README.md"
 TOOLBOX_DIR = ROOT / "assets" / "toolbox"
@@ -38,122 +41,83 @@ ICON_ALIASES = {
 }
 
 
-def portrait_reveal_svg(source_path: Path) -> str:
-    """Compile the source to paths and reveal it without altering its pixels."""
+def build_portrait_assets(source_path: Path, alpha_path: Path) -> None:
+    """Create lossless portrait assets while preserving every supplied RGB value."""
 
-    source = source_path.read_bytes()
-    if source[:8] != b"\x89PNG\r\n\x1a\n":
-        raise SystemExit("Portrait source must be a PNG.")
-    width, height = struct.unpack(">II", source[16:24])
-    if source[25] not in (4, 6):
-        raise SystemExit("Portrait source must contain a real alpha channel.")
+    source_bytes = source_path.read_bytes()
+    if hashlib.sha256(source_bytes).hexdigest() != PORTRAIT_SOURCE_SHA256:
+        raise SystemExit("Locked portrait source changed; use the exact approved PNG.")
 
     try:
-        from PIL import Image, ImageOps
+        from PIL import Image, ImageChops, ImageDraw
     except ImportError as error:
         raise SystemExit("Pillow is required when rebuilding the portrait asset.") from error
 
-    # Keep the existing hero canvas fixed so the crop and README layout do not
-    # change when the reveal implementation changes.
-    target_width = 614
-    target_height = 663
-    with Image.open(source_path) as portrait:
-        pixels = ImageOps.fit(
-            portrait.convert("RGBA"),
-            (target_width, target_height),
-            method=Image.Resampling.NEAREST,
-            centering=(0.5, 0.0),
-        )
+    with Image.open(source_path) as source_image, Image.open(alpha_path) as alpha_image:
+        if source_image.mode != "RGB" or source_image.size != (1008, 1179):
+            raise SystemExit("Exact portrait source must remain 1008x1179 RGB.")
+        if alpha_image.size != source_image.size:
+            raise SystemExit("Portrait alpha mask must match the exact source dimensions.")
+        exact_rgb = source_image.copy()
+        alpha = alpha_image.convert("L")
 
-    # Compile the full-colour pixel portrait into GitHub-safe SVG paths rather
-    # than embedding raster data, which GitHub's SVG sanitizer can block.
-    palette_image = pixels.convert("RGB").quantize(
-        colors=128,
-        method=Image.Quantize.MEDIANCUT,
-        dither=Image.Dither.NONE,
-    )
-    palette = palette_image.getpalette()
+    portrait = exact_rgb.convert("RGBA")
+    portrait.putalpha(alpha)
+    portrait.save(PORTRAIT_STATIC, format="PNG", optimize=True)
 
-    active_rectangles: dict[tuple[tuple[str, int], int, int], list] = {}
-    rectangles: list[tuple[int, int, int, int, tuple[str, int]]] = []
-    for y in range(target_height):
-        runs = []
-        run_start = 0
-        previous = None
-        for x in range(target_width + 1):
-            if x == target_width:
-                key = None
-            else:
-                alpha = pixels.getpixel((x, y))[3]
-                if alpha < 16:
-                    key = None
-                else:
-                    colour = palette_image.getpixel((x, y))
-                    key = (colour, max(16, min(255, round(alpha / 16) * 16)))
-            if key != previous:
-                if previous is not None:
-                    runs.append((previous, run_start, x - run_start))
-                run_start = x
-                previous = key
+    edge_height = 96
+    layer_opacities = (240, 222, 201, 179, 156, 130, 105, 79, 56, 36, 18, 6)
+    layer_height = edge_height // len(layer_opacities)
+    frame_count = 30
+    frames = []
+    width, height = portrait.size
 
-        current_runs = set()
-        for key, x, run_width in runs:
-            identity = (key, x, run_width)
-            current_runs.add(identity)
-            if identity in active_rectangles:
-                active_rectangles[identity][3] += 1
-            else:
-                active_rectangles[identity] = [x, y, run_width, 1, key]
-        for identity in list(active_rectangles):
-            if identity not in current_runs:
-                rectangles.append(tuple(active_rectangles.pop(identity)))
-    rectangles.extend(tuple(rectangle) for rectangle in active_rectangles.values())
+    for frame_index in range(frame_count + 1):
+        progress = frame_index / frame_count
+        eased = progress * progress * (3 - 2 * progress)
+        reveal_front = round(eased * (height + edge_height))
+        solid_end = reveal_front - edge_height
+        reveal_alpha = Image.new("L", portrait.size, 0)
+        draw = ImageDraw.Draw(reveal_alpha)
+        if solid_end > 0:
+            draw.rectangle((0, 0, width, min(height, solid_end) - 1), fill=255)
+        for layer_index, opacity in enumerate(layer_opacities):
+            top = solid_end + layer_index * layer_height
+            bottom = top + layer_height
+            if bottom > 0 and top < height:
+                draw.rectangle((0, max(0, top), width, min(height, bottom) - 1), fill=opacity)
 
-    paths: dict[tuple[int, int], list[str]] = {}
-    for x, y, run_width, run_height, key in rectangles:
-        paths.setdefault(key, []).append(f"M{x} {y}h{run_width}v{run_height}h-{run_width}z")
-    source_paths = []
-    for (colour, alpha), commands in sorted(paths.items()):
-        offset = colour * 3
-        fill = f"#{palette[offset]:02x}{palette[offset + 1]:02x}{palette[offset + 2]:02x}"
-        opacity = alpha / 255
-        source_paths.append(f'<path d="{"".join(commands)}" fill="{fill}" opacity="{opacity:.4f}"/>')
+        frame = exact_rgb.convert("RGBA")
+        frame.putalpha(ImageChops.multiply(alpha, reveal_alpha))
+        frames.append(frame)
 
-    width = target_width
-    height = target_height
-
-    # The reveal edge is a short opacity staircase: twelve six-pixel rows make
-    # a soft gradient while retaining the portrait's pixel-layer language. The
-    # whole staircase moves as one mask, replacing hundreds of independently
-    # animated tile and clip nodes. At rest the solid white mask covers the full
-    # canvas, so the compiled portrait is displayed with unchanged contrast.
-    layer_height = 6
-    layer_opacities = (0.94, 0.87, 0.79, 0.70, 0.61, 0.51, 0.41, 0.31, 0.22, 0.14, 0.07, 0.025)
-    edge_height = layer_height * len(layer_opacities)
-    track_height = height + edge_height
-    edge_layers = "".join(
-        f'<rect class="portrait-edge-layer" x="0" y="{height + index * layer_height}" '
-        f'width="{width}" height="{layer_height}" fill="#fff" opacity="{opacity}"/>'
-        for index, opacity in enumerate(layer_opacities)
+    durations = [75] * len(frames)
+    durations[-1] = 16_000_000
+    frames[0].save(
+        REVEAL,
+        save_all=True,
+        append_images=frames[1:],
+        duration=durations,
+        loop=0,
+        format="WEBP",
+        lossless=True,
+        quality=100,
+        method=4,
+        minimize_size=True,
     )
 
-    rendered_height = round(640 * height / width)
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" width="640" height="{rendered_height}" role="img" aria-labelledby="portrait-title portrait-desc" shape-rendering="crispEdges">
-  <title id="portrait-title">Kavya Jain colour pixel portrait</title>
-  <desc id="portrait-desc">The supplied transparent full-colour pixel portrait reveals once from top to bottom through a soft stack of pixel rows.</desc>
-  <style>.portrait-reduced{{display:none}}@media (prefers-reduced-motion:reduce){{.portrait-motion{{display:none}}.portrait-reduced{{display:inline}}}}</style>
-  <defs>
-    <g id="portrait-source">{''.join(source_paths)}</g>
-    <mask id="portrait-layer-mask" x="0" y="0" width="{width}" height="{height}" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:alpha">
-      <g id="portrait-mask-track" transform="translate(0 -{track_height})">
-        <rect x="0" y="0" width="{width}" height="{height}" fill="#fff"/>{edge_layers}
-        <animateTransform attributeName="transform" type="translate" values="0 -{track_height};0 0" dur="2.25s" begin="0s" calcMode="spline" keySplines=".22 .72 .18 1" fill="freeze"/>
-      </g>
-    </mask>
-  </defs>
-  <g class="portrait-motion" mask="url(#portrait-layer-mask)"><use id="portrait-revealed" href="#portrait-source"/></g>
-  <use class="portrait-reduced" href="#portrait-source"/>
-</svg>'''
+    with Image.open(REVEAL) as animation:
+        if animation.n_frames != len(frames):
+            raise RuntimeError("Portrait reveal frame count changed during encoding.")
+        animation.seek(animation.n_frames - 1)
+        decoded = animation.convert("RGBA")
+        if decoded.getchannel("A").tobytes() != alpha.tobytes():
+            raise RuntimeError("Lossless portrait reveal altered the approved transparency.")
+        visible = alpha.point(lambda value: 255 if value else 0)
+        colour_delta = ImageChops.difference(decoded.convert("RGB"), exact_rgb)
+        visible_delta = ImageChops.composite(colour_delta, Image.new("RGB", portrait.size), visible)
+        if visible_delta.getbbox() is not None:
+            raise RuntimeError("Lossless portrait reveal altered a visible approved RGB value.")
 
 
 def escape_xml(value: str) -> str:
@@ -302,9 +266,9 @@ def main() -> None:
         raise SystemExit(f"Missing live signal snapshot: {SIGNALS}")
     signals = json.loads(SIGNALS.read_text(encoding="utf-8"))
     if "--signals-only" not in sys.argv:
-        if not PORTRAIT_SOURCE.exists():
-            raise SystemExit(f"Missing locked portrait source: {PORTRAIT_SOURCE}")
-        REVEAL.write_text(portrait_reveal_svg(PORTRAIT_SOURCE), encoding="utf-8")
+        if not PORTRAIT_SOURCE.exists() or not PORTRAIT_ALPHA.exists():
+            raise SystemExit("Missing locked portrait source or transparency mask.")
+        build_portrait_assets(PORTRAIT_SOURCE, PORTRAIT_ALPHA)
     render_toolbox(signals)
     for theme in ("light", "dark"):
         (ROOT / "assets" / f"skill-radar-{theme}.svg").write_text(radar_svg(theme, signals), encoding="utf-8")
