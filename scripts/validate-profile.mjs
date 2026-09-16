@@ -37,11 +37,13 @@ assert([4, 6].includes(portraitSource.readUInt8(25)), "Portrait source must reta
 const portraitColours = new Set([...portrait.matchAll(/fill="(#[0-9a-f]{6})"/g)].map((match) => match[1]));
 assert(portrait.includes("colour pixel portrait") && portrait.includes('id="portrait-source"') && portraitColours.size >= 96, "Hero must compile the supplied full-colour source into self-contained paths.");
 assert(!portrait.includes("<image") && !portrait.includes("data:image"), "GitHub-blocked embedded raster images must not return.");
-assert((portrait.match(/class="portrait-tile"/g) || []).length >= 300, "Hero must assemble from enough fine blocks to preserve source detail.");
-assert((portrait.match(/clipPath id="portrait-clip-/g) || []).length === (portrait.match(/class="portrait-tile"/g) || []).length, "Every portrait tile needs one fixed source-space crop.");
-assert(portrait.includes('id="portrait-blueprint"'), "Hero needs a subtle intact silhouette beneath the assembling blocks.");
-assert(portrait.includes('id="portrait-final"') && portrait.includes('keyTimes="0;.84;.94;1"'), "Hero needs a seamless final portrait handoff after tile assembly.");
-assert(!portrait.includes("repeatCount"), "Hero block-hop reveal must run once, not loop.");
+assert(portrait.includes('id="portrait-layer-mask"') && portrait.includes('id="portrait-mask-track"'), "Hero must use one top-to-bottom layered reveal mask.");
+assert((portrait.match(/class="portrait-edge-layer"/g) || []).length === 12, "Hero reveal needs twelve lightweight pixel-gradient rows.");
+assert((portrait.match(/<animateTransform/g) || []).length === 1 && !portrait.includes("<animate "), "Hero reveal must animate one mask instead of hundreds of portrait tiles.");
+assert(portrait.includes('values="0 -735;0 0"') && portrait.includes('dur="2.25s"'), "Hero mask must travel smoothly from fully hidden to fully revealed.");
+assert(portrait.includes('class="portrait-reduced"') && portrait.includes("prefers-reduced-motion:reduce"), "Hero needs an immediate full-portrait reduced-motion fallback.");
+assert(!/portrait-tile|portrait-clip-|portrait-blueprint|portrait-final/.test(portrait), "Laggy tile assembly and its handoff layers must stay removed.");
+assert(!portrait.includes("repeatCount"), "Hero reveal must run once, not loop.");
 assert(!/halftone|dot-pixel|scanline/.test(portrait), "Legacy halftone and scan reveal must not return.");
 assert(activity.projects.length === config.projects.length, "Activity must cover all selected projects.");
 for (const project of activity.projects) {
