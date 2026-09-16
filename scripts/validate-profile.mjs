@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 
 const read = (path) => readFileSync(path, "utf8");
@@ -8,6 +9,25 @@ const activity = JSON.parse(read("data/project-activity.json"));
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
+}
+
+function pngSize(source) {
+  assert(source.subarray(1, 4).toString() === "PNG", "Portrait input must remain a PNG.");
+  return [source.readUInt32BE(16), source.readUInt32BE(20)];
+}
+
+function webpChunks(source) {
+  assert(source.subarray(0, 4).toString() === "RIFF" && source.subarray(8, 12).toString() === "WEBP", "Portrait reveal must remain a WebP.");
+  const chunks = [];
+  for (let offset = 12; offset + 8 <= source.length;) {
+    const type = source.subarray(offset, offset + 4).toString();
+    const size = source.readUInt32LE(offset + 4);
+    const start = offset + 8;
+    assert(start + size <= source.length, `Invalid ${type} chunk in portrait WebP.`);
+    chunks.push({ type, size, start });
+    offset = start + size + (size % 2);
+  }
+  return chunks;
 }
 
 assert(config.projects.length === 6, "Exactly six selected projects are required.");
@@ -29,22 +49,25 @@ assert((readme.match(/<td width="50%">/g) || []).length === config.projects.leng
 assert((readme.match(/<tr>/g) || []).length === config.projects.length / 2, "Selected work must remain a compact 3x2 grid.");
 assert((readme.match(/assets\/projects\/[^"]+-light\.svg" width="420"/g) || []).length === config.projects.length, "Every project card must use the compact grid width.");
 assert(readme.includes('width="520"'), "Hero portrait must retain its wider 520px presentation.");
-const portrait = read("assets/hero/portrait-reveal.svg");
-const portraitSource = readFileSync("assets/hero/kavya-portrait-color-final.png");
-assert(portraitSource.subarray(1, 4).toString() === "PNG", "Portrait source must remain a PNG.");
-assert(portraitSource.readUInt32BE(16) === 1024 && portraitSource.readUInt32BE(20) === 1198, "Portrait source dimensions must remain intact.");
-assert([4, 6].includes(portraitSource.readUInt8(25)), "Portrait source must retain real alpha transparency.");
-const portraitColours = new Set([...portrait.matchAll(/fill="(#[0-9a-f]{6})"/g)].map((match) => match[1]));
-assert(portrait.includes("colour pixel portrait") && portrait.includes('id="portrait-source"') && portraitColours.size >= 96, "Hero must compile the supplied full-colour source into self-contained paths.");
-assert(!portrait.includes("<image") && !portrait.includes("data:image"), "GitHub-blocked embedded raster images must not return.");
-assert(portrait.includes('id="portrait-layer-mask"') && portrait.includes('id="portrait-mask-track"'), "Hero must use one top-to-bottom layered reveal mask.");
-assert((portrait.match(/class="portrait-edge-layer"/g) || []).length === 12, "Hero reveal needs twelve lightweight pixel-gradient rows.");
-assert((portrait.match(/<animateTransform/g) || []).length === 1 && !portrait.includes("<animate "), "Hero reveal must animate one mask instead of hundreds of portrait tiles.");
-assert(portrait.includes('values="0 -735;0 0"') && portrait.includes('dur="2.25s"'), "Hero mask must travel smoothly from fully hidden to fully revealed.");
-assert(portrait.includes('class="portrait-reduced"') && portrait.includes("prefers-reduced-motion:reduce"), "Hero needs an immediate full-portrait reduced-motion fallback.");
-assert(!/portrait-tile|portrait-clip-|portrait-blueprint|portrait-final/.test(portrait), "Laggy tile assembly and its handoff layers must stay removed.");
-assert(!portrait.includes("repeatCount"), "Hero reveal must run once, not loop.");
-assert(!/halftone|dot-pixel|scanline/.test(portrait), "Legacy halftone and scan reveal must not return.");
+const portraitSource = readFileSync("assets/hero/kavya-portrait-exact.png");
+const portraitAlpha = readFileSync("assets/hero/portrait-alpha-mask.png");
+const portraitStatic = readFileSync("assets/hero/portrait-exact-static.png");
+const portraitReveal = readFileSync("assets/hero/portrait-reveal.webp");
+assert(pngSize(portraitSource).join("x") === "1008x1179" && portraitSource.readUInt8(25) === 2, "Exact portrait must remain the supplied 1008x1179 RGB PNG.");
+assert(createHash("sha256").update(portraitSource).digest("hex") === "fd03bc35e0b89e2eec21b36e8d03ca3579ef1125efd4e7adf02e9363e356078c", "Exact portrait bytes must not change.");
+assert(pngSize(portraitAlpha).join("x") === "1008x1179" && portraitAlpha.readUInt8(25) === 0, "Portrait alpha must remain a same-size grayscale mask.");
+assert(pngSize(portraitStatic).join("x") === "1008x1179" && portraitStatic.readUInt8(25) === 6, "Reduced-motion portrait must remain a same-size RGBA PNG.");
+const portraitChunks = webpChunks(portraitReveal);
+const portraitHeader = portraitChunks.find((chunk) => chunk.type === "VP8X");
+assert(portraitHeader, "Portrait WebP requires an extended animation header.");
+assert((portraitReveal[portraitHeader.start] & 0x12) === 0x12, "Portrait WebP must retain animation and alpha.");
+assert(portraitReveal.readUIntLE(portraitHeader.start + 4, 3) + 1 === 1008 && portraitReveal.readUIntLE(portraitHeader.start + 7, 3) + 1 === 1179, "Portrait WebP dimensions must match the exact source.");
+const portraitFrames = portraitChunks.filter((chunk) => chunk.type === "ANMF");
+assert(portraitFrames.length === 31, "Portrait reveal must retain thirty smooth reveal steps and one final frame.");
+assert(portraitFrames.slice(0, -1).every((frame) => portraitReveal.readUIntLE(frame.start + 12, 3) === 75), "Portrait reveal steps must retain their 75ms cadence.");
+assert(portraitReveal.readUIntLE(portraitFrames.at(-1).start + 12, 3) === 16_000_000, "Final portrait must hold for the effectively one-shot reveal.");
+assert(readme.includes("assets/hero/portrait-reveal.webp") && readme.includes('media="(prefers-reduced-motion: reduce)"') && readme.includes("assets/hero/portrait-exact-static.png"), "README must use the lossless reveal and exact reduced-motion fallback.");
+assert(!existsSync("assets/hero/portrait-reveal.svg") && !existsSync("assets/hero/kavya-portrait-color-final.png"), "Quantized portrait assets must stay removed.");
 assert(activity.projects.length === config.projects.length, "Activity must cover all selected projects.");
 for (const project of activity.projects) {
   assert(Number.isInteger(project.commitsLast7Days) && project.commitsLast7Days >= 0, "Activity counts must be real nonnegative integers.");
@@ -52,7 +75,7 @@ for (const project of activity.projects) {
     assert(commit.url === `https://github.com/${project.repo}/commit/${commit.sha}`, "Evidence must link to a scoped commit diff.");
   }
 }
-assert(readme.indexOf('GENERATED:STATUS:START') < readme.indexOf('portrait-reveal.svg'), "Live status must precede the portrait.");
+assert(readme.indexOf('GENERATED:STATUS:START') < readme.indexOf('portrait-reveal.webp'), "Live status must precede the portrait.");
 assert(readme.indexOf('## `~/` selected work') < readme.indexOf('## `~/` whoami'), "Selected work must appear immediately after the hero.");
 assert(readme.indexOf('## `~/` whoami') < readme.indexOf('## `~/` toolbox'), "Whoami must precede supporting stack signals.");
 assert(readme.includes('## `~/` activity trail'), "The rabbit needs a descriptive activity-trail heading.");
