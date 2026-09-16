@@ -1,7 +1,7 @@
 """Build the portrait and repo-driven profile visuals.
 
-The portrait pipeline keeps the supplied transparent raster intact, exposes it
-through fine SVG tiles, and gives each tile one non-looping hop into place.
+The portrait pipeline keeps the supplied transparent raster intact, compiles it
+to GitHub-safe SVG paths, and reveals it once through a lightweight layered mask.
 Toolbox and radar data come from profile-signals.json.
 """
 
@@ -9,7 +9,6 @@ from __future__ import annotations
 
 import json
 import math
-import random
 import re
 import struct
 import sys
@@ -40,7 +39,7 @@ ICON_ALIASES = {
 
 
 def portrait_reveal_svg(source_path: Path) -> str:
-    """Compile the source to paths and animate tiles without external images."""
+    """Compile the source to paths and reveal it without altering its pixels."""
 
     source = source_path.read_bytes()
     if source[:8] != b"\x89PNG\r\n\x1a\n":
@@ -54,8 +53,8 @@ def portrait_reveal_svg(source_path: Path) -> str:
     except ImportError as error:
         raise SystemExit("Pillow is required when rebuilding the portrait asset.") from error
 
-    # Keep the existing hero canvas fixed so the tile grid and choreography do
-    # not change when the portrait source changes.
+    # Keep the existing hero canvas fixed so the crop and README layout do not
+    # change when the reveal implementation changes.
     target_width = 614
     target_height = 663
     with Image.open(source_path) as portrait:
@@ -122,65 +121,38 @@ def portrait_reveal_svg(source_path: Path) -> str:
 
     width = target_width
     height = target_height
-    columns = 18
-    tile_size = math.ceil(width / columns)
-    rows = math.ceil(height / tile_size)
-    tiles = []
-    for row in range(rows):
-        for column in range(columns):
-            x = column * tile_size
-            y = row * tile_size
-            tile_width = min(tile_size, width - x)
-            tile_height = min(tile_size, height - y)
-            tiles.append((column, row, x, y, tile_width, tile_height))
 
-    rng = random.Random(1407)
-    # Assemble from the face outward so the intermediate state remains a portrait,
-    # while seeded jitter keeps the motion from reading as a mechanical ring wipe.
-    tiles.sort(
-        key=lambda tile: math.hypot(
-            (tile[2] + tile[4] / 2 - width * 0.50) / tile_size,
-            ((tile[3] + tile[5] / 2 - height * 0.34) / tile_size) * 0.86,
-        )
-        + rng.uniform(-0.72, 0.72)
+    # The reveal edge is a short opacity staircase: twelve six-pixel rows make
+    # a soft gradient while retaining the portrait's pixel-layer language. The
+    # whole staircase moves as one mask, replacing hundreds of independently
+    # animated tile and clip nodes. At rest the solid white mask covers the full
+    # canvas, so the compiled portrait is displayed with unchanged contrast.
+    layer_height = 6
+    layer_opacities = (0.94, 0.87, 0.79, 0.70, 0.61, 0.51, 0.41, 0.31, 0.22, 0.14, 0.07, 0.025)
+    edge_height = layer_height * len(layer_opacities)
+    track_height = height + edge_height
+    edge_layers = "".join(
+        f'<rect class="portrait-edge-layer" x="0" y="{height + index * layer_height}" '
+        f'width="{width}" height="{layer_height}" fill="#fff" opacity="{opacity}"/>'
+        for index, opacity in enumerate(layer_opacities)
     )
-    final_begin = 1.45
-    clip_definitions = []
-    tile_groups = []
-    for index, (column, row, x, y, tile_width, tile_height) in enumerate(tiles):
-        progress = index / max(1, len(tiles) - 1)
-        begin = 0.10 + progress * final_begin + rng.uniform(-0.025, 0.025)
-        offset_x = rng.choice((-1, 1)) * rng.randint(14, 42)
-        offset_y = rng.randint(32, 60)
-        apex_x = round(offset_x * 0.22, 1)
-        apex_y = -rng.randint(14, 28)
-        reveal_start = begin / 2.1
-        reveal_end = (begin + 0.17) / 2.1
-        clip_id = f"portrait-clip-{index}"
-        clip_definitions.append(
-            f'<clipPath id="{clip_id}" clipPathUnits="userSpaceOnUse">'
-            f'<rect x="{x}" y="{y}" width="{tile_width}" height="{tile_height}"/>'
-            '</clipPath>'
-        )
-        tile_groups.append(
-            f'''<g class="portrait-tile" data-tile="{column}-{row}" opacity="1">
-      <use href="#portrait-source" clip-path="url(#{clip_id})"/>
-      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;{reveal_start:.5f};{reveal_end:.5f};1" dur="2.1s" begin="0s" fill="freeze"/>
-      <animateTransform attributeName="transform" type="translate" values="{offset_x} {offset_y};{apex_x} {apex_y};0 0" keyTimes="0;.58;1" dur=".32s" begin="{begin:.3f}s" calcMode="spline" keySplines=".2 .8 .3 1;.2 .8 .2 1" fill="freeze"/>
-    </g>'''
-        )
 
     rendered_height = round(640 * height / width)
     return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" width="640" height="{rendered_height}" role="img" aria-labelledby="portrait-title portrait-desc" shape-rendering="crispEdges">
   <title id="portrait-title">Kavya Jain colour pixel portrait</title>
-  <desc id="portrait-desc">The supplied transparent full-colour pixel portrait assembles once as fine image blocks hop into place.</desc>
-  <style>@media (prefers-reduced-motion:reduce){{.portrait-tile{{opacity:1!important;transform:none!important}}.portrait-tile animate,.portrait-tile animateTransform{{display:none}}}}</style>
-  <defs><g id="portrait-source">{''.join(source_paths)}</g>{''.join(clip_definitions)}</defs>
-  <use id="portrait-blueprint" href="#portrait-source" opacity=".11"/>
-  {''.join(tile_groups)}
-  <use id="portrait-final" href="#portrait-source" opacity="1">
-    <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.84;.94;1" dur="2.1s" begin="0s" fill="freeze"/>
-  </use>
+  <desc id="portrait-desc">The supplied transparent full-colour pixel portrait reveals once from top to bottom through a soft stack of pixel rows.</desc>
+  <style>.portrait-reduced{{display:none}}@media (prefers-reduced-motion:reduce){{.portrait-motion{{display:none}}.portrait-reduced{{display:inline}}}}</style>
+  <defs>
+    <g id="portrait-source">{''.join(source_paths)}</g>
+    <mask id="portrait-layer-mask" x="0" y="0" width="{width}" height="{height}" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:alpha">
+      <g id="portrait-mask-track" transform="translate(0 -{track_height})">
+        <rect x="0" y="0" width="{width}" height="{height}" fill="#fff"/>{edge_layers}
+        <animateTransform attributeName="transform" type="translate" values="0 -{track_height};0 0" dur="2.25s" begin="0s" calcMode="spline" keySplines=".22 .72 .18 1" fill="freeze"/>
+      </g>
+    </mask>
+  </defs>
+  <g class="portrait-motion" mask="url(#portrait-layer-mask)"><use id="portrait-revealed" href="#portrait-source"/></g>
+  <use class="portrait-reduced" href="#portrait-source"/>
 </svg>'''
 
 
