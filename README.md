@@ -1,7 +1,7 @@
 <div align="center">
 
 <!-- GENERATED:STATUS:START -->
-<p align="center"><a href="https://github.com/kavya-jain14/MIRA/commit/64019caacbdde849e140a88211948aa05991bfbe" title="Latest default-branch activity across 6 selected repositories; all authors. 2 commits in the last 7 days through 2026-09-16T08:40:37.695Z."><code>$ open to software engineering internships · latest work: MIRA</code></a></p>
+<p align="center"><a href="https://github.com/kavya-jain14/MIRA/commit/933be67773b506e2c89558c4be8a77db45c0fbc5" title="Latest default-branch activity across 6 selected repositories; all authors. 3 commits in the last 7 days through 2026-09-17T08:44:06.731Z."><code>$ open to software engineering internships · latest work: MIRA</code></a></p>
 <!-- GENERATED:STATUS:END -->
 
 <picture>
@@ -226,14 +226,14 @@
 
 <!-- GENERATED:TOOLBOX:START -->
 <p align="center">
-  <img src="./assets/toolbox/typescript.svg" width="72" height="72" alt="TypeScript" title="TypeScript · 64.3% · 1.6 MB">
-  <img src="./assets/toolbox/javascript.svg" width="72" height="72" alt="JavaScript" title="JavaScript · 20.0% · 524.5 KB">
+  <img src="./assets/toolbox/typescript.svg" width="72" height="72" alt="TypeScript" title="TypeScript · 64.4% · 1.7 MB">
+  <img src="./assets/toolbox/javascript.svg" width="72" height="72" alt="JavaScript" title="JavaScript · 20.0% · 525.9 KB">
   <img src="./assets/toolbox/css.svg" width="72" height="72" alt="CSS" title="CSS · 11.2% · 294.5 KB">
   <img src="./assets/toolbox/html5.svg" width="72" height="72" alt="HTML" title="HTML · 1.9% · 50.0 KB">
-  <img src="./assets/toolbox/python.svg" width="72" height="72" alt="Python" title="Python · 1.4% · 37.4 KB">
+  <img src="./assets/toolbox/python.svg" width="72" height="72" alt="Python" title="Python · 1.3% · 34.4 KB">
   <img src="./assets/toolbox/postgresql.svg" width="72" height="72" alt="PLpgSQL" title="PLpgSQL · 0.7% · 18.0 KB">
   <img src="./assets/toolbox/openjdk.svg" width="72" height="72" alt="Java" title="Java · 0.4% · 11.2 KB">
-  <img src="./assets/toolbox/docker.svg" width="72" height="72" alt="Dockerfile" title="Dockerfile · &lt;0.1% · 897 B">
+  <img src="./assets/toolbox/docker.svg" width="72" height="72" alt="Dockerfile" title="Dockerfile · &lt;0.1% · 833 B">
   <img src="./assets/toolbox/cplusplus.svg" width="72" height="72" alt="C++" title="C++ · &lt;0.1% · 403 B">
 </p>
 <sub>Detected from GitHub Linguist bytes across 17 public repositories. Hover any badge for its live share and byte count.</sub>

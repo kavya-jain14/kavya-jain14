@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T08:40:37.695Z",
+  "generatedAt": "2026-09-17T08:44:06.731Z",
   "username": "kavya-jain14",
   "scope": "default branches of selected public repositories; all authors; rolling 7 days",
   "projects": [
@@ -62,8 +62,15 @@
     {
       "id": "mira",
       "repo": "kavya-jain14/MIRA",
-      "commitsLast7Days": 2,
+      "commitsLast7Days": 3,
       "recent": [
+        {
+          "sha": "933be67773b506e2c89558c4be8a77db45c0fbc5",
+          "date": "2026-09-16T19:07:18Z",
+          "title": "Deploy MIRA on a fully free durable stack (#21)",
+          "url": "https://github.com/kavya-jain14/MIRA/commit/933be67773b506e2c89558c4be8a77db45c0fbc5",
+          "author": "kavya-jain14"
+        },
         {
           "sha": "64019caacbdde849e140a88211948aa05991bfbe",
           "date": "2026-09-14T06:05:10Z",
@@ -76,13 +83,6 @@
           "date": "2026-09-14T05:58:31Z",
           "title": "Deploy MIRA on Render and Vercel (#19)",
           "url": "https://github.com/kavya-jain14/MIRA/commit/11ef028fd6bff21384a6f6069df3aef4f1cc2dec",
-          "author": "kavya-jain14"
-        },
-        {
-          "sha": "8926a34b2677da0fd1e872800fc2985c3fb98699",
-          "date": "2026-08-10T10:08:50Z",
-          "title": "Prefer meaningful editorial reasons in the decision ledger (#18)",
-          "url": "https://github.com/kavya-jain14/MIRA/commit/8926a34b2677da0fd1e872800fc2985c3fb98699",
           "author": "kavya-jain14"
         }
       ]
