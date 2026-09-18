@@ -1,7 +1,7 @@
 """Build the portrait and repo-driven profile visuals.
 
-The portrait pipeline keeps the supplied RGB source byte-for-byte, applies only
-the approved transparency mask, and creates a lossless top-to-bottom reveal.
+The portrait pipeline keeps the supplied RGB source byte-for-byte, softly blends
+the outer crop into the page, and creates a lossless top-to-bottom line reveal.
 Toolbox and radar data come from profile-signals.json.
 """
 
@@ -61,22 +61,44 @@ def build_portrait_assets(source_path: Path, alpha_path: Path) -> None:
         exact_rgb = source_image.copy()
         alpha = alpha_image.convert("L")
 
+    # The supplied cut-out reaches the side and bottom canvas edges. Feathering
+    # only those outermost pixels keeps the face, hair and clothing crisp while
+    # preventing the portrait from looking pasted onto the README background.
+    side_fade = 48
+    bottom_fade = 88
+    edge_blend = Image.new("L", exact_rgb.size, 255)
+    edge_pixels = edge_blend.load()
+    width, height = exact_rgb.size
+    for y in range(height):
+        bottom_distance = height - 1 - y
+        bottom_progress = min(1.0, bottom_distance / bottom_fade)
+        bottom_opacity = bottom_progress * bottom_progress * (3 - 2 * bottom_progress)
+        for x in range(width):
+            side_distance = min(x, width - 1 - x)
+            side_progress = min(1.0, side_distance / side_fade)
+            side_opacity = side_progress * side_progress * (3 - 2 * side_progress)
+            edge_pixels[x, y] = round(255 * side_opacity * bottom_opacity)
+
+    blended_alpha = ImageChops.multiply(alpha, edge_blend)
+    if blended_alpha.getpixel((width // 2, height // 2)) != alpha.getpixel((width // 2, height // 2)):
+        raise RuntimeError("Portrait edge blend reached the protected centre detail.")
+    if blended_alpha.getpixel((0, height - 1)) >= alpha.getpixel((0, height - 1)):
+        raise RuntimeError("Portrait crop corners must fade into the page background.")
     portrait = exact_rgb.convert("RGBA")
-    portrait.putalpha(alpha)
+    portrait.putalpha(blended_alpha)
     portrait.save(PORTRAIT_STATIC, format="PNG", optimize=True)
 
+    # Twelve crisp opacity bands make the moving boundary read as pixel rows.
+    # The first frame begins at y=0 rather than travelling in from above.
     edge_height = 96
     layer_opacities = (240, 222, 201, 179, 156, 130, 105, 79, 56, 36, 18, 6)
     layer_height = edge_height // len(layer_opacities)
-    frame_count = 30
+    frame_count = 49
     frames = []
-    width, height = portrait.size
 
-    for frame_index in range(frame_count + 1):
-        progress = frame_index / frame_count
-        eased = progress * progress * (3 - 2 * progress)
-        reveal_front = round(eased * (height + edge_height))
-        solid_end = reveal_front - edge_height
+    for frame_index in range(frame_count):
+        progress = frame_index / (frame_count - 1)
+        solid_end = min(height, round((progress * height) / layer_height) * layer_height)
         reveal_alpha = Image.new("L", portrait.size, 0)
         draw = ImageDraw.Draw(reveal_alpha)
         if solid_end > 0:
@@ -88,10 +110,10 @@ def build_portrait_assets(source_path: Path, alpha_path: Path) -> None:
                 draw.rectangle((0, max(0, top), width, min(height, bottom) - 1), fill=opacity)
 
         frame = exact_rgb.convert("RGBA")
-        frame.putalpha(ImageChops.multiply(alpha, reveal_alpha))
+        frame.putalpha(ImageChops.multiply(blended_alpha, reveal_alpha))
         frames.append(frame)
 
-    durations = [75] * len(frames)
+    durations = [92] * len(frames)
     durations[-1] = 16_000_000
     frames[0].save(
         REVEAL,
@@ -109,11 +131,15 @@ def build_portrait_assets(source_path: Path, alpha_path: Path) -> None:
     with Image.open(REVEAL) as animation:
         if animation.n_frames != len(frames):
             raise RuntimeError("Portrait reveal frame count changed during encoding.")
+        animation.seek(0)
+        first_visible_bounds = animation.convert("RGBA").getchannel("A").getbbox()
+        if first_visible_bounds is None or first_visible_bounds[1] != 0:
+            raise RuntimeError("Portrait reveal must begin on the very first pixel row.")
         animation.seek(animation.n_frames - 1)
         decoded = animation.convert("RGBA")
-        if decoded.getchannel("A").tobytes() != alpha.tobytes():
+        if decoded.getchannel("A").tobytes() != blended_alpha.tobytes():
             raise RuntimeError("Lossless portrait reveal altered the approved transparency.")
-        visible = alpha.point(lambda value: 255 if value else 0)
+        visible = blended_alpha.point(lambda value: 255 if value else 0)
         colour_delta = ImageChops.difference(decoded.convert("RGB"), exact_rgb)
         visible_delta = ImageChops.composite(colour_delta, Image.new("RGB", portrait.size), visible)
         if visible_delta.getbbox() is not None:
