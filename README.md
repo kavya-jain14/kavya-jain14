@@ -6,7 +6,7 @@
 
 <picture>
   <source media="(prefers-reduced-motion: reduce)" srcset="./assets/hero/portrait-exact-static.png">
-  <img src="./assets/hero/portrait-reveal.webp" width="520" alt="Kavya Jain in a transparent full-colour pixel portrait">
+  <img src="./assets/hero/portrait-reveal.png" width="520" alt="Kavya Jain in a transparent full-colour pixel portrait">
 </picture>
 
 <h1>Kavya Jain</h1>
