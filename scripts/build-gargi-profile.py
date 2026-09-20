@@ -12,7 +12,6 @@ import json
 import math
 import re
 import sys
-import zlib
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -20,7 +19,7 @@ HERO_DIR = ROOT / "assets" / "hero"
 PORTRAIT_SOURCE = HERO_DIR / "kavya-portrait-exact.png"
 PORTRAIT_ALPHA = HERO_DIR / "portrait-alpha-mask.png"
 PORTRAIT_STATIC = HERO_DIR / "portrait-exact-static.png"
-REVEAL = HERO_DIR / "portrait-reveal.png"
+REVEAL = HERO_DIR / "portrait-reveal.webp"
 PORTRAIT_SOURCE_SHA256 = "fd03bc35e0b89e2eec21b36e8d03ca3579ef1125efd4e7adf02e9363e356078c"
 SIGNALS = ROOT / "data" / "profile-signals.json"
 README = ROOT / "README.md"
@@ -89,83 +88,69 @@ def build_portrait_assets(source_path: Path, alpha_path: Path) -> None:
     portrait.putalpha(blended_alpha)
     portrait.save(PORTRAIT_STATIC, format="PNG", optimize=True)
 
+    # Build the animation at its actual README presentation width. Nearest-
+    # neighbour scaling preserves the approved pixel colours and crisp texture,
+    # while keeping the complete binary below the publishing transport limit.
+    reveal_width = 520
+    reveal_height = round(height * reveal_width / width)
+    reveal_size = (reveal_width, reveal_height)
+    reveal_rgb = exact_rgb.resize(reveal_size, Image.Resampling.NEAREST)
+    reveal_base_alpha = blended_alpha.resize(reveal_size, Image.Resampling.NEAREST)
+
     # Twelve crisp opacity bands make the moving boundary read as pixel rows.
     # The first frame begins at y=0 rather than travelling in from above.
-    edge_height = 96
+    edge_height = 48
     layer_opacities = (240, 222, 201, 179, 156, 130, 105, 79, 56, 36, 18, 6)
     layer_height = edge_height // len(layer_opacities)
-    frame_count = 49
+    frame_count = 31
     frames = []
 
     for frame_index in range(frame_count):
         progress = frame_index / (frame_count - 1)
-        solid_end = min(height, round((progress * height) / layer_height) * layer_height)
-        reveal_alpha = Image.new("L", portrait.size, 0)
+        solid_end = min(reveal_height, round((progress * reveal_height) / layer_height) * layer_height)
+        reveal_alpha = Image.new("L", reveal_size, 0)
         draw = ImageDraw.Draw(reveal_alpha)
         if solid_end > 0:
-            draw.rectangle((0, 0, width, min(height, solid_end) - 1), fill=255)
+            draw.rectangle((0, 0, reveal_width, min(reveal_height, solid_end) - 1), fill=255)
         for layer_index, opacity in enumerate(layer_opacities):
             top = solid_end + layer_index * layer_height
             bottom = top + layer_height
-            if bottom > 0 and top < height:
-                draw.rectangle((0, max(0, top), width, min(height, bottom) - 1), fill=opacity)
+            if bottom > 0 and top < reveal_height:
+                draw.rectangle((0, max(0, top), reveal_width, min(reveal_height, bottom) - 1), fill=opacity)
 
-        frame = exact_rgb.convert("RGBA")
-        frame.putalpha(ImageChops.multiply(blended_alpha, reveal_alpha))
+        frame = reveal_rgb.convert("RGBA")
+        frame.putalpha(ImageChops.multiply(reveal_base_alpha, reveal_alpha))
         frames.append(frame)
 
-    # APNG keeps the exact RGBA values and is rendered by GitHub's image proxy.
-    # The full portrait is stored as a separate default image, so a renderer that
-    # does not animate still shows the portrait instead of freezing a reveal frame.
-    portrait.save(
+    durations = [147] * len(frames)
+    durations[-1] = 16_000_000
+    frames[0].save(
         REVEAL,
         save_all=True,
-        append_images=frames,
-        duration=[92] * len(frames),
-        loop=1,
-        default_image=True,
-        disposal=[0] * len(frames),
-        blend=[0] * len(frames),
-        format="PNG",
-        optimize=True,
-        compress_level=9,
+        append_images=frames[1:],
+        duration=durations,
+        loop=0,
+        format="WEBP",
+        lossless=True,
+        quality=100,
+        method=4,
+        minimize_size=True,
     )
 
-    # Pillow 12.3 can omit the last fdAT CRC and IEND trailer for this large
-    # default-image APNG. Complete the standard PNG trailer before publishing.
-    encoded = bytearray(REVEAL.read_bytes())
-    offset = 8
-    while offset + 8 <= len(encoded):
-        chunk_size = int.from_bytes(encoded[offset : offset + 4], "big")
-        chunk_type = bytes(encoded[offset + 4 : offset + 8])
-        chunk_start = offset + 8
-        chunk_end = chunk_start + chunk_size
-        if chunk_end == len(encoded):
-            chunk_data = bytes(encoded[chunk_start:chunk_end])
-            encoded.extend((zlib.crc32(chunk_type + chunk_data) & 0xFFFFFFFF).to_bytes(4, "big"))
-            encoded.extend(b"\x00\x00\x00\x00IEND")
-            encoded.extend((zlib.crc32(b"IEND") & 0xFFFFFFFF).to_bytes(4, "big"))
-            REVEAL.write_bytes(encoded)
-            break
-        offset = chunk_end + 4
-
     with Image.open(REVEAL) as animation:
-        if animation.n_frames != len(frames) + 1 or not animation.info.get("default_image"):
+        if animation.n_frames != len(frames):
             raise RuntimeError("Portrait reveal frame count changed during encoding.")
-        default_frame = animation.convert("RGBA")
-        if default_frame.tobytes() != portrait.tobytes():
-            raise RuntimeError("Portrait fallback must remain the exact full cut-out.")
-        animation.seek(1)
+        animation.seek(0)
         first_visible_bounds = animation.convert("RGBA").getchannel("A").getbbox()
         if first_visible_bounds is None or first_visible_bounds[1] != 0:
             raise RuntimeError("Portrait reveal must begin on the very first pixel row.")
         animation.seek(animation.n_frames - 1)
         decoded = animation.convert("RGBA")
-        if decoded.getchannel("A").tobytes() != blended_alpha.tobytes():
+        if decoded.getchannel("A").tobytes() != reveal_base_alpha.tobytes():
             raise RuntimeError("Lossless portrait reveal altered the approved transparency.")
-        visible = blended_alpha.point(lambda value: 255 if value else 0)
-        colour_delta = ImageChops.difference(decoded.convert("RGB"), exact_rgb)
-        visible_delta = ImageChops.composite(colour_delta, Image.new("RGB", portrait.size), visible)
+        visible = reveal_base_alpha.point(lambda value: 255 if value else 0)
+        colour_delta = ImageChops.difference(decoded.convert("RGB"), reveal_rgb)
+        visible_delta = ImageChops.composite(colour_delta, Image.new("RGB", reveal_size), visible)
         if visible_delta.getbbox() is not None:
             raise RuntimeError("Lossless portrait reveal altered a visible approved RGB value.")
 
