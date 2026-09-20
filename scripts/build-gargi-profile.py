@@ -12,6 +12,7 @@ import json
 import math
 import re
 import sys
+import zlib
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -19,7 +20,7 @@ HERO_DIR = ROOT / "assets" / "hero"
 PORTRAIT_SOURCE = HERO_DIR / "kavya-portrait-exact.png"
 PORTRAIT_ALPHA = HERO_DIR / "portrait-alpha-mask.png"
 PORTRAIT_STATIC = HERO_DIR / "portrait-exact-static.png"
-REVEAL = HERO_DIR / "portrait-reveal.webp"
+REVEAL = HERO_DIR / "portrait-reveal.png"
 PORTRAIT_SOURCE_SHA256 = "fd03bc35e0b89e2eec21b36e8d03ca3579ef1125efd4e7adf02e9363e356078c"
 SIGNALS = ROOT / "data" / "profile-signals.json"
 README = ROOT / "README.md"
@@ -113,25 +114,48 @@ def build_portrait_assets(source_path: Path, alpha_path: Path) -> None:
         frame.putalpha(ImageChops.multiply(blended_alpha, reveal_alpha))
         frames.append(frame)
 
-    durations = [92] * len(frames)
-    durations[-1] = 16_000_000
-    frames[0].save(
+    # APNG keeps the exact RGBA values and is rendered by GitHub's image proxy.
+    # The full portrait is stored as a separate default image, so a renderer that
+    # does not animate still shows the portrait instead of freezing a reveal frame.
+    portrait.save(
         REVEAL,
         save_all=True,
-        append_images=frames[1:],
-        duration=durations,
-        loop=0,
-        format="WEBP",
-        lossless=True,
-        quality=100,
-        method=4,
-        minimize_size=True,
+        append_images=frames,
+        duration=[92] * len(frames),
+        loop=1,
+        default_image=True,
+        disposal=[0] * len(frames),
+        blend=[0] * len(frames),
+        format="PNG",
+        optimize=True,
+        compress_level=9,
     )
 
+    # Pillow 12.3 can omit the last fdAT CRC and IEND trailer for this large
+    # default-image APNG. Complete the standard PNG trailer before publishing.
+    encoded = bytearray(REVEAL.read_bytes())
+    offset = 8
+    while offset + 8 <= len(encoded):
+        chunk_size = int.from_bytes(encoded[offset : offset + 4], "big")
+        chunk_type = bytes(encoded[offset + 4 : offset + 8])
+        chunk_start = offset + 8
+        chunk_end = chunk_start + chunk_size
+        if chunk_end == len(encoded):
+            chunk_data = bytes(encoded[chunk_start:chunk_end])
+            encoded.extend((zlib.crc32(chunk_type + chunk_data) & 0xFFFFFFFF).to_bytes(4, "big"))
+            encoded.extend(b"\x00\x00\x00\x00IEND")
+            encoded.extend((zlib.crc32(b"IEND") & 0xFFFFFFFF).to_bytes(4, "big"))
+            REVEAL.write_bytes(encoded)
+            break
+        offset = chunk_end + 4
+
     with Image.open(REVEAL) as animation:
-        if animation.n_frames != len(frames):
+        if animation.n_frames != len(frames) + 1 or not animation.info.get("default_image"):
             raise RuntimeError("Portrait reveal frame count changed during encoding.")
-        animation.seek(0)
+        default_frame = animation.convert("RGBA")
+        if default_frame.tobytes() != portrait.tobytes():
+            raise RuntimeError("Portrait fallback must remain the exact full cut-out.")
+        animation.seek(1)
         first_visible_bounds = animation.convert("RGBA").getchannel("A").getbbox()
         if first_visible_bounds is None or first_visible_bounds[1] != 0:
             raise RuntimeError("Portrait reveal must begin on the very first pixel row.")
