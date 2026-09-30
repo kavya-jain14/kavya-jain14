@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" width="72" height="72" role="img" aria-labelledby="title desc">
+  <title id="title">Shell: 0.6% · 17.6 KB</title><desc id="desc">Live GitHub language badge for Shell.</desc>
+  <style>.label{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:7px;font-weight:800;letter-spacing:.02em}.fallback{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:15px;font-weight:900}</style>
+  <rect width="72" height="72" rx="10" fill="#1F883D"/><text x="36" y="39" text-anchor="middle" class="fallback" fill="#FFFFFF">&lt;/&gt;</text>
+  <rect y="54" width="72" height="18" fill="#000" fill-opacity=".16"/>
+  <text x="36" y="66" text-anchor="middle" class="label" fill="#FFFFFF">Shell</text>
+</svg>

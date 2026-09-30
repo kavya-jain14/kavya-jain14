@@ -1,92 +1,97 @@
 {
-  "generatedAt": "2026-09-29T09:55:55.775Z",
+  "generatedAt": "2026-09-30T09:48:08.476Z",
   "username": "kavya-jain14",
   "repositoryScope": "public, owned, non-fork repositories",
-  "languageRepositoryCount": 17,
+  "languageRepositoryCount": 18,
   "languages": [
     {
       "name": "TypeScript",
-      "bytes": 1734011,
-      "share": 0.6436057579708806
+      "bytes": 1995506,
+      "share": 0.6606052059042798
     },
     {
       "name": "JavaScript",
-      "bytes": 538758,
-      "share": 0.1999685993646382
+      "bytes": 585785,
+      "share": 0.19392205312368824
     },
     {
       "name": "CSS",
       "bytes": 301618,
-      "share": 0.11195031721693867
+      "share": 0.09984957248659593
     },
     {
       "name": "HTML",
       "bytes": 51251,
-      "share": 0.019022623675262498
+      "share": 0.016966462344788866
     },
     {
       "name": "Python",
       "bytes": 37486,
-      "share": 0.0139135250256754
+      "share": 0.012409607762907171
     },
     {
       "name": "PLpgSQL",
       "bytes": 18402,
-      "share": 0.006830194940043716
+      "share": 0.00609191703710766
+    },
+    {
+      "name": "Shell",
+      "bytes": 17989,
+      "share": 0.005955194847327991
     },
     {
       "name": "Java",
       "bytes": 11451,
-      "share": 0.004250220750920584
+      "share": 0.003790813063358321
     },
     {
       "name": "Dockerfile",
       "bytes": 833,
-      "share": 0.00030918119688383953
+      "share": 0.0002757617048098403
     },
     {
       "name": "C++",
       "bytes": 403,
-      "share": 0.00014957985875652742
+      "share": 0.0001334117251360932
     }
   ],
-  "totalLanguageBytes": 2694213,
+  "totalLanguageBytes": 3020724,
   "workingLanguages": [
     {
       "label": "TypeScript",
-      "bytes": 1734011,
-      "share": 0.6436057579708806,
+      "bytes": 1995506,
+      "share": 0.6606052059042798,
       "value": 0.98
     },
     {
       "label": "JavaScript",
-      "bytes": 538758,
-      "share": 0.1999685993646382,
-      "value": 0.6790354714429905
+      "bytes": 585785,
+      "share": 0.19392205312368824,
+      "value": 0.66842705709735
     },
     {
       "label": "CSS",
       "bytes": 301618,
-      "share": 0.11195031721693867,
-      "value": 0.5836035197871948
+      "share": 0.09984957248659593,
+      "value": 0.5643693003400438
     },
     {
       "label": "HTML",
       "bytes": 51251,
-      "share": 0.019022623675262498,
-      "value": 0.4169052891650656
+      "share": 0.016966462344788866,
+      "value": 0.40897667816608796
     },
     {
       "label": "Python",
       "bytes": 37486,
-      "share": 0.0139135250256754,
-      "value": 0.39998101446581036
+      "share": 0.012409607762907171,
+      "value": 0.39320022142689753
     },
     {
       "label": "PLpgSQL",
       "bytes": 18402,
-      "share": 0.006830194940043716,
-      "value": 0.37005118750117194
+      "share": 0.00609191703710766,
+      "value": 0.36530025946635036
     }
   ],
   "engineeringRange": [
@@ -96,23 +101,23 @@
     },
     {
       "label": "FRONTEND",
-      "value": 0.8446529926275683
+      "value": 0.8446516120807435
     },
     {
       "label": "BACKEND",
-      "value": 0.8292857408069516
+      "value": 0.8292958360894118
     },
     {
       "label": "DATA",
-      "value": 0.7749187911325666
+      "value": 0.7749328034358038
     },
     {
       "label": "RELIABILITY",
-      "value": 0.7818262949602253
+      "value": 0.781837402142864
     },
     {
       "label": "AI FLOW",
-      "value": 0.6876570607209207
+      "value": 0.6876616471846388
     }
   ],
   "projectSignals": [
@@ -122,8 +127,8 @@
       "pushedAt": "2026-08-16T20:08:22Z",
       "commitCount": 10,
       "languageBytes": 423866,
-      "ageDays": 44,
-      "signal": 0.7932338986398956
+      "ageDays": 45,
+      "signal": 0.7921992232612841
     },
     {
       "id": "trishul",
@@ -131,8 +136,8 @@
       "pushedAt": "2026-09-12T10:43:19Z",
       "commitCount": 29,
       "languageBytes": 746267,
-      "ageDays": 17,
-      "signal": 0.9600126349366868
+      "ageDays": 18,
+      "signal": 0.9588566499868093
     },
     {
       "id": "mira",
@@ -140,8 +145,8 @@
       "pushedAt": "2026-09-16T19:07:18Z",
       "commitCount": 26,
       "languageBytes": 239310,
-      "ageDays": 13,
-      "signal": 0.9307637842779904
+      "ageDays": 14,
+      "signal": 0.9295866561256986
     },
     {
       "id": "socrates",
@@ -149,8 +154,8 @@
       "pushedAt": "2026-07-24T16:30:25Z",
       "commitCount": 5,
       "languageBytes": 249415,
-      "ageDays": 67,
-      "signal": 0.6837047867686192
+      "ageDays": 68,
+      "signal": 0.6827652574387553
     },
     {
       "id": "counselflow",
@@ -158,8 +163,8 @@
       "pushedAt": "2026-09-09T05:57:03Z",
       "commitCount": 9,
       "languageBytes": 588185,
-      "ageDays": 20,
-      "signal": 0.8128598110483042
+      "ageDays": 21,
+      "signal": 0.8117191312110531
     },
     {
       "id": "papertrade",
@@ -167,15 +172,15 @@
       "pushedAt": "2026-09-19T09:56:43Z",
       "commitCount": 34,
       "languageBytes": 474210,
-      "ageDays": 10,
-      "signal": 0.9793747782643953
+      "ageDays": 11,
+      "signal": 0.9781847410494093
     }
   ],
   "metrics": {
     "current": {
-      "publicRepos": 17,
-      "contributions": 363,
-      "activeWeeks": 27,
+      "publicRepos": 18,
+      "contributions": 365,
+      "activeWeeks": 28,
       "flagshipSystems": 4
     },
     "previous": {
