@@ -19,7 +19,7 @@ HERO_DIR = ROOT / "assets" / "hero"
 PORTRAIT_SOURCE = HERO_DIR / "kavya-portrait-exact.png"
 PORTRAIT_ALPHA = HERO_DIR / "portrait-alpha-mask.png"
 PORTRAIT_STATIC = HERO_DIR / "portrait-exact-static.png"
-REVEAL = HERO_DIR / "portrait-reveal.webp"
+REVEAL = HERO_DIR / "portrait-reveal-v2.webp"
 PORTRAIT_SOURCE_SHA256 = "fd03bc35e0b89e2eec21b36e8d03ca3579ef1125efd4e7adf02e9363e356078c"
 SIGNALS = ROOT / "data" / "profile-signals.json"
 README = ROOT / "README.md"
@@ -97,17 +97,18 @@ def build_portrait_assets(source_path: Path, alpha_path: Path) -> None:
     reveal_rgb = exact_rgb.resize(reveal_size, Image.Resampling.NEAREST)
     reveal_base_alpha = blended_alpha.resize(reveal_size, Image.Resampling.NEAREST)
 
-    # Twelve crisp opacity bands make the moving boundary read as pixel rows.
-    # The first frame begins at y=0 rather than travelling in from above.
-    edge_height = 48
-    layer_opacities = (240, 222, 201, 179, 156, 130, 105, 79, 56, 36, 18, 6)
+    # A narrow translucent scan line keeps the boundary visibly pixel-layered
+    # while allowing near-display-rate motion without bloating the lossless
+    # animation. Every frame advances only three or four source rows.
+    edge_height = 8
+    layer_opacities = (96,)
     layer_height = edge_height // len(layer_opacities)
-    frame_count = 31
+    frame_count = 201
     frames = []
 
     for frame_index in range(frame_count):
         progress = frame_index / (frame_count - 1)
-        solid_end = min(reveal_height, round((progress * reveal_height) / layer_height) * layer_height)
+        solid_end = min(reveal_height, round(progress * reveal_height))
         reveal_alpha = Image.new("L", reveal_size, 0)
         draw = ImageDraw.Draw(reveal_alpha)
         if solid_end > 0:
@@ -122,7 +123,7 @@ def build_portrait_assets(source_path: Path, alpha_path: Path) -> None:
         frame.putalpha(ImageChops.multiply(reveal_base_alpha, reveal_alpha))
         frames.append(frame)
 
-    durations = [147] * len(frames)
+    durations = [22] * len(frames)
     durations[-1] = 16_000_000
     frames[0].save(
         REVEAL,
