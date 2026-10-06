@@ -1,7 +1,7 @@
 <div align="center">
 
 <!-- GENERATED:STATUS:START -->
-<p align="center"><a href="https://github.com/kavya-jain14/MIRA/commit/933be67773b506e2c89558c4be8a77db45c0fbc5" title="Latest default-branch activity across 6 selected repositories; all authors. 0 commits in the last 7 days through 2026-10-05T10:35:09.058Z."><code>$ open to software engineering internships · latest work: MIRA</code></a></p>
+<p align="center"><a href="https://github.com/kavya-jain14/MIRA/commit/c92c667a9bb3636e1595fbd5749a94acd0e25939" title="Latest default-branch activity across 6 selected repositories; all authors. 1 commit in the last 7 days through 2026-10-06T10:27:17.108Z."><code>$ open to software engineering internships · latest work: MIRA</code></a></p>
 <!-- GENERATED:STATUS:END -->
 
 <picture>
@@ -226,10 +226,10 @@
 
 <!-- GENERATED:TOOLBOX:START -->
 <p align="center">
-  <img src="./assets/toolbox/typescript.svg" width="72" height="72" alt="TypeScript" title="TypeScript · 66.1% · 1.9 MB">
-  <img src="./assets/toolbox/javascript.svg" width="72" height="72" alt="JavaScript" title="JavaScript · 19.4% · 572.1 KB">
-  <img src="./assets/toolbox/css.svg" width="72" height="72" alt="CSS" title="CSS · 10.0% · 294.5 KB">
-  <img src="./assets/toolbox/html5.svg" width="72" height="72" alt="HTML" title="HTML · 1.7% · 50.0 KB">
+  <img src="./assets/toolbox/typescript.svg" width="72" height="72" alt="TypeScript" title="TypeScript · 64.5% · 1.9 MB">
+  <img src="./assets/toolbox/javascript.svg" width="72" height="72" alt="JavaScript" title="JavaScript · 20.6% · 623.7 KB">
+  <img src="./assets/toolbox/css.svg" width="72" height="72" alt="CSS" title="CSS · 10.4% · 315.2 KB">
+  <img src="./assets/toolbox/html5.svg" width="72" height="72" alt="HTML" title="HTML · 1.7% · 50.8 KB">
   <img src="./assets/toolbox/python.svg" width="72" height="72" alt="Python" title="Python · 1.2% · 36.6 KB">
   <img src="./assets/toolbox/postgresql.svg" width="72" height="72" alt="PLpgSQL" title="PLpgSQL · 0.6% · 18.0 KB">
   <img src="./assets/toolbox/shell.svg" width="72" height="72" alt="Shell" title="Shell · 0.6% · 17.6 KB">
