@@ -31,6 +31,15 @@
 <table>
 <tr>
 <td width="50%">
+  <a href="https://github.com/kavya-jain14/TRINETRA">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="./assets/projects/trinetra-dark.svg">
+      <source media="(prefers-color-scheme: light)" srcset="./assets/projects/trinetra-light.svg">
+      <img src="./assets/projects/trinetra-light.svg" width="420" alt="TRINETRA, Recover once when the provider times out. Stack: TypeScript · Fastify · PostgreSQL · Redis · React. Role: ARCHITECTURE · BACKEND · QA.">
+    </picture>
+  </a>
+</td>
+<td width="50%">
   <a href="https://github.com/kavya-jain14/TRISHUL">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="./assets/projects/trishul-dark.svg">
@@ -38,8 +47,9 @@
       <img src="./assets/projects/trishul-light.svg" width="420" alt="TRISHUL, Trace money while uncertainty stays visible. Stack: TypeScript · Fastify · PostgreSQL · React · Vitest. Role: PRODUCT · DATA DESIGN · FRONTEND QA.">
     </picture>
   </a>
-  <p><sub><a href="https://github.com/kavya-jain14/TRISHUL">Repository →</a></sub></p>
 </td>
+</tr>
+<tr>
 <td width="50%">
   <a href="https://github.com/kavya-jain14/MIRA">
     <picture>
@@ -48,10 +58,27 @@
       <img src="./assets/projects/mira-light.svg" width="420" alt="MIRA, Publish only after evidence clears the gate. Stack: TypeScript · Node.js · React · SQLite · Docker. Role: FRONTEND · PRODUCT FLOW · INTEGRATION.">
     </picture>
   </a>
-  <p><sub><a href="https://github.com/kavya-jain14/MIRA">Repository →</a></sub></p>
+</td>
+<td width="50%">
+  <a href="https://github.com/gargibhardwaj24/Socrates">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="./assets/projects/socrates-dark.svg">
+      <source media="(prefers-color-scheme: light)" srcset="./assets/projects/socrates-light.svg">
+      <img src="./assets/projects/socrates-light.svg" width="420" alt="SOCRATES, Teach the AI. Expose the misconception. Stack: Next.js · TypeScript · Prisma · PostgreSQL. Role: LEARNING UX · FRONTEND · EVALUATION.">
+    </picture>
+  </a>
 </td>
 </tr>
 <tr>
+<td width="50%">
+  <a href="https://github.com/kavya-jain14/COUNSEL-FLOW">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="./assets/projects/counselflow-dark.svg">
+      <source media="(prefers-color-scheme: light)" srcset="./assets/projects/counselflow-light.svg">
+      <img src="./assets/projects/counselflow-light.svg" width="420" alt="COUNSELFLOW, Resolve conflicts before locking a list. Stack: React · TypeScript · Vite · Zod · Vitest. Role: PRODUCT ARCHITECTURE · DECISION UX.">
+    </picture>
+  </a>
+</td>
 <td width="50%">
   <a href="https://github.com/kavya-jain14/PAPER_TRADE">
     <picture>
@@ -60,21 +87,33 @@
       <img src="./assets/projects/papertrade-light.svg" width="420" alt="PAPERTRADE, Keep price and portfolio state authoritative. Stack: React · Express · MongoDB · SSE · Yahoo Finance. Role: FULL-STACK PRODUCT ENGINEERING.">
     </picture>
   </a>
-  <p><sub><a href="https://github.com/kavya-jain14/PAPER_TRADE">Repository →</a> · <a href="https://paper-trade-phi.vercel.app">Live demo ↗</a></sub></p>
-</td>
-<td width="50%" valign="top">
-<h3>More work</h3>
-<p><strong><a href="https://github.com/kavya-jain14/TRINETRA">TRINETRA</a></strong><br><sub>Recover once when the provider times out.</sub><br><sub><a href="https://github.com/kavya-jain14/TRINETRA#third-integration-checkpoint">Proof →</a></sub></p>
-<p><strong><a href="https://github.com/gargibhardwaj24/Socrates">SOCRATES</a></strong><br><sub>Teach the AI. Expose the misconception.</sub><br><sub><a href="https://github.com/gargibhardwaj24/Socrates/blob/main/src/lib/rubric.ts">Proof →</a> · <a href="https://socrates-one-coral.vercel.app">Demo ↗</a></sub></p>
-<p><strong><a href="https://github.com/kavya-jain14/COUNSEL-FLOW">COUNSELFLOW</a></strong><br><sub>Resolve conflicts before locking a list.</sub><br><sub><a href="https://github.com/kavya-jain14/COUNSEL-FLOW/blob/main/src/domain/conflicts.test.ts">Proof →</a></sub></p>
 </td>
 </tr>
 </table>
 
-### Engineering notes
+### Evidence chains
 
 <details>
-<summary><strong>01 · TRISHUL</strong> · cash-out forecast → explicit PASS or ABSTAIN</summary>
+<summary><strong>01 · TRINETRA</strong> · accepted timeout → one replay-safe recovery path</summary>
+
+<p><strong>Problem</strong><br>A provider can accept a payment and time out before confirmation. A blind retry risks a duplicate submission, while the payer and operator still need one explainable history.</p>
+<p><strong>Constraint</strong><br>Replay safety, provider recovery and ordered risk evidence must survive across API replicas without turning a pending state into a retry instruction.</p>
+<p><strong>Decision</strong><br>Keep payment and provider-attempt history in a tenant-scoped ledger, reuse the original idempotent resource on replay, then resolve uncertainty through status inquiry.</p>
+<p><strong>Result</strong><br>The synthetic accepted-timeout checkpoint and PostgreSQL/Redis integration test exercise one provider submission, cross-replica replay and recovery to the original payment.</p>
+<p><strong>Stack</strong><br><code>TypeScript · Fastify · PostgreSQL · Redis · React</code></p>
+<p><strong>My contribution</strong><br>ARCHITECTURE · BACKEND · QA</p>
+<p><strong>Proof</strong></p>
+<ul>
+<li><a href="https://github.com/kavya-jain14/TRINETRA#third-integration-checkpoint">Accepted-timeout recovery checkpoint</a></li>
+<li><a href="https://github.com/kavya-jain14/TRINETRA/blob/main/apps/api/test/postgres-redis.integration.test.ts">PostgreSQL and Redis integration test</a></li>
+<li><a href="https://github.com/kavya-jain14/TRINETRA/commit/e92175890855a52a17fa604a6b79c7d128c3e4eb">Recovery checkpoint change</a></li>
+</ul>
+<p><a href="https://github.com/kavya-jain14/TRINETRA">Inspect repository →</a></p>
+
+</details>
+
+<details>
+<summary><strong>02 · TRISHUL</strong> · cash-out forecast → explicit PASS or ABSTAIN</summary>
 
 <p><strong>Problem</strong><br>After a fraud complaint, investigators need to trace attributable exposure and assess probable cash-out behaviour without presenting incomplete signals as certainty.</p>
 <p><strong>Constraint</strong><br>Money can commingle, records arrive from authorised sources at different times, and location and time may have different levels of support.</p>
@@ -93,7 +132,7 @@
 </details>
 
 <details>
-<summary><strong>02 · MIRA</strong> · autonomous publishing → threshold, memory and audit</summary>
+<summary><strong>03 · MIRA</strong> · autonomous publishing → threshold, memory and audit</summary>
 
 <p><strong>Problem</strong><br>An autonomous editor can repeat stories, amplify weak sources or publish hype while hiding why a candidate was accepted or rejected.</p>
 <p><strong>Constraint</strong><br>The agent must continue after initialization, limit each cycle, survive refreshes and retain evidence for both publication and rejection.</p>
@@ -112,7 +151,45 @@
 </details>
 
 <details>
-<summary><strong>03 · PAPERTRADE</strong> · changing market session → one authoritative execution path</summary>
+<summary><strong>04 · SOCRATES</strong> · confident explanation → deterministic misconception test</summary>
+
+<p><strong>Problem</strong><br>A learner can sound confident while missing a core misconception, so completion alone cannot show whether the concept was understood.</p>
+<p><strong>Constraint</strong><br>Evaluation must remain repeatable and explainable even when no LLM key is available.</p>
+<p><strong>Decision</strong><br>Seed known misconceptions and score the learner&apos;s correction, reasoning and evidence with a transparent stage-based rubric.</p>
+<p><strong>Result</strong><br>The rubric maps each learning stage to observable signals and returns the evidence span used by the scoring flow.</p>
+<p><strong>Stack</strong><br><code>Next.js · TypeScript · Prisma · PostgreSQL</code></p>
+<p><strong>My contribution</strong><br>LEARNING UX · FRONTEND · EVALUATION</p>
+<p><strong>Proof</strong></p>
+<ul>
+<li><a href="https://github.com/gargibhardwaj24/Socrates/blob/main/src/lib/rubric.ts">Transparent stage-based rubric</a></li>
+<li><a href="https://github.com/gargibhardwaj24/Socrates/blob/main/src/components/MisconceptionFingerprint.tsx">Misconception evidence surface</a></li>
+<li><a href="https://github.com/gargibhardwaj24/Socrates/commit/d01b1b6170568d0cd34960bb48c7e8249e04029e">Kavya&apos;s learning-catalogue and navigation change</a></li>
+</ul>
+<p><a href="https://github.com/gargibhardwaj24/Socrates">Inspect repository →</a> · <a href="https://socrates-one-coral.vercel.app">Open demo ↗</a></p>
+
+</details>
+
+<details>
+<summary><strong>05 · COUNSELFLOW</strong> · preference list → conflict audit before lock</summary>
+
+<p><strong>Problem</strong><br>A candidate can receive a plausible college list that violates their branch priority, budget, distance or hard exclusions and still lock it by mistake.</p>
+<p><strong>Constraint</strong><br>Official cutoff evidence, hard constraints and soft preferences must remain distinguishable, deterministic and reviewable after every edit.</p>
+<p><strong>Decision</strong><br>Generate an ordered strategy, surface coded contradictions, mark the audit stale after edits and block lock while a critical conflict remains.</p>
+<p><strong>Result</strong><br>Domain tests exercise eight conflict rules, reproducible strategy hashes and the invariant that unresolved critical conflicts prevent lock.</p>
+<p><strong>Stack</strong><br><code>React · TypeScript · Vite · Zod · Vitest</code></p>
+<p><strong>My contribution</strong><br>PRODUCT ARCHITECTURE · DECISION UX</p>
+<p><strong>Proof</strong></p>
+<ul>
+<li><a href="https://github.com/kavya-jain14/COUNSEL-FLOW/blob/main/src/domain/conflicts.test.ts">Eight deterministic conflict rules</a></li>
+<li><a href="https://github.com/kavya-jain14/COUNSEL-FLOW/blob/main/src/domain/lock.test.ts">Lock invariants</a></li>
+<li><a href="https://github.com/kavya-jain14/COUNSEL-FLOW/commit/d116e83f61be8f6e85bf1ef22b794ab830d9bd6b">Attention-first counselling flow change</a></li>
+</ul>
+<p><a href="https://github.com/kavya-jain14/COUNSEL-FLOW">Inspect repository →</a></p>
+
+</details>
+
+<details>
+<summary><strong>06 · PAPERTRADE</strong> · changing market session → one authoritative execution path</summary>
 
 <p><strong>Problem</strong><br>A trading simulator must keep orders and portfolio state credible when client prices drift, the exchange closes or the live price provider is unavailable.</p>
 <p><strong>Constraint</strong><br>The server owns execution price and holdings while the interface still needs useful market behaviour outside NSE live hours.</p>
@@ -148,7 +225,6 @@
 ## `~/` toolbox
 
 <!-- GENERATED:TOOLBOX:START -->
-<p><strong><code>PRODUCTION FOOTPRINT</code></strong></p>
 <p align="center">
   <img src="./assets/toolbox/typescript.svg" width="72" height="72" alt="TypeScript" title="TypeScript · 64.8% · 1.9 MB">
   <img src="./assets/toolbox/javascript.svg" width="72" height="72" alt="JavaScript" title="JavaScript · 20.2% · 610.2 KB">
@@ -157,14 +233,11 @@
   <img src="./assets/toolbox/python.svg" width="72" height="72" alt="Python" title="Python · 1.2% · 37.4 KB">
   <img src="./assets/toolbox/postgresql.svg" width="72" height="72" alt="PLpgSQL" title="PLpgSQL · 0.6% · 18.0 KB">
   <img src="./assets/toolbox/shell.svg" width="72" height="72" alt="Shell" title="Shell · 0.6% · 17.6 KB">
-  <img src="./assets/toolbox/docker.svg" width="72" height="72" alt="Dockerfile" title="Dockerfile · &lt;0.1% · 833 B">
-</p>
-<p><strong><code>CURRENT PRACTICE</code></strong></p>
-<p align="center">
-  <img src="./assets/toolbox/cplusplus.svg" width="72" height="72" alt="C++" title="C++ · &lt;0.1% · 403 B">
   <img src="./assets/toolbox/openjdk.svg" width="72" height="72" alt="Java" title="Java · 0.4% · 11.2 KB">
+  <img src="./assets/toolbox/docker.svg" width="72" height="72" alt="Dockerfile" title="Dockerfile · &lt;0.1% · 833 B">
+  <img src="./assets/toolbox/cplusplus.svg" width="72" height="72" alt="C++" title="C++ · &lt;0.1% · 403 B">
 </p>
-<sub>Production footprint comes from GitHub Linguist bytes across 18 public repositories. Current practice highlights DSA and coursework languages; hover any badge for its live share and byte count.</sub>
+<sub>Detected from GitHub Linguist bytes across 18 public repositories. Hover any badge for its live share and byte count.</sub>
 <!-- GENERATED:TOOLBOX:END -->
 ---
 
@@ -179,6 +252,15 @@
 </picture>
 
 <p><sub>Relative working range, not proficiency percentages. Engineering range is project-driven; repository footprint reports the six largest GitHub Linguist byte totals. Current practice: TypeScript systems and DSA in C++.</sub></p>
+---
+
+## `~/` activity trail
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/generated/rabbit-calendar-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/generated/rabbit-calendar-light.svg">
+  <img src="./assets/generated/rabbit-calendar-light.svg" width="880" alt="A pixel rabbit hops across Kavya Jain's monthly contribution pillars in a seeded random order">
+</picture>
 ---
 
 <div align="center">
