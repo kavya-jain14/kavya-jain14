@@ -42,7 +42,6 @@ jobs:
         run: |
           python scripts/build-gargi-profile.py --signals-only
           node scripts/build-project-cards.mjs
-          node scripts/build-rabbit-calendar.mjs
           node scripts/build-profile-terminal.mjs
 
       - name: Validate generated profile
