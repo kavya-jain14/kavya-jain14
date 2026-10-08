@@ -25,6 +25,7 @@
       "capability": "DURABLE RECOVERY",
       "contribution": "ARCHITECTURE · BACKEND · QA",
       "glyph": "route",
+      "featured": false,
       "flagship": true,
       "proofLinks": [
         {
@@ -65,6 +66,7 @@
       "capability": "EVIDENCE GATES",
       "contribution": "PRODUCT · DATA DESIGN · FRONTEND QA",
       "glyph": "graph",
+      "featured": true,
       "flagship": true,
       "proofLinks": [
         {
@@ -105,6 +107,7 @@
       "capability": "DECISION MEMORY",
       "contribution": "FRONTEND · PRODUCT FLOW · INTEGRATION",
       "glyph": "cycle",
+      "featured": true,
       "flagship": true,
       "proofLinks": [
         {
@@ -145,6 +148,7 @@
       "capability": "REPEATABLE SCORE",
       "contribution": "LEARNING UX · FRONTEND · EVALUATION",
       "glyph": "teach",
+      "featured": false,
       "flagship": true,
       "demo": "https://socrates-one-coral.vercel.app",
       "proofLinks": [
@@ -186,6 +190,7 @@
       "capability": "CONFLICT GATES",
       "contribution": "PRODUCT ARCHITECTURE · DECISION UX",
       "glyph": "conflict",
+      "featured": false,
       "flagship": false,
       "proofLinks": [
         {
@@ -226,6 +231,7 @@
       "capability": "TRUSTED EXECUTION",
       "contribution": "FULL-STACK PRODUCT ENGINEERING",
       "glyph": "market",
+      "featured": true,
       "flagship": false,
       "demo": "https://paper-trade-phi.vercel.app",
       "proofLinks": [

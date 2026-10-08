@@ -1,7 +1,17 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 
 const config = JSON.parse(readFileSync("data/profile-config.json", "utf8"));
-const projects = config.projects;
+const featuredProjects = config.projects.filter((project) => project.featured).map((project, index) => ({
+  ...project,
+  displayIndex: String(index + 1).padStart(2, "0"),
+}));
+const supportingProjects = config.projects.filter((project) => !project.featured).map((project) => ({
+  ...project,
+  displayIndex: project.index,
+}));
+const projectsById = new Map([...featuredProjects, ...supportingProjects].map((project) => [project.id, project]));
+const projects = config.projects.map((project) => projectsById.get(project.id));
+if (featuredProjects.length !== 3) throw new Error("Exactly three featured projects are required.");
 const themes = {
   dark: { background: "#0d1117", border: "#30363d", ink: "#f0f6fc", muted: "#a6afb9", accent: "#39d353", faint: "#132217" },
   light: { background: "#ffffff", border: "#d0d7de", ink: "#1f2328", muted: "#4d5761", accent: "#1f883d", faint: "#dafbe1" },
@@ -27,7 +37,7 @@ function card(project, themeName) {
   <desc id="${project.id}-desc">${escapeXml(project.summary)} Stack: ${escapeXml(project.stack)}. Kavya's contribution: ${escapeXml(project.contribution)}.</desc>
   <style>text{font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;fill:${colour.ink}}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}.index{font-size:9.5px;font-weight:750;letter-spacing:.14em;fill:${colour.accent}}.type{font-size:9.5px;font-weight:750;letter-spacing:.1em;fill:${colour.muted}}.name{font-size:20px;font-weight:780;letter-spacing:-.02em}.summary{font-size:10.5px;fill:${colour.muted}}.label{font-size:7.6px;font-weight:750;letter-spacing:.11em;fill:${colour.muted}}.stack{font-size:8.6px;font-weight:700}.contribution{font-size:8px;font-weight:700;letter-spacing:.025em}.proof{font-size:7.5px;font-weight:750;letter-spacing:.055em;fill:${colour.accent}}</style>
   <rect x=".5" y=".5" width="439" height="131" rx="7" fill="${colour.background}" stroke="${colour.border}"/>
-  <path d="M16 13H77" stroke="${colour.accent}" stroke-width="2"/><text x="16" y="28" class="index mono">${project.index}</text><text x="47" y="28" class="type mono">${escapeXml(project.type)}</text>
+  <path d="M16 13H77" stroke="${colour.accent}" stroke-width="2"/><text x="16" y="28" class="index mono">${project.displayIndex}</text><text x="47" y="28" class="type mono">${escapeXml(project.type)}</text>
   <text x="16" y="55" class="name">${escapeXml(project.name)}</text><text x="16" y="74" class="summary">${escapeXml(project.summary)}</text>${glyph(project.glyph, colour)}
   <path d="M16 84H424" stroke="${colour.border}"/><text x="16" y="98" class="label mono">STACK</text><text x="16" y="112" class="stack mono">${escapeXml(project.stack)}</text>
   <text x="16" y="125" class="contribution mono">ROLE · ${escapeXml(project.contribution)}</text>
@@ -37,22 +47,38 @@ function card(project, themeName) {
 
 function picture(project) {
   const url = `https://github.com/${project.repo}`;
-  return `  <a href="${url}">\n    <picture>\n      <source media="(prefers-color-scheme: dark)" srcset="./assets/projects/${project.id}-dark.svg">\n      <source media="(prefers-color-scheme: light)" srcset="./assets/projects/${project.id}-light.svg">\n      <img src="./assets/projects/${project.id}-light.svg" width="420" alt="${escapeHtml(project.name)}, ${escapeHtml(project.summary)} Stack: ${escapeHtml(project.stack)}. Role: ${escapeHtml(project.contribution)}.">\n    </picture>\n  </a>`;
+  const demo = project.demo ? ` · <a href="${escapeHtml(project.demo)}">Live demo ↗</a>` : "";
+  return `  <a href="${url}">\n    <picture>\n      <source media="(prefers-color-scheme: dark)" srcset="./assets/projects/${project.id}-dark.svg">\n      <source media="(prefers-color-scheme: light)" srcset="./assets/projects/${project.id}-light.svg">\n      <img src="./assets/projects/${project.id}-light.svg" width="420" alt="${escapeHtml(project.name)}, ${escapeHtml(project.summary)} Stack: ${escapeHtml(project.stack)}. Role: ${escapeHtml(project.contribution)}.">\n    </picture>\n  </a>\n  <p><sub><a href="${url}">Repository →</a>${demo}</sub></p>`;
+}
+
+function supportingWork() {
+  return `<h3>More work</h3>\n${supportingProjects.map((project) => {
+    const url = `https://github.com/${project.repo}`;
+    const proof = project.proofLinks[0];
+    const demo = project.demo ? ` · <a href="${escapeHtml(project.demo)}">Demo ↗</a>` : "";
+    return `<p><strong><a href="${url}">${escapeHtml(project.name)}</a></strong><br><sub>${escapeHtml(project.summary)}</sub><br><sub><a href="${escapeHtml(proof.url)}">Proof →</a>${demo}</sub></p>`;
+  }).join("\n")}`;
 }
 
 function projectGrid() {
-  const rows = [];
-  for (let index = 0; index < projects.length; index += 2) {
-    rows.push(`<tr>
+  return `<table>
+<tr>
 <td width="50%">
-${picture(projects[index])}
+${picture(featuredProjects[0])}
 </td>
 <td width="50%">
-${picture(projects[index + 1])}
+${picture(featuredProjects[1])}
 </td>
-</tr>`);
-  }
-  return `<table>\n${rows.join("\n")}\n</table>`;
+</tr>
+<tr>
+<td width="50%">
+${picture(featuredProjects[2])}
+</td>
+<td width="50%" valign="top">
+${supportingWork()}
+</td>
+</tr>
+</table>`;
 }
 
 function evidenceChain(project) {
@@ -60,7 +86,7 @@ function evidenceChain(project) {
   const proof = project.proofLinks.map((item) => `<li><a href="${escapeHtml(item.url)}">${escapeHtml(item.label)}</a></li>`).join("\n");
   const demo = project.demo ? ` · <a href="${escapeHtml(project.demo)}">Open demo ↗</a>` : "";
   return `<details>
-<summary><strong>${project.index} · ${escapeHtml(project.name)}</strong> · ${escapeHtml(project.evidenceTitle)}</summary>
+<summary><strong>${project.displayIndex} · ${escapeHtml(project.name)}</strong> · ${escapeHtml(project.evidenceTitle)}</summary>
 
 <p><strong>Problem</strong><br>${escapeHtml(project.problem)}</p>
 <p><strong>Constraint</strong><br>${escapeHtml(project.constraint)}</p>
@@ -83,7 +109,7 @@ function updateReadme() {
   const end = "<!-- GENERATED:PROJECTS:END -->";
   const readme = readFileSync(path, "utf8");
   if (!readme.includes(start) || !readme.includes(end)) throw new Error("README project markers are missing; refusing an unsafe rewrite.");
-  const generated = `${start}\n${projectGrid()}\n\n### Evidence chains\n\n${projects.map(evidenceChain).join("\n\n")}\n${end}`;
+  const generated = `${start}\n${projectGrid()}\n\n### Engineering notes\n\n${featuredProjects.map(evidenceChain).join("\n\n")}\n${end}`;
   const next = readme.replace(new RegExp(`${start}[\\s\\S]*?${end}`), () => generated);
   writeFileSync(path, next, "utf8");
 }
@@ -91,4 +117,4 @@ function updateReadme() {
 mkdirSync("assets/projects", { recursive: true });
 for (const project of projects) for (const themeName of Object.keys(themes)) writeFileSync(`assets/projects/${project.id}-${themeName}.svg`, card(project, themeName), "utf8");
 updateReadme();
-console.log(`Built ${projects.length * Object.keys(themes).length} project cards and ${projects.length} verified evidence chains.`);
+console.log(`Built ${projects.length * Object.keys(themes).length} project cards, ${featuredProjects.length} featured notes and ${supportingProjects.length} compact links.`);
