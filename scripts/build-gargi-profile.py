@@ -222,7 +222,7 @@ def render_toolbox(signals: dict) -> None:
     for stale in TOOLBOX_DIR.glob("*.svg"):
         stale.unlink()
 
-    images_by_language: dict[str, str] = {}
+    images = []
     used_slugs: set[str] = set()
     for language in signals["languages"]:
         slug = badge_slug(language["name"])
@@ -234,25 +234,14 @@ def render_toolbox(signals: dict) -> None:
         (TOOLBOX_DIR / f"{slug}.svg").write_text(toolbox_badge_svg(language), encoding="utf-8")
         share = "<0.1%" if 0 < language["share"] < 0.0005 else f'{language["share"] * 100:.1f}%'
         tooltip = escape_xml(f'{language["name"]} · {share} · {human_bytes(int(language["bytes"]))}')
-        images_by_language[language["name"]] = f'<img src="./assets/toolbox/{slug}.svg" width="72" height="72" alt="{escape_xml(language["name"])}" title="{tooltip}">'
-
-    practice_order = ("C++", "Java")
-    practice_names = [name for name in practice_order if name in images_by_language]
-    production_names = [language["name"] for language in signals["languages"] if language["name"] not in practice_names]
-    if set(production_names + practice_names) != set(images_by_language):
-        raise RuntimeError("Every live language badge must belong to exactly one toolbox group.")
+        images.append(f'<img src="./assets/toolbox/{slug}.svg" width="72" height="72" alt="{escape_xml(language["name"])}" title="{tooltip}">')
 
     block = (
         f"{TOOLBOX_START}\n"
-        '<p><strong><code>PRODUCTION FOOTPRINT</code></strong></p>\n'
         '<p align="center">\n  '
-        + "\n  ".join(images_by_language[name] for name in production_names)
+        + "\n  ".join(images)
         + "\n</p>\n"
-        '<p><strong><code>CURRENT PRACTICE</code></strong></p>\n'
-        '<p align="center">\n  '
-        + "\n  ".join(images_by_language[name] for name in practice_names)
-        + "\n</p>\n"
-        f'<sub>Production footprint comes from GitHub Linguist bytes across {signals["languageRepositoryCount"]} public repositories. Current practice highlights DSA and coursework languages; hover any badge for its live share and byte count.</sub>\n'
+        f'<sub>Detected from GitHub Linguist bytes across {signals["languageRepositoryCount"]} public repositories. Hover any badge for its live share and byte count.</sub>\n'
         f"{TOOLBOX_END}"
     )
     readme = README.read_text(encoding="utf-8")

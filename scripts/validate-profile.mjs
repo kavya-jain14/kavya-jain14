@@ -6,8 +6,6 @@ const config = JSON.parse(read("data/profile-config.json"));
 const signals = JSON.parse(read("data/profile-signals.json"));
 const readme = read("README.md");
 const activity = JSON.parse(read("data/project-activity.json"));
-const featuredProjects = config.projects.filter((project) => project.featured);
-const supportingProjects = config.projects.filter((project) => !project.featured);
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
@@ -34,8 +32,6 @@ function webpChunks(source) {
 
 assert(config.projects.length === 6, "Exactly six selected projects are required.");
 assert(new Set(config.projects.map((project) => project.id)).size === config.projects.length, "Project IDs must be unique.");
-assert(config.projects.every((project) => typeof project.featured === "boolean"), "Every project must declare its recruiter-facing hierarchy.");
-assert(featuredProjects.length === 3 && supportingProjects.length === 3, "Selected work requires three featured and three supporting projects.");
 assert(signals.languages.every((language, index, list) => index === 0 || list[index - 1].bytes >= language.bytes), "Languages must remain sorted by bytes.");
 assert(signals.workingLanguages.length === 6, "Working-language radar requires six API-derived axes.");
 assert(signals.engineeringRange.length === 6, "Engineering radar requires six configured axes.");
@@ -48,13 +44,12 @@ assert(!existsSync("scripts/build-decision-log.mjs"), "Decision-log data generat
 assert(!readme.includes("the numbers"), "Vanity-metric section must remain removed.");
 assert(!existsSync("assets/numbers-light.svg") && !existsSync("assets/numbers-dark.svg"), "Numbers assets must remain removed.");
 assert(!existsSync("scripts/build-profile-numbers.mjs"), "Numbers generator must remain removed.");
-assert((readme.match(/<details>/g) || []).length === featuredProjects.length, "README engineering-note count must match the featured projects.");
-assert((readme.match(/<td width="50%"/g) || []).length === 4, "Selected work must remain a compact two-column hierarchy.");
-assert((readme.match(/<tr>/g) || []).length === 2, "Selected work must remain a compact two-row hierarchy.");
-assert((readme.match(/assets\/projects\/[^"]+-light\.svg" width="420"/g) || []).length === featuredProjects.length, "Only featured projects should render full cards.");
-assert(readme.includes("<h3>More work</h3>"), "Supporting projects need a compact More work section.");
-assert(readme.includes('portrait-reveal-v2.webp" width="420"'), "Hero portrait must use the recruiter-friendly 420px presentation.");
-assert(readme.includes("full-stack systems · backend reliability · DSA in C++"), "Hero headline must state the strongest engineering lanes naturally.");
+assert((readme.match(/<details>/g) || []).length === config.projects.length, "README evidence-chain count must match project config.");
+assert((readme.match(/<td width="50%">/g) || []).length === config.projects.length, "Selected work must remain a two-column grid.");
+assert((readme.match(/<tr>/g) || []).length === config.projects.length / 2, "Selected work must remain a compact 3x2 grid.");
+assert((readme.match(/assets\/projects\/[^"]+-light\.svg" width="420"/g) || []).length === config.projects.length, "Every project card must use the compact grid width.");
+assert(readme.includes('portrait-reveal-v2.webp" width="420"'), "Hero portrait must retain its balanced 420px presentation.");
+assert(readme.includes("full-stack systems · backend reliability · DSA in C++"), "Hero headline must retain the stronger engineering focus.");
 const portraitSource = readFileSync("assets/hero/kavya-portrait-exact.png");
 const portraitAlpha = readFileSync("assets/hero/portrait-alpha-mask.png");
 const portraitStatic = readFileSync("assets/hero/portrait-exact-static.png");
@@ -86,14 +81,11 @@ for (const project of activity.projects) {
 assert(readme.indexOf('GENERATED:STATUS:START') < readme.indexOf('portrait-reveal-v2.webp'), "Live status must precede the portrait.");
 assert(readme.indexOf('## `~/` selected work') < readme.indexOf('## `~/` whoami'), "Selected work must appear immediately after the hero.");
 assert(readme.indexOf('## `~/` whoami') < readme.indexOf('## `~/` toolbox'), "Whoami must precede supporting stack signals.");
-assert(!readme.includes('## `~/` activity trail') && !readme.includes("rabbit-calendar"), "The duplicate rabbit activity section must remain removed.");
-assert(!existsSync("scripts/build-rabbit-calendar.mjs"), "The obsolete rabbit generator must remain removed.");
-assert(!existsSync("assets/generated/rabbit-calendar-light.svg") && !existsSync("assets/generated/rabbit-calendar-dark.svg"), "The obsolete rabbit assets must remain removed.");
+assert(readme.includes('## `~/` activity trail'), "The rabbit needs a descriptive activity-trail heading.");
 
 const toolboxAssets = readdirSync("assets/toolbox").filter((name) => name.endsWith(".svg"));
 assert(toolboxAssets.length === signals.languages.length, "Toolbox badge count must match detected GitHub languages.");
 assert((readme.match(/assets\/toolbox\/[^"]+\.svg/g) || []).length === signals.languages.length, "README toolbox must list every generated badge exactly once.");
-assert(readme.includes("PRODUCTION FOOTPRINT") && readme.includes("CURRENT PRACTICE"), "Toolbox must separate shipped footprint from current practice.");
 assert(!existsSync("assets/toolbox-light.svg") && !existsSync("assets/toolbox-dark.svg"), "Legacy toolbox bar assets must remain removed.");
 
 for (const project of config.projects) {
@@ -101,11 +93,8 @@ for (const project of config.projects) {
   assert(Array.isArray(project.proofLinks) && project.proofLinks.length >= 2, `Missing curated proof links for ${project.id}.`);
   for (const proof of project.proofLinks) {
     assert(proof.url.startsWith(`https://github.com/${project.repo}`), `Proof for ${project.id} must stay inside its repository.`);
+    assert(readme.includes(proof.url), `Proof link for ${project.id} must appear in the README.`);
   }
-  const visibleProofs = project.featured ? project.proofLinks : project.proofLinks.slice(0, 1);
-  assert(visibleProofs.every((proof) => readme.includes(proof.url)), `Visible proof links for ${project.id} must appear in the README.`);
-  assert(readme.includes(`https://github.com/${project.repo}`), `${project.id} repository link must appear in the README.`);
-  if (project.demo) assert(readme.includes(project.demo), `${project.id} demo link must appear in the README.`);
   for (const theme of ["light", "dark"]) {
     assert(existsSync(`assets/projects/${project.id}-${theme}.svg`), `Missing ${theme} card for ${project.id}.`);
   }
@@ -115,6 +104,7 @@ const generatedSvgPaths = [
   ...toolboxAssets.map((name) => `assets/toolbox/${name}`),
   "assets/skill-radar-light.svg", "assets/skill-radar-dark.svg",
   "assets/skill-radar-light-compact.svg", "assets/skill-radar-dark-compact.svg",
+  "assets/generated/rabbit-calendar-light.svg", "assets/generated/rabbit-calendar-dark.svg",
   ...["light", "dark"].flatMap((theme) => ["", "-compact"].map((suffix) => `assets/generated/about-terminal-${theme}${suffix}.svg`)),
   ...config.projects.flatMap((project) => [
     `assets/projects/${project.id}-light.svg`, `assets/projects/${project.id}-dark.svg`,
@@ -136,6 +126,16 @@ for (const theme of ["light", "dark"]) {
 }
 
 for (const theme of ["light", "dark"]) {
+  const rabbit = read(`assets/generated/rabbit-calendar-${theme}.svg`);
+  assert((rabbit.match(/aria-label="[A-Z]{3}: \d+ contributions"/g) || []).length === 12, `${theme} rabbit calendar must render twelve monthly pillars.`);
+  assert(rabbit.includes('id="rabbit-crouch"') && rabbit.includes('id="rabbit-air"') && rabbit.includes('id="rabbit-land"'), `${theme} rabbit calendar needs crouch, air and land frames.`);
+  assert(rabbit.includes('data-seed=') && rabbit.includes('repeatCount="indefinite"'), `${theme} rabbit calendar must use a seeded looping animation.`);
+  const loop = Number(rabbit.match(/dur="([\d.]+)s"/)?.[1]);
+  assert(loop >= 14 && loop <= 16, `${theme} rabbit loop must stay inside the slower 14–16 second range.`);
+  assert((rabbit.match(/class="footprint"/g) || []).length === 12, "Every visited pillar requires one footprint pair.");
+  assert((rabbit.match(/class="arc-footprint"/g) || []).length === 36, "Every jump requires three fading paw marks along its arc.");
+  assert((rabbit.match(/class="dust-puff"/g) || []).length === 12, "Every pillar landing requires a data-weighted dust puff.");
+  assert(rabbit.includes('id="rabbit-squash"') && (rabbit.match(/data-impact="/g) || []).length === 12, "Rabbit landing squash and dust must encode pillar height.");
   for (const suffix of ["", "-compact"]) {
     const terminal = read(`assets/generated/about-terminal-${theme}${suffix}.svg`);
     assert(terminal.includes('dur="1.8s"') && terminal.includes('fill="freeze"'), "Terminal must reveal in 1.8s and hold.");
@@ -144,4 +144,4 @@ for (const theme of ["light", "dark"]) {
   }
 }
 
-console.log(`Validated ${generatedSvgPaths.length} SVGs, ${toolboxAssets.length} grouped toolbox badges and ${featuredProjects.length} featured engineering notes.`);
+console.log(`Validated ${generatedSvgPaths.length} SVGs, ${toolboxAssets.length} live toolbox badges, two rabbit calendars and ${config.projects.length} evidence chains.`);
