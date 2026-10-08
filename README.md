@@ -1,7 +1,7 @@
 <div align="center">
 
 <!-- GENERATED:STATUS:START -->
-<p align="center"><a href="https://github.com/kavya-jain14/MIRA/commit/c92c667a9bb3636e1595fbd5749a94acd0e25939" title="Latest default-branch activity across 6 selected repositories; all authors. 1 commit in the last 7 days through 2026-10-07T10:22:06.192Z."><code>$ open to software engineering internships · latest work: MIRA</code></a></p>
+<p align="center"><a href="https://github.com/kavya-jain14/MIRA/commit/c92c667a9bb3636e1595fbd5749a94acd0e25939" title="Latest default-branch activity across 6 selected repositories; all authors. 1 commit in the last 7 days through 2026-10-08T10:42:00.877Z."><code>$ open to software engineering internships · latest work: MIRA</code></a></p>
 <!-- GENERATED:STATUS:END -->
 
 <picture>
@@ -150,11 +150,11 @@
 <!-- GENERATED:TOOLBOX:START -->
 <p><strong><code>PRODUCTION FOOTPRINT</code></strong></p>
 <p align="center">
-  <img src="./assets/toolbox/typescript.svg" width="72" height="72" alt="TypeScript" title="TypeScript · 64.5% · 1.9 MB">
-  <img src="./assets/toolbox/javascript.svg" width="72" height="72" alt="JavaScript" title="JavaScript · 20.6% · 623.7 KB">
-  <img src="./assets/toolbox/css.svg" width="72" height="72" alt="CSS" title="CSS · 10.4% · 315.2 KB">
+  <img src="./assets/toolbox/typescript.svg" width="72" height="72" alt="TypeScript" title="TypeScript · 64.8% · 1.9 MB">
+  <img src="./assets/toolbox/javascript.svg" width="72" height="72" alt="JavaScript" title="JavaScript · 20.2% · 610.2 KB">
+  <img src="./assets/toolbox/css.svg" width="72" height="72" alt="CSS" title="CSS · 10.5% · 315.2 KB">
   <img src="./assets/toolbox/html5.svg" width="72" height="72" alt="HTML" title="HTML · 1.7% · 50.8 KB">
-  <img src="./assets/toolbox/python.svg" width="72" height="72" alt="Python" title="Python · 1.2% · 36.6 KB">
+  <img src="./assets/toolbox/python.svg" width="72" height="72" alt="Python" title="Python · 1.2% · 37.4 KB">
   <img src="./assets/toolbox/postgresql.svg" width="72" height="72" alt="PLpgSQL" title="PLpgSQL · 0.6% · 18.0 KB">
   <img src="./assets/toolbox/shell.svg" width="72" height="72" alt="Shell" title="Shell · 0.6% · 17.6 KB">
   <img src="./assets/toolbox/docker.svg" width="72" height="72" alt="Dockerfile" title="Dockerfile · &lt;0.1% · 833 B">
