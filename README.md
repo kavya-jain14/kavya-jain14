@@ -1,7 +1,7 @@
 <div align="center">
 
 <!-- GENERATED:STATUS:START -->
-<p align="center"><a href="https://github.com/kavya-jain14/MIRA/commit/c92c667a9bb3636e1595fbd5749a94acd0e25939" title="Latest default-branch activity across 6 selected repositories; all authors. 1 commit in the last 7 days through 2026-10-10T09:56:55.085Z."><code>$ open to software engineering internships · latest work: MIRA</code></a></p>
+<p align="center"><a href="https://github.com/kavya-jain14/MIRA/commit/c92c667a9bb3636e1595fbd5749a94acd0e25939" title="Latest default-branch activity across 6 selected repositories; all authors. 1 commit in the last 7 days through 2026-10-11T10:06:38.074Z."><code>$ open to software engineering internships · latest work: MIRA</code></a></p>
 <!-- GENERATED:STATUS:END -->
 
 <picture>
@@ -226,15 +226,17 @@
 
 <!-- GENERATED:TOOLBOX:START -->
 <p align="center">
-  <img src="./assets/toolbox/typescript.svg" width="72" height="72" alt="TypeScript" title="TypeScript · 64.9% · 2.0 MB">
-  <img src="./assets/toolbox/javascript.svg" width="72" height="72" alt="JavaScript" title="JavaScript · 19.9% · 624.1 KB">
-  <img src="./assets/toolbox/css.svg" width="72" height="72" alt="CSS" title="CSS · 10.8% · 339.0 KB">
-  <img src="./assets/toolbox/html5.svg" width="72" height="72" alt="HTML" title="HTML · 1.6% · 51.5 KB">
-  <img src="./assets/toolbox/python.svg" width="72" height="72" alt="Python" title="Python · 1.2% · 36.6 KB">
-  <img src="./assets/toolbox/postgresql.svg" width="72" height="72" alt="PLpgSQL" title="PLpgSQL · 0.6% · 18.0 KB">
-  <img src="./assets/toolbox/shell.svg" width="72" height="72" alt="Shell" title="Shell · 0.6% · 17.6 KB">
-  <img src="./assets/toolbox/openjdk.svg" width="72" height="72" alt="Java" title="Java · 0.4% · 11.2 KB">
+  <img src="./assets/toolbox/typescript.svg" width="72" height="72" alt="TypeScript" title="TypeScript · 68.9% · 2.6 MB">
+  <img src="./assets/toolbox/javascript.svg" width="72" height="72" alt="JavaScript" title="JavaScript · 16.5% · 630.0 KB">
+  <img src="./assets/toolbox/css.svg" width="72" height="72" alt="CSS" title="CSS · 10.6% · 404.8 KB">
+  <img src="./assets/toolbox/html5.svg" width="72" height="72" alt="HTML" title="HTML · 1.4% · 51.5 KB">
+  <img src="./assets/toolbox/python.svg" width="72" height="72" alt="Python" title="Python · 1.1% · 40.4 KB">
+  <img src="./assets/toolbox/postgresql.svg" width="72" height="72" alt="PLpgSQL" title="PLpgSQL · 0.6% · 23.1 KB">
+  <img src="./assets/toolbox/shell.svg" width="72" height="72" alt="Shell" title="Shell · 0.5% · 17.6 KB">
+  <img src="./assets/toolbox/openjdk.svg" width="72" height="72" alt="Java" title="Java · 0.3% · 11.2 KB">
+  <img src="./assets/toolbox/cuda.svg" width="72" height="72" alt="Cuda" title="Cuda · 0.2% · 6.2 KB">
   <img src="./assets/toolbox/docker.svg" width="72" height="72" alt="Dockerfile" title="Dockerfile · &lt;0.1% · 833 B">
+  <img src="./assets/toolbox/powershell.svg" width="72" height="72" alt="PowerShell" title="PowerShell · &lt;0.1% · 750 B">
   <img src="./assets/toolbox/cplusplus.svg" width="72" height="72" alt="C++" title="C++ · &lt;0.1% · 403 B">
 </p>
 <sub>Detected from GitHub Linguist bytes across 20 public repositories. Hover any badge for its live share and byte count.</sub>
