@@ -18,9 +18,15 @@ export async function collectProjectActivity(request, project, now) {
   const base = `/repos/${project.repo}/commits`;
   const { data: latest } = await request(`${base}?per_page=3`, { allowEmptyRepository: true });
   const seen = new Set();
+  const pageSignatures = new Set();
   for (let page = 1; ; page += 1) {
     const query = new URLSearchParams({ since, until, per_page: "100", page: String(page) });
     const { data } = await request(`${base}?${query}`, { allowEmptyRepository: true });
+    const signature = data.map((commit) => commit.sha).join(",");
+    if (data.length === 100 && pageSignatures.has(signature)) {
+      throw new Error(`Commit pagination repeated a full page for ${project.repo}`);
+    }
+    pageSignatures.add(signature);
     for (const commit of data) {
       const time = Date.parse(commit.commit?.committer?.date || commit.commit?.author?.date);
       if (time >= Date.parse(since) && time <= now.getTime()) seen.add(commit.sha);

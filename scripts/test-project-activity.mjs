@@ -45,3 +45,15 @@ test("status combines availability with observed latest activity", () => {
   assert.match(status.scope, /3 commits in the last 7 days/);
   assert.match(status.url, /owner\/other\/commit\//);
 });
+
+
+test("repeated full API pages fail instead of polling forever", async () => {
+  let calls = 0;
+  const data = Array.from({length: 100}, (_, i) => commit(i));
+  await assert.rejects(collectProjectActivity(async (path) => {
+    calls += 1;
+    if (path.endsWith("per_page=3")) return {data: [commit(1)]};
+    return {data};
+  }, project, now), /pagination repeated a full page/);
+  assert.equal(calls, 3);
+});
