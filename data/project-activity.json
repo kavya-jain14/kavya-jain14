@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-15T08:23:58.684Z",
+  "generatedAt": "2026-10-16T08:16:59.765Z",
   "username": "kavya-jain14",
   "scope": "default branches of selected public repositories; all authors; rolling 7 days",
   "projects": [
@@ -146,8 +146,15 @@
     {
       "id": "papertrade",
       "repo": "kavya-jain14/PAPER_TRADE",
-      "commitsLast7Days": 0,
+      "commitsLast7Days": 1,
       "recent": [
+        {
+          "sha": "79a14ed3b9e6c3d7fd1c46d6f93c29629442dd18",
+          "date": "2026-10-15T20:15:20Z",
+          "title": "fix: reject coerced and unsafe trade quantities",
+          "url": "https://github.com/kavya-jain14/PAPER_TRADE/commit/79a14ed3b9e6c3d7fd1c46d6f93c29629442dd18",
+          "author": "kavya-jain14"
+        },
         {
           "sha": "74c51023c86155ee62bbe8651e7f7599504e73ef",
           "date": "2026-08-08T18:00:55Z",
@@ -160,13 +167,6 @@
           "date": "2026-07-13T08:38:14Z",
           "title": "fix(backend): cache yahoo finance calls and fallback to synthetic prices to prevent rate-limiting",
           "url": "https://github.com/kavya-jain14/PAPER_TRADE/commit/2f2dca1a4b8d631eeb270308a4ae3e693d88b85e",
-          "author": "kavya-jain14"
-        },
-        {
-          "sha": "5b63b11e691934f98b83ab4ef0cbf0f6bef8f739",
-          "date": "2026-07-12T21:23:38Z",
-          "title": "feat(components): phase 4 — extract TradeModal & AppShell, rewrite CommandPalette, add Stat & EmptyState components",
-          "url": "https://github.com/kavya-jain14/PAPER_TRADE/commit/5b63b11e691934f98b83ab4ef0cbf0f6bef8f739",
           "author": "kavya-jain14"
         }
       ]
