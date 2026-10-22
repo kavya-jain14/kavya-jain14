@@ -1,107 +1,107 @@
 {
-  "generatedAt": "2026-10-21T08:40:28.797Z",
+  "generatedAt": "2026-10-22T08:42:39.415Z",
   "username": "kavya-jain14",
   "repositoryScope": "public, owned, non-fork repositories",
   "languageRepositoryCount": 20,
   "languages": [
     {
       "name": "TypeScript",
-      "bytes": 2694608,
-      "share": 0.6840259373660942
+      "bytes": 2696777,
+      "share": 0.6826837639465574
     },
     {
       "name": "JavaScript",
-      "bytes": 662161,
-      "share": 0.16808949528549988
+      "bytes": 670760,
+      "share": 0.16980156739129446
     },
     {
       "name": "CSS",
-      "bytes": 417719,
-      "share": 0.1060379211115782
+      "bytes": 417873,
+      "share": 0.10578372349350346
     },
     {
       "name": "HTML",
       "bytes": 59192,
-      "share": 0.015025882534518508
+      "share": 0.014984337731864602
     },
     {
       "name": "Python",
       "bytes": 41406,
-      "share": 0.010510908437361017
+      "share": 0.010481847008473877
     },
     {
       "name": "PLpgSQL",
       "bytes": 23662,
-      "share": 0.006006596035473999
+      "share": 0.00598998850201683
     },
     {
       "name": "Shell",
       "bytes": 17989,
-      "share": 0.004566505624298105
+      "share": 0.004553879771903506
     },
     {
       "name": "Java",
       "bytes": 11451,
-      "share": 0.002906835060527967
+      "share": 0.0028987980025608454
     },
     {
       "name": "Cuda",
       "bytes": 6370,
-      "share": 0.00161702378268825
+      "share": 0.0016125529016079456
     },
     {
       "name": "C++",
       "bytes": 3195,
-      "share": 0.0008110503902180469
+      "share": 0.0008088079310262773
     },
     {
       "name": "Dockerfile",
       "bytes": 833,
-      "share": 0.00021145695619769424
+      "share": 0.00021087230251796212
     },
     {
       "name": "PowerShell",
       "bytes": 750,
-      "share": 0.00019038741554414248
+      "share": 0.00018986101667283503
     }
   ],
-  "totalLanguageBytes": 3939336,
+  "totalLanguageBytes": 3950258,
   "workingLanguages": [
     {
       "label": "TypeScript",
-      "bytes": 2694608,
-      "share": 0.6840259373660942,
+      "bytes": 2696777,
+      "share": 0.6826837639465574,
       "value": 0.98
     },
     {
       "label": "JavaScript",
-      "bytes": 662161,
-      "share": 0.16808949528549988,
-      "value": 0.6370877065962658
+      "bytes": 670760,
+      "share": 0.16980156739129446,
+      "value": 0.6391329385011648
     },
     {
       "label": "CSS",
-      "bytes": 417719,
-      "share": 0.1060379211115782,
-      "value": 0.5677338172944173
+      "bytes": 417873,
+      "share": 0.10578372349350346,
+      "value": 0.5676754555301353
     },
     {
       "label": "HTML",
       "bytes": 59192,
-      "share": 0.015025882534518508,
-      "value": 0.400784239361594
+      "share": 0.014984337731864602,
+      "value": 0.40074370115845376
     },
     {
       "label": "Python",
       "bytes": 41406,
-      "share": 0.010510908437361017,
-      "value": 0.384293241348714
+      "share": 0.010481847008473877,
+      "value": 0.3842593362801955
     },
     {
       "label": "PLpgSQL",
       "bytes": 23662,
-      "share": 0.006006596035473999,
-      "value": 0.3637216246854096
+      "share": 0.00598998850201683,
+      "value": 0.3636959940889761
     }
   ],
   "engineeringRange": [
@@ -111,43 +111,43 @@
     },
     {
       "label": "FRONTEND",
-      "value": 0.8410431278607966
+      "value": 0.8404963021362304
     },
     {
       "label": "BACKEND",
-      "value": 0.8309282721677806
+      "value": 0.831128894875228
     },
     {
       "label": "DATA",
-      "value": 0.7764432497461244
+      "value": 0.7766664070252276
     },
     {
       "label": "RELIABILITY",
-      "value": 0.7848474737969842
+      "value": 0.7852518563989859
     },
     {
       "label": "AI FLOW",
-      "value": 0.6849107389556713
+      "value": 0.6846253766514595
     }
   ],
   "projectSignals": [
     {
       "id": "trinetra",
       "repo": "kavya-jain14/TRINETRA",
-      "pushedAt": "2026-10-17T17:21:03Z",
+      "pushedAt": "2026-10-21T18:58:23Z",
       "commitCount": 10,
       "languageBytes": 423866,
-      "ageDays": 4,
-      "signal": 0.8361440370924027
+      "ageDays": 1,
+      "signal": 0.839943188657409
     },
     {
       "id": "trishul",
       "repo": "kavya-jain14/TRISHUL",
-      "pushedAt": "2026-10-17T17:17:26Z",
+      "pushedAt": "2026-10-21T18:59:24Z",
       "commitCount": 29,
       "languageBytes": 746267,
-      "ageDays": 4,
-      "signal": 0.9725880839324261
+      "ageDays": 1,
+      "signal": 0.9763912081343555
     },
     {
       "id": "mira",
@@ -155,8 +155,8 @@
       "pushedAt": "2026-10-20T11:55:38Z",
       "commitCount": 27,
       "languageBytes": 245448,
-      "ageDays": 1,
-      "signal": 0.9468048355038198
+      "ageDays": 2,
+      "signal": 0.945560045992912
     },
     {
       "id": "socrates",
@@ -164,39 +164,39 @@
       "pushedAt": "2026-07-24T16:30:25Z",
       "commitCount": 5,
       "languageBytes": 249415,
-      "ageDays": 89,
-      "signal": 0.6620680919508626
+      "ageDays": 90,
+      "signal": 0.6612047160670689
     },
     {
       "id": "counselflow",
       "repo": "kavya-jain14/COUNSEL-FLOW",
-      "pushedAt": "2026-10-20T11:19:12Z",
+      "pushedAt": "2026-10-21T18:59:36Z",
       "commitCount": 9,
       "languageBytes": 588185,
       "ageDays": 1,
-      "signal": 0.8336359773755962
+      "signal": 0.8340325313187201
     },
     {
       "id": "papertrade",
       "repo": "kavya-jain14/PAPER_TRADE",
-      "pushedAt": "2026-10-20T11:22:42Z",
+      "pushedAt": "2026-10-21T18:58:22Z",
       "commitCount": 35,
       "languageBytes": 475183,
       "ageDays": 1,
-      "signal": 0.9905480435534612
+      "signal": 0.9909405024764745
     }
   ],
   "metrics": {
     "current": {
       "publicRepos": 20,
-      "contributions": 462,
+      "contributions": 466,
       "activeWeeks": 30,
       "flagshipSystems": 4
     },
     "previous": {
       "publicRepos": 20,
-      "contributions": 456,
-      "activeWeeks": 29,
+      "contributions": 462,
+      "activeWeeks": 30,
       "flagshipSystems": 4
     }
   }

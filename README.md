@@ -1,7 +1,7 @@
 <div align="center">
 
 <!-- GENERATED:STATUS:START -->
-<p align="center"><a href="https://github.com/kavya-jain14/PAPER_TRADE/commit/79a14ed3b9e6c3d7fd1c46d6f93c29629442dd18" title="Latest default-branch activity across 6 selected repositories; all authors. 1 commit in the last 7 days through 2026-10-21T08:40:28.797Z."><code>$ open to software engineering internships · latest work: PAPERTRADE</code></a></p>
+<p align="center"><a href="https://github.com/kavya-jain14/PAPER_TRADE/commit/79a14ed3b9e6c3d7fd1c46d6f93c29629442dd18" title="Latest default-branch activity across 6 selected repositories; all authors. 1 commit in the last 7 days through 2026-10-22T08:42:39.415Z."><code>$ open to software engineering internships · latest work: PAPERTRADE</code></a></p>
 <!-- GENERATED:STATUS:END -->
 
 <picture>
@@ -226,11 +226,11 @@
 
 <!-- GENERATED:TOOLBOX:START -->
 <p align="center">
-  <img src="./assets/toolbox/typescript.svg" width="72" height="72" alt="TypeScript" title="TypeScript · 68.4% · 2.6 MB">
-  <img src="./assets/toolbox/javascript.svg" width="72" height="72" alt="JavaScript" title="JavaScript · 16.8% · 646.6 KB">
-  <img src="./assets/toolbox/css.svg" width="72" height="72" alt="CSS" title="CSS · 10.6% · 407.9 KB">
+  <img src="./assets/toolbox/typescript.svg" width="72" height="72" alt="TypeScript" title="TypeScript · 68.3% · 2.6 MB">
+  <img src="./assets/toolbox/javascript.svg" width="72" height="72" alt="JavaScript" title="JavaScript · 17.0% · 655.0 KB">
+  <img src="./assets/toolbox/css.svg" width="72" height="72" alt="CSS" title="CSS · 10.6% · 408.1 KB">
   <img src="./assets/toolbox/html5.svg" width="72" height="72" alt="HTML" title="HTML · 1.5% · 57.8 KB">
-  <img src="./assets/toolbox/python.svg" width="72" height="72" alt="Python" title="Python · 1.1% · 40.4 KB">
+  <img src="./assets/toolbox/python.svg" width="72" height="72" alt="Python" title="Python · 1.0% · 40.4 KB">
   <img src="./assets/toolbox/postgresql.svg" width="72" height="72" alt="PLpgSQL" title="PLpgSQL · 0.6% · 23.1 KB">
   <img src="./assets/toolbox/shell.svg" width="72" height="72" alt="Shell" title="Shell · 0.5% · 17.6 KB">
   <img src="./assets/toolbox/openjdk.svg" width="72" height="72" alt="Java" title="Java · 0.3% · 11.2 KB">
