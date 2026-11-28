@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-27T12:38:42.297Z",
+  "generatedAt": "2026-11-28T11:56:07.919Z",
   "username": "kavya-jain14",
   "repositoryScope": "public, owned, non-fork repositories",
   "languageRepositoryCount": 20,
@@ -111,23 +111,23 @@
     },
     {
       "label": "FRONTEND",
-      "value": 0.8408613239882143
+      "value": 0.8408721753143023
     },
     {
       "label": "BACKEND",
-      "value": 0.8314555876150116
+      "value": 0.8314598575857146
     },
     {
       "label": "DATA",
-      "value": 0.7771349225125563
+      "value": 0.7771428393279105
     },
     {
       "label": "RELIABILITY",
-      "value": 0.7854902365226784
+      "value": 0.7854906868356952
     },
     {
       "label": "AI FLOW",
-      "value": 0.6848445206144258
+      "value": 0.6848582121732509
     }
   ],
   "projectSignals": [
@@ -137,8 +137,8 @@
       "pushedAt": "2026-10-30T04:42:59Z",
       "commitCount": 10,
       "languageBytes": 423866,
-      "ageDays": 28,
-      "signal": 0.80725515626607
+      "ageDays": 29,
+      "signal": 0.8061793515927472
     },
     {
       "id": "trishul",
@@ -146,8 +146,8 @@
       "pushedAt": "2026-10-25T19:09:42Z",
       "commitCount": 29,
       "languageBytes": 746267,
-      "ageDays": 33,
-      "signal": 0.938861266261264
+      "ageDays": 34,
+      "signal": 0.937804996675467
     },
     {
       "id": "mira",
@@ -155,8 +155,8 @@
       "pushedAt": "2026-10-30T04:45:01Z",
       "commitCount": 27,
       "languageBytes": 245448,
-      "ageDays": 28,
-      "signal": 0.914482361177635
+      "ageDays": 29,
+      "signal": 0.9134065501748103
     },
     {
       "id": "socrates",
@@ -164,8 +164,8 @@
       "pushedAt": "2026-07-24T16:30:25Z",
       "commitCount": 5,
       "languageBytes": 249415,
-      "ageDays": 126,
-      "signal": 0.6323243094037281
+      "ageDays": 127,
+      "signal": 0.6316076950521499
     },
     {
       "id": "counselflow",
@@ -173,8 +173,8 @@
       "pushedAt": "2026-10-30T04:46:44Z",
       "commitCount": 9,
       "languageBytes": 588185,
-      "ageDays": 28,
-      "signal": 0.8013463380887895
+      "ageDays": 29,
+      "signal": 0.8002705217421756
     },
     {
       "id": "papertrade",
@@ -182,8 +182,8 @@
       "pushedAt": "2026-10-30T04:43:03Z",
       "commitCount": 35,
       "languageBytes": 475183,
-      "ageDays": 28,
-      "signal": 0.9582525359452171
+      "ageDays": 29,
+      "signal": 0.9571767310643703
     }
   ],
   "metrics": {
